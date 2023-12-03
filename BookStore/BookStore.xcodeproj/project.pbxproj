@@ -31,6 +31,8 @@
 		F48F39452B1D4287009DAFA8 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F39442B1D4287009DAFA8 /* CategoriesView.swift */; };
 		F48F394A2B1D42D5009DAFA8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F39492B1D42D5009DAFA8 /* HomeView.swift */; };
 		F48F394C2B1D42EE009DAFA8 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F394B2B1D42EE009DAFA8 /* HomeModel.swift */; };
+		F48F39502B1D4484009DAFA8 /* PagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F394F2B1D4484009DAFA8 /* PagesViewController.swift */; };
+		F48F39522B1D44A3009DAFA8 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F39512B1D44A3009DAFA8 /* OnboardingVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		F48F39442B1D4287009DAFA8 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		F48F39492B1D42D5009DAFA8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F48F394B2B1D42EE009DAFA8 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		F48F394F2B1D4484009DAFA8 /* PagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewController.swift; sourceTree = "<group>"; };
+		F48F39512B1D44A3009DAFA8 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 		F48F390A2B1CE710009DAFA8 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				F48F394D2B1D4429009DAFA8 /* Login */,
 				F48F390F2B1CE752009DAFA8 /* Account */,
 				F48F390E2B1CE74C009DAFA8 /* Likes */,
 				F48F390D2B1CE744009DAFA8 /* Categories */,
@@ -280,6 +285,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F48F394D2B1D4429009DAFA8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F48F394E2B1D4433009DAFA8 /* Onboarding */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F48F394E2B1D4433009DAFA8 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F48F394F2B1D4484009DAFA8 /* PagesViewController.swift */,
+				F48F39512B1D44A3009DAFA8 /* OnboardingVC.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -371,10 +393,12 @@
 				F48F39182B1CF4AE009DAFA8 /* UIButton Extension.swift in Sources */,
 				F48F39092B1CE4C0009DAFA8 /* AccountVC.swift in Sources */,
 				F48F391D2B1CF782009DAFA8 /* UIFont Extension.swift in Sources */,
+				F48F39502B1D4484009DAFA8 /* PagesViewController.swift in Sources */,
 				F48F393C2B1D41E6009DAFA8 /* LikesView.swift in Sources */,
 				F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */,
 				F48F39052B1CE3D7009DAFA8 /* CategoriesVC.swift in Sources */,
 				F48F39162B1CF49A009DAFA8 /* UILabel Extension.swift in Sources */,
+				F48F39522B1D44A3009DAFA8 /* OnboardingVC.swift in Sources */,
 				F48F39322B1D3C4D009DAFA8 /* UIViewController Extension.swift in Sources */,
 				F48F39072B1CE48B009DAFA8 /* LikesVC.swift in Sources */,
 			);
