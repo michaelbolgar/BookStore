@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import SnapKit
 
 final class OnboardingViewController: UIViewController {
     
@@ -20,7 +21,6 @@ final class OnboardingViewController: UIViewController {
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.contentInsetAdjustmentBehavior = .scrollableAxes
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
@@ -28,7 +28,6 @@ final class OnboardingViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "backSlide02")
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -39,7 +38,6 @@ final class OnboardingViewController: UIViewController {
         pageControl.pageIndicatorTintColor = .customDarkGray
         pageControl.currentPageIndicatorTintColor = .red
         pageControl.addTarget(self, action: #selector(pageControlIndicatorTapped(sender:)), for: .valueChanged)
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
     
@@ -129,7 +127,7 @@ final class OnboardingViewController: UIViewController {
         }
     }
     
-    func buttonsTapped() {
+    private func buttonsTapped() {
         firstOnboardingScreen.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         firstOnboardingScreen.nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         
@@ -139,22 +137,22 @@ final class OnboardingViewController: UIViewController {
         thirdOnboardingScreen.continueButton.addTarget(self, action: #selector(continueButtonTapped(_:)), for: .primaryActionTriggered)
     }
     
-    @objc func skipButtonTapped() {
+    //MARK: - Objc Private Methods
+    @objc private func skipButtonTapped() {
         let vc = MainTabBarController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
-    @objc func nextButtonTapped() {
+    @objc private func nextButtonTapped() {
         pageControl.currentPage += 1
         
         let xOffset = scrollView.contentOffset.x + scrollView.bounds.width
         let contentOffset = CGPoint(x: xOffset, y: scrollView.contentOffset.y)
         scrollView.setContentOffset(contentOffset, animated: true)
-        
     }
     
-    @objc func continueButtonTapped(_ sender: UIButton) {
+    @objc private func continueButtonTapped(_ sender: UIButton) {
         let vc = MainTabBarController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
@@ -191,22 +189,20 @@ extension OnboardingViewController: UIScrollViewDelegate, UIPageViewControllerDe
 //MARK: - Set Constraints
 extension OnboardingViewController {
     private func setConstrints() {
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height / 2),
-            
-            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            backgroundImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
-            backgroundImageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
-            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            
-            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            pageControl.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(view.frame.height / 2)
+        }
+        
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+        }
+        
+        pageControl.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.leading.equalTo(view).offset(30)
+            make.trailing.equalTo(view).offset(-30)
+            make.height.equalTo(50)
+        }
     }
 }
-
