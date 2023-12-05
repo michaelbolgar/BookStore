@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA32B1E641700C81F6A /* MainTabBarController.swift */; };
 		377B3EA72B1E721F00C81F6A /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */; };
+		377B3EAA2B1FB6F100C81F6A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 377B3EA92B1FB6F100C81F6A /* Lottie */; };
+		377B3EAE2B1FB87000C81F6A /* Animation - 2.json in Resources */ = {isa = PBXBuildFile; fileRef = 377B3EAB2B1FB87000C81F6A /* Animation - 2.json */; };
+		377B3EAF2B1FB87000C81F6A /* Animation - 3.json in Resources */ = {isa = PBXBuildFile; fileRef = 377B3EAC2B1FB87000C81F6A /* Animation - 3.json */; };
+		377B3EB02B1FB87000C81F6A /* Animation - 1.json in Resources */ = {isa = PBXBuildFile; fileRef = 377B3EAD2B1FB87000C81F6A /* Animation - 1.json */; };
 		F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */; };
 		F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */; };
 		F48F38F52B1CDD02009DAFA8 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F42B1CDD02009DAFA8 /* HomeVC.swift */; };
@@ -40,6 +44,9 @@
 /* Begin PBXFileReference section */
 		377B3EA32B1E641700C81F6A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		377B3EAB2B1FB87000C81F6A /* Animation - 2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 2.json"; sourceTree = "<group>"; };
+		377B3EAC2B1FB87000C81F6A /* Animation - 3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 3.json"; sourceTree = "<group>"; };
+		377B3EAD2B1FB87000C81F6A /* Animation - 1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 1.json"; sourceTree = "<group>"; };
 		F48F38ED2B1CDD02009DAFA8 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48F391B2B1CF61B009DAFA8 /* SnapKit in Frameworks */,
+				377B3EAA2B1FB6F100C81F6A /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +96,16 @@
 				377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */,
 			);
 			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		377B3EB12B1FB87700C81F6A /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				377B3EAD2B1FB87000C81F6A /* Animation - 1.json */,
+				377B3EAB2B1FB87000C81F6A /* Animation - 2.json */,
+				377B3EAC2B1FB87000C81F6A /* Animation - 3.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		F48F38E42B1CDD01009DAFA8 = {
@@ -195,6 +213,7 @@
 		F48F39142B1CE7DF009DAFA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				377B3EB12B1FB87700C81F6A /* Lottie */,
 				F48F39202B1D2463009DAFA8 /* Fonts */,
 			);
 			path = Resources;
@@ -334,6 +353,7 @@
 			name = BookStore;
 			packageProductDependencies = (
 				F48F391A2B1CF61B009DAFA8 /* SnapKit */,
+				377B3EA92B1FB6F100C81F6A /* Lottie */,
 			);
 			productName = BookStore;
 			productReference = F48F38ED2B1CDD02009DAFA8 /* BookStore.app */;
@@ -365,6 +385,7 @@
 			mainGroup = F48F38E42B1CDD01009DAFA8;
 			packageReferences = (
 				F48F39192B1CF61B009DAFA8 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				377B3EA82B1FB6F100C81F6A /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = F48F38EE2B1CDD02009DAFA8 /* Products */;
 			projectDirPath = "";
@@ -380,9 +401,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377B3EB02B1FB87000C81F6A /* Animation - 1.json in Resources */,
+				377B3EAF2B1FB87000C81F6A /* Animation - 3.json in Resources */,
 				F48F38FA2B1CDD04009DAFA8 /* Assets.xcassets in Resources */,
 				F48F392C2B1D24B7009DAFA8 /* OpenSans-Italic.ttf in Resources */,
 				F48F392E2B1D24B7009DAFA8 /* OpenSans-Regular.ttf in Resources */,
+				377B3EAE2B1FB87000C81F6A /* Animation - 2.json in Resources */,
 				F48F392D2B1D24B7009DAFA8 /* OpenSans-Bold.ttf in Resources */,
 				F48F39302B1D24D2009DAFA8 /* OpenSans-SemiBoldItalic.ttf in Resources */,
 			);
@@ -627,6 +651,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		377B3EA82B1FB6F100C81F6A /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.4;
+			};
+		};
 		F48F39192B1CF61B009DAFA8 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -638,6 +670,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		377B3EA92B1FB6F100C81F6A /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 377B3EA82B1FB6F100C81F6A /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		F48F391A2B1CF61B009DAFA8 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F48F39192B1CF61B009DAFA8 /* XCRemoteSwiftPackageReference "SnapKit" */;

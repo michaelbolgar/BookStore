@@ -6,30 +6,55 @@
 //
 
 import UIKit
+import Lottie
 
 final class PagesViewController: UIView {
+    
+    
+    let blurView: UIVisualEffectView = {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        view.layer.cornerRadius = 30
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let blurBackgroundView: UIVisualEffectView = {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        view.layer.cornerRadius = 30
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     //MARK: - Elements
     private lazy var transparentView: UIView = {
         let element = UIView()
-        element.backgroundColor = .darkGray.withAlphaComponent(0.9)
+        element.backgroundColor = .darkGray.withAlphaComponent(0.7)
+        element.layer.borderWidth = 5
+        element.layer.borderColor = UIColor.darkGray.cgColor
         element.layer.cornerRadius = 30
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
     
-    lazy var circleImageView: UIImageView = {
-        let element = UIImageView()
-        element.image = UIImage(named: "circleLogo")
-        element.clipsToBounds = true
+    lazy var animationView: LottieAnimationView = {
+        let element = LottieAnimationView()
         element.translatesAutoresizingMaskIntoConstraints = false
+        element.backgroundColor = .darkGray.withAlphaComponent(0.5)
+        element.layer.borderWidth = 5
+        element.layer.borderColor = UIColor.darkGray.cgColor
+        element.animation = LottieAnimation.named("Animation - 1")
+        element.loopMode = .loop
+        element.contentMode = .scaleAspectFit
+        element.clipsToBounds = true
         return element
     }()
     
     private lazy var pageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.openSansBold(ofSize: 34)
+        label.font = UIFont.openSansBold(ofSize: 30)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +64,7 @@ final class PagesViewController: UIView {
     private lazy var pageSubLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.openSansRegular(ofSize: 18)
+        label.font = UIFont.openSansBold(ofSize: 24)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +73,7 @@ final class PagesViewController: UIView {
     
     lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 10
         button.layer.backgroundColor = UIColor.white.cgColor
         button.setTitle("Next", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -70,8 +95,8 @@ final class PagesViewController: UIView {
     
     lazy var continueButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
-        button.layer.backgroundColor = UIColor.green.cgColor
+        button.layer.cornerRadius = 5
+        button.layer.backgroundColor = UIColor.black.cgColor
         button.setTitle("Get Started", for: .normal)
         button.titleLabel?.font = UIFont.openSansBold(ofSize: 17)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +107,9 @@ final class PagesViewController: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(transparentView)
-        addSubview(circleImageView)
+        addSubview(blurBackgroundView)
+        addSubview(animationView)
+        transparentView.addSubview(blurView)
         transparentView.addSubview(pageLabel)
         transparentView.addSubview(pageSubLabel)
         transparentView.addSubview(continueButton)
@@ -93,6 +120,7 @@ final class PagesViewController: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         setConstraints()
+        animationView.play()
     }
     
     required init?(coder: NSCoder) {
@@ -108,7 +136,7 @@ final class PagesViewController: UIView {
     public func setTransformWith(transform: CGAffineTransform) {
         pageLabel.transform = transform
         pageSubLabel.transform = transform
-        circleImageView.transform = transform
+        animationView.transform = transform
     }
     
     public func hideContinueButton() {
@@ -122,40 +150,51 @@ final class PagesViewController: UIView {
     
     //MARK: - Constraints
     private func setConstraints() {
-        circleImageView.layer.cornerRadius = circleImageView.bounds.height / 2
+        animationView.layer.cornerRadius = animationView.bounds.height / 2
+        blurBackgroundView.layer.cornerRadius = animationView.bounds.height / 2
         
         NSLayoutConstraint.activate([
-            circleImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            circleImageView.heightAnchor.constraint(equalToConstant: bounds.height / 4),
-            circleImageView.widthAnchor.constraint(equalToConstant: bounds.height / 4),
-            circleImageView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            animationView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            animationView.heightAnchor.constraint(equalToConstant: bounds.height / 3),
+            animationView.widthAnchor.constraint(equalToConstant: bounds.height / 3),
+            animationView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
             
-            transparentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            transparentView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            transparentView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            transparentView.heightAnchor.constraint(equalToConstant: bounds.height / 2.1),
+            transparentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            transparentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            transparentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            transparentView.heightAnchor.constraint(equalToConstant: bounds.height / 2.3),
             
-            pageLabel.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: 24),
+            blurView.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor),
+            blurView.topAnchor.constraint(equalTo: transparentView.topAnchor),
+            
+            blurBackgroundView.leadingAnchor.constraint(equalTo: animationView.leadingAnchor),
+            blurBackgroundView.trailingAnchor.constraint(equalTo: animationView.trailingAnchor),
+            blurBackgroundView.bottomAnchor.constraint(equalTo: animationView.bottomAnchor),
+            blurBackgroundView.topAnchor.constraint(equalTo: animationView.topAnchor),
+            
+            pageLabel.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: 5),
             pageLabel.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor, constant: 24),
             pageLabel.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor, constant: -24),
-            pageLabel.heightAnchor.constraint(equalToConstant: bounds.height / 6),
+            pageLabel.heightAnchor.constraint(equalToConstant: bounds.height / 7),
             
-            pageSubLabel.topAnchor.constraint(equalTo: pageLabel.bottomAnchor, constant: 10),
+            pageSubLabel.topAnchor.constraint(equalTo: pageLabel.bottomAnchor),
             pageSubLabel.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor, constant: 24),
             pageSubLabel.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor, constant: -24),
-            pageSubLabel.heightAnchor.constraint(equalToConstant: bounds.height / 7),
+            pageSubLabel.heightAnchor.constraint(equalToConstant: bounds.height / 8),
             
-            skipButton.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor, constant: -56),
+            skipButton.topAnchor.constraint(equalTo: pageSubLabel.bottomAnchor, constant: 5),
             skipButton.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor, constant: 30),
             skipButton.widthAnchor.constraint(equalToConstant: 90),
             skipButton.heightAnchor.constraint(equalToConstant: 58),
             
-            continueButton.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor, constant: -56),
+            continueButton.topAnchor.constraint(equalTo: pageSubLabel.bottomAnchor, constant: 5),
             continueButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            continueButton.widthAnchor.constraint(equalToConstant: 260),
+            continueButton.widthAnchor.constraint(equalToConstant: bounds.width * 0.7),
             continueButton.heightAnchor.constraint(equalToConstant: 58),
             
-            nextButton.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor, constant: -56),
+            nextButton.topAnchor.constraint(equalTo: pageSubLabel.bottomAnchor, constant: 5),
             nextButton.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor, constant: -30),
             nextButton.widthAnchor.constraint(equalToConstant: 90),
             nextButton.heightAnchor.constraint(equalToConstant: 58),

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 final class OnboardingViewController: UIViewController {
     
@@ -83,7 +84,7 @@ final class OnboardingViewController: UIViewController {
         seaGreenAttribute[.foregroundColor] = UIColor.orange
         
         var blueAttribute = [NSAttributedString.Key: AnyObject]()
-        blueAttribute[.foregroundColor] = UIColor.red
+        blueAttribute[.foregroundColor] = UIColor.white
         
         let text = NSMutableAttributedString(string: text1, attributes: blueAttribute)
         text.append(NSAttributedString(string: text2, attributes: seaGreenAttribute))
@@ -102,14 +103,14 @@ final class OnboardingViewController: UIViewController {
                                                                text2: "save it for later"),
                                                 text2: makeText(text1: "You can add your favoirite book to your library ",
                                                                 text2: "to have access to it just on fingertip"))
-        secondOnboardingScreen.circleImageView.image = UIImage(named: "circleLogo2")
+        secondOnboardingScreen.animationView.animation = LottieAnimation.named("Animation - 2")
         secondOnboardingScreen.hideContinueButton()
         
         thirdOnboardingScreen.setPageLabelText(text: makeText(text1: "Read more and stress less ",
                                                               text2: "with our reading app"),
-                                               text2: makeText(text1: "It doesn't matter what you're interested in...",
+                                               text2: makeText(text1: "It doesn't matter what you're interested in. ",
                                                                text2: "Happy reading"))
-        thirdOnboardingScreen.circleImageView.image = UIImage(named: "circleLogo3")
+        thirdOnboardingScreen.animationView.animation = LottieAnimation.named("Animation - 3")
         thirdOnboardingScreen.hideSkipNextButtons()
         
         return [firstOnboardingScreen, secondOnboardingScreen, thirdOnboardingScreen]
