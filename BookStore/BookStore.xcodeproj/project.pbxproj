@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35B9D1092B210F5C00CC5831 /* NetworkingLib in Frameworks */ = {isa = PBXBuildFile; productRef = 35B9D1082B210F5C00CC5831 /* NetworkingLib */; };
 		377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA32B1E641700C81F6A /* MainTabBarController.swift */; };
 		377B3EA72B1E721F00C81F6A /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */; };
 		F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */; };
@@ -38,6 +39,37 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		35B9D0CD2B209AAC00CC5831 /* NetworkingLib */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NetworkingLib; path = ../NetworkingLib; sourceTree = "<group>"; };
+		35B9D0D22B210F5400CC5831 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		35B9D0D32B210F5400CC5831 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		35B9D0D42B210F5400CC5831 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		35B9D0D52B210F5400CC5831 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		35B9D0D62B210F5400CC5831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35B9D0D82B210F5400CC5831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		35B9D0DA2B210F5400CC5831 /* UIViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController Extension.swift"; sourceTree = "<group>"; };
+		35B9D0DB2B210F5400CC5831 /* UIFont Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont Extension.swift"; sourceTree = "<group>"; };
+		35B9D0DC2B210F5400CC5831 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
+		35B9D0DD2B210F5400CC5831 /* UILabel Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel Extension.swift"; sourceTree = "<group>"; };
+		35B9D0DE2B210F5400CC5831 /* UIButton Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton Extension.swift"; sourceTree = "<group>"; };
+		35B9D0E02B210F5400CC5831 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		35B9D0E12B210F5400CC5831 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		35B9D0E52B210F5400CC5831 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		35B9D0E72B210F5400CC5831 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		35B9D0E92B210F5400CC5831 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		35B9D0EC2B210F5400CC5831 /* LikesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesVC.swift; sourceTree = "<group>"; };
+		35B9D0EE2B210F5400CC5831 /* LikesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesModel.swift; sourceTree = "<group>"; };
+		35B9D0F02B210F5400CC5831 /* LikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesView.swift; sourceTree = "<group>"; };
+		35B9D0F32B210F5400CC5831 /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
+		35B9D0F52B210F5400CC5831 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		35B9D0F72B210F5400CC5831 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		35B9D0F82B210F5400CC5831 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		35B9D0FB2B210F5400CC5831 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
+		35B9D0FD2B210F5400CC5831 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
+		35B9D0FF2B210F5400CC5831 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		35B9D1022B210F5400CC5831 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
+		35B9D1032B210F5400CC5831 /* PagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewController.swift; sourceTree = "<group>"; };
+		35B9D1042B210F5400CC5831 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35B9D1052B210F5400CC5831 /* BookStore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = BookStore.xcodeproj; sourceTree = "<group>"; };
 		377B3EA32B1E641700C81F6A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		F48F38ED2B1CDD02009DAFA8 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B9D1092B210F5C00CC5831 /* NetworkingLib in Frameworks */,
 				F48F391B2B1CF61B009DAFA8 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +114,249 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35B9D0CC2B209AAC00CC5831 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0CE2B210F5400CC5831 /* BookStore */,
+				35B9D0CD2B209AAC00CC5831 /* NetworkingLib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35B9D0CE2B210F5400CC5831 /* BookStore */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0CF2B210F5400CC5831 /* BookStore */,
+				35B9D1052B210F5400CC5831 /* BookStore.xcodeproj */,
+			);
+			name = BookStore;
+			sourceTree = "<group>";
+		};
+		35B9D0CF2B210F5400CC5831 /* BookStore */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0D02B210F5400CC5831 /* Resources */,
+				35B9D0D62B210F5400CC5831 /* Assets.xcassets */,
+				35B9D0D72B210F5400CC5831 /* Main.storyboard */,
+				35B9D0D92B210F5400CC5831 /* Extensions */,
+				35B9D0DF2B210F5400CC5831 /* Application */,
+				35B9D0E22B210F5400CC5831 /* Moduls */,
+				35B9D1042B210F5400CC5831 /* Info.plist */,
+			);
+			path = BookStore;
+			sourceTree = "<group>";
+		};
+		35B9D0D02B210F5400CC5831 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0D12B210F5400CC5831 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		35B9D0D12B210F5400CC5831 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0D22B210F5400CC5831 /* OpenSans-Italic.ttf */,
+				35B9D0D32B210F5400CC5831 /* OpenSans-Bold.ttf */,
+				35B9D0D42B210F5400CC5831 /* OpenSans-SemiBoldItalic.ttf */,
+				35B9D0D52B210F5400CC5831 /* OpenSans-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		35B9D0D92B210F5400CC5831 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0DA2B210F5400CC5831 /* UIViewController Extension.swift */,
+				35B9D0DB2B210F5400CC5831 /* UIFont Extension.swift */,
+				35B9D0DC2B210F5400CC5831 /* UIColor Extension.swift */,
+				35B9D0DD2B210F5400CC5831 /* UILabel Extension.swift */,
+				35B9D0DE2B210F5400CC5831 /* UIButton Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		35B9D0DF2B210F5400CC5831 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0E02B210F5400CC5831 /* AppDelegate.swift */,
+				35B9D0E12B210F5400CC5831 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		35B9D0E22B210F5400CC5831 /* Moduls */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0E32B210F5400CC5831 /* Home */,
+				35B9D0EA2B210F5400CC5831 /* Likes */,
+				35B9D0F12B210F5400CC5831 /* Account */,
+				35B9D0F62B210F5400CC5831 /* MainTabBar */,
+				35B9D0F92B210F5400CC5831 /* Categories */,
+				35B9D1002B210F5400CC5831 /* Login */,
+			);
+			path = Moduls;
+			sourceTree = "<group>";
+		};
+		35B9D0E32B210F5400CC5831 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0E42B210F5400CC5831 /* Controller */,
+				35B9D0E62B210F5400CC5831 /* Model */,
+				35B9D0E82B210F5400CC5831 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		35B9D0E42B210F5400CC5831 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0E52B210F5400CC5831 /* HomeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		35B9D0E62B210F5400CC5831 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0E72B210F5400CC5831 /* HomeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35B9D0E82B210F5400CC5831 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0E92B210F5400CC5831 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35B9D0EA2B210F5400CC5831 /* Likes */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0EB2B210F5400CC5831 /* Controller */,
+				35B9D0ED2B210F5400CC5831 /* Model */,
+				35B9D0EF2B210F5400CC5831 /* View */,
+			);
+			path = Likes;
+			sourceTree = "<group>";
+		};
+		35B9D0EB2B210F5400CC5831 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0EC2B210F5400CC5831 /* LikesVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		35B9D0ED2B210F5400CC5831 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0EE2B210F5400CC5831 /* LikesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35B9D0EF2B210F5400CC5831 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0F02B210F5400CC5831 /* LikesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35B9D0F12B210F5400CC5831 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0F22B210F5400CC5831 /* Controller */,
+				35B9D0F42B210F5400CC5831 /* View */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		35B9D0F22B210F5400CC5831 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0F32B210F5400CC5831 /* AccountVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		35B9D0F42B210F5400CC5831 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0F52B210F5400CC5831 /* AccountView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35B9D0F62B210F5400CC5831 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0F72B210F5400CC5831 /* MainTabBarController.swift */,
+				35B9D0F82B210F5400CC5831 /* NavigationViewController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		35B9D0F92B210F5400CC5831 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0FA2B210F5400CC5831 /* Controller */,
+				35B9D0FC2B210F5400CC5831 /* Model */,
+				35B9D0FE2B210F5400CC5831 /* View */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		35B9D0FA2B210F5400CC5831 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0FB2B210F5400CC5831 /* CategoriesVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		35B9D0FC2B210F5400CC5831 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0FD2B210F5400CC5831 /* CategoriesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35B9D0FE2B210F5400CC5831 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D0FF2B210F5400CC5831 /* CategoriesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35B9D1002B210F5400CC5831 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D1012B210F5400CC5831 /* Onboarding */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		35B9D1012B210F5400CC5831 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				35B9D1022B210F5400CC5831 /* OnboardingVC.swift */,
+				35B9D1032B210F5400CC5831 /* PagesViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		35B9D1062B210F5400CC5831 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		377B3EA52B1E641D00C81F6A /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +371,7 @@
 			children = (
 				F48F38EF2B1CDD02009DAFA8 /* BookStore */,
 				F48F38EE2B1CDD02009DAFA8 /* Products */,
+				35B9D0CC2B209AAC00CC5831 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -334,6 +611,7 @@
 			name = BookStore;
 			packageProductDependencies = (
 				F48F391A2B1CF61B009DAFA8 /* SnapKit */,
+				35B9D1082B210F5C00CC5831 /* NetworkingLib */,
 			);
 			productName = BookStore;
 			productReference = F48F38ED2B1CDD02009DAFA8 /* BookStore.app */;
@@ -368,6 +646,12 @@
 			);
 			productRefGroup = F48F38EE2B1CDD02009DAFA8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 35B9D1062B210F5400CC5831 /* Products */;
+					ProjectRef = 35B9D1052B210F5400CC5831 /* BookStore.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F48F38EC2B1CDD02009DAFA8 /* BookStore */,
@@ -421,6 +705,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		35B9D0D72B210F5400CC5831 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				35B9D0D82B210F5400CC5831 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F48F38FF2B1CDD04009DAFA8 /* Debug */ = {
@@ -638,6 +933,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		35B9D1082B210F5C00CC5831 /* NetworkingLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkingLib;
+		};
 		F48F391A2B1CF61B009DAFA8 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F48F39192B1CF61B009DAFA8 /* XCRemoteSwiftPackageReference "SnapKit" */;
