@@ -17,7 +17,6 @@ final class LikesCell: UICollectionViewCell {
     
     private lazy var author = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Author", font: UIFont(name: "OpenSans-Regular", size: 14), textColor: .white, numberOfLines: 2)
     
-    
     private lazy var image: UIImageView = {
         let image = UIImageView(image: UIImage(systemName: "moon.dust"))
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -98,8 +97,4 @@ extension UILabel {
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
