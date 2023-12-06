@@ -5,6 +5,7 @@
 //  Created by Кристина Максимова on 06.12.2023.
 //
 
+<<<<<<< HEAD
 
 import UIKit
 import SnapKit
@@ -53,6 +54,9 @@ final class CategoriesCell: UICollectionViewCell {
         }
     }
 }
+=======
+import Foundation
+>>>>>>> cf5fc0e60d5ebc34ab0693f5f1289ebf4f399058
 =======
 import Foundation
 >>>>>>> cf5fc0e60d5ebc34ab0693f5f1289ebf4f399058
