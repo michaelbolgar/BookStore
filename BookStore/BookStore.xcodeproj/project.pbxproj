@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF9B56092B20EB4E00AAAB90 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9B56082B20EB4E00AAAB90 /* CategoriesCell.swift */; };
+		AF9B560B2B20F37300AAAB90 /* CategoriesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9B560A2B20F37300AAAB90 /* CategoriesHeader.swift */; };
 		F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */; };
 		F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */; };
 		F48F38F52B1CDD02009DAFA8 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F42B1CDD02009DAFA8 /* HomeVC.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF9B56082B20EB4E00AAAB90 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
+		AF9B560A2B20F37300AAAB90 /* CategoriesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesHeader.swift; sourceTree = "<group>"; };
 		F48F38ED2B1CDD02009DAFA8 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				F48F39442B1D4287009DAFA8 /* CategoriesView.swift */,
+				AF9B56082B20EB4E00AAAB90 /* CategoriesCell.swift */,
+				AF9B560A2B20F37300AAAB90 /* CategoriesHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -393,9 +399,11 @@
 				F48F39182B1CF4AE009DAFA8 /* UIButton Extension.swift in Sources */,
 				F48F39092B1CE4C0009DAFA8 /* AccountVC.swift in Sources */,
 				F48F391D2B1CF782009DAFA8 /* UIFont Extension.swift in Sources */,
+				AF9B560B2B20F37300AAAB90 /* CategoriesHeader.swift in Sources */,
 				F48F39502B1D4484009DAFA8 /* PagesViewController.swift in Sources */,
 				F48F393C2B1D41E6009DAFA8 /* LikesView.swift in Sources */,
 				F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */,
+				AF9B56092B20EB4E00AAAB90 /* CategoriesCell.swift in Sources */,
 				F48F39052B1CE3D7009DAFA8 /* CategoriesVC.swift in Sources */,
 				F48F39162B1CF49A009DAFA8 /* UILabel Extension.swift in Sources */,
 				F48F39522B1D44A3009DAFA8 /* OnboardingVC.swift in Sources */,
