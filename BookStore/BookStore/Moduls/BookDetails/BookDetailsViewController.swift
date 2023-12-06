@@ -92,7 +92,7 @@ final class BookDetailsViewController: UIViewController {
     
     //MARK: - Private Methods
     private func setupViews() {
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         
         view.addSubviewsTamicOff(
             topLabel,
