@@ -76,9 +76,9 @@ final class BookDetailsViewController: UIViewController {
         element.backgroundColor = .clear
         
         DispatchQueue.main.async {
-                element.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
-            }
-
+            element.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+        }
+        
         return element
     }()
     
@@ -155,19 +155,19 @@ extension UILabel {
         self.init()
         let regularFont = UIFont.openSansRegular(ofSize: 14)
         let boldFont = UIFont.openSansBold(ofSize: 14)
-            let attributedText = NSMutableAttributedString(
-                string: text1,
-                attributes: [.font: regularFont ?? UIFont.systemFont(
-                    ofSize: 14
-                )]
-            )
-            let categoryText = NSAttributedString(
-                string: text2,
-                attributes: [.font: boldFont ?? UIFont.boldSystemFont(
-                    ofSize: 14
-                )]
-            )
-            attributedText.append(categoryText)
-            self.attributedText = attributedText
+        let attributedText = NSMutableAttributedString(
+            string: text1,
+            attributes: [.font: regularFont ?? UIFont.systemFont(
+                ofSize: 14
+            )]
+        )
+        let categoryText = NSAttributedString(
+            string: text2,
+            attributes: [.font: boldFont ?? UIFont.boldSystemFont(
+                ofSize: 14
+            )]
+        )
+        attributedText.append(categoryText)
+        self.attributedText = attributedText
     }
 }
