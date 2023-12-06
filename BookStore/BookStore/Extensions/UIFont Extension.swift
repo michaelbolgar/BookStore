@@ -17,4 +17,8 @@ extension UIFont {
     static func openSansSemiBoldItalic(ofSize: CGFloat) -> UIFont? {
         return UIFont(name: "OpenSans-SemiBoldItalic", size: ofSize)
     }
+    
+    static func openSansLight(ofSize: CGFloat) -> UIFont? {
+        return UIFont(name: "OpenSans-Light", size: ofSize)
+    }
 }

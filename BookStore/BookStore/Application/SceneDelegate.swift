@@ -14,6 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window.rootViewController = CategoriesVC()
 //        window.rootViewController = LikesVC()
 //        window.rootViewController = AccountVC()
+        window.rootViewController = SearchResultVC()
+    
 
         window.makeKeyAndVisible()
         self.window = window
