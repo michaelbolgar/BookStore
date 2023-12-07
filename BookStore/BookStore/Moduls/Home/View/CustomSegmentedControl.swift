@@ -8,6 +8,7 @@
 import UIKit
 
 final class CustomSegmentedControl: UIView {
+    
     private var verticalContainer: UIView = UIView()
     private var buttonsContainer: UIStackView = UIStackView()
     

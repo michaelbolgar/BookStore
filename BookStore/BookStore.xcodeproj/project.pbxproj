@@ -334,7 +334,6 @@
 		F48F39462B1D42A4009DAFA8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				79C697982B210B190055129C /* HeaderSupplementaryView.swift */,
 				F48F38F42B1CDD02009DAFA8 /* HomeVC.swift */,
 			);
 			path = Controller;
@@ -347,6 +346,7 @@
 				F48F39492B1D42D5009DAFA8 /* HomeView.swift */,
 				790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */,
 				790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */,
+				79C697982B210B190055129C /* HeaderSupplementaryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
