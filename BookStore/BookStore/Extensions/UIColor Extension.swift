@@ -20,7 +20,7 @@ extension UIColor {
                 if traitCollection.userInterfaceStyle == .light {
                     return UIColor.white
                 } else {
-                    return UIColor.systemGray6
+                    return UIColor.systemGray4
                 }
             })
         } else {
@@ -34,7 +34,7 @@ extension UIColor {
                 if traitCollection.userInterfaceStyle == .light {
                     return UIColor.customBlack
                 } else {
-                    return UIColor.systemGray4
+                    return UIColor.customLightGray
                 }
             })
         } else {
@@ -46,13 +46,13 @@ extension UIColor {
         if #available(iOS 13, *) {
             return UIColor (dynamicProvider: { (traitCollection: UITraitCollection) -> UIColor in
                 if traitCollection.userInterfaceStyle == .light {
-                    return UIColor.customBlack
-                } else {
                     return UIColor.customLightGray
+                } else {
+                    return UIColor.systemGray5
                 }
             })
         } else {
-            return UIColor.customBlack
+            return UIColor.customLightGray
         }
     }()
 }
