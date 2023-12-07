@@ -25,6 +25,7 @@ class LikesView: UIView {
     
     //MARK: - PrivateMethods
     private func configureCollectionView() {
+        collectionView.backgroundColor = .background
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(collectionView)
     }

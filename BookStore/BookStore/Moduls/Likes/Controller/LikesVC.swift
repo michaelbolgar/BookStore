@@ -11,7 +11,7 @@ class LikesVC: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
+//        view.backgroundColor = .systemGray
         likesView.collectionView.delegate = self
         likesView.collectionView.dataSource = self
         view = likesView
@@ -35,7 +35,6 @@ extension LikesVC: UICollectionViewDelegate,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LikesCell.self.description(),
                                                       for: indexPath) as! LikesCell
         cell.clipsToBounds = true
-        cell.backgroundColor = .customBlack
         cell.layer.cornerRadius = 8
         return cell
     }

@@ -10,13 +10,13 @@ final class HomeView: UIView {
     private let topBooksTitleLabel = UILabel.makeLabel(
         text: "Top Books",
         font: .openSansBold(ofSize: 20),
-        textColor: .black
+        textColor: .elements
     )
     private let buttonTitles: [String] = ["This Week", "This Month", "This Year"]
     private lazy var segmentedControl: CustomSegmentedControl = CustomSegmentedControl(buttonTitles: buttonTitles)
     private let centeredTitle: UILabel = UILabel()
     
-    private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .black, borderWidth: 0)
+    private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .elements, borderWidth: 0)
     
     private let topButtonsStackView = UIStackView(spacing: 0, axis: .horizontal, alignment: .center)
     

@@ -11,7 +11,7 @@ class CategoriesVC: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
+//        view.backgroundColor = .systemGray
         categoriesView.collectionView.delegate = self
         categoriesView.collectionView.dataSource = self
         view = categoriesView

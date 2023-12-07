@@ -11,7 +11,10 @@ import SnapKit
 final class CategoriesCell: UICollectionViewCell {
     
     //MARK: - Create UIElements
-    private lazy var genre = UILabel.makeMultiLineLabel(font: UIFont(name: "OpenSans-Regular", size: 20), textColor: .white, numberOfLines: 2)
+    private lazy var genre = UILabel.makeMultiLineLabel(font: UIFont(name: "OpenSans-Regular",
+                                                                     size: 20),
+                                                        textColor: .label,
+                                                        numberOfLines: 2)
     
     private lazy var image: UIImageView = {
         let image = UIImageView(image: UIImage(systemName: "moon.dust"))
@@ -32,6 +35,7 @@ final class CategoriesCell: UICollectionViewCell {
     
     //MARK: - PrivateMethods
     private func setLayout() {
+        contentView.backgroundColor = .elements
         contentView.addSubview(image)
         contentView.addSubview(genre)
         

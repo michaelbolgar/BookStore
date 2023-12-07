@@ -25,7 +25,7 @@ final class CustomSegmentedControl: UIView {
     private var fontSelected: UIFont = UIFont()
     private var fontUnselected: UIFont = UIFont()
     
-    convenience init(buttonTitles: [String], tintColor: UIColor = .black, fontSelected: UIFont = .preferredFont(forTextStyle: .body, compatibleWith: .init(legibilityWeight: .bold)), fontUnselected: UIFont = .preferredFont(forTextStyle: .body)) {
+    convenience init(buttonTitles: [String], tintColor: UIColor = .elements, fontSelected: UIFont = .preferredFont(forTextStyle: .body, compatibleWith: .init(legibilityWeight: .bold)), fontUnselected: UIFont = .preferredFont(forTextStyle: .body)) {
         self.init()
        
         guard buttonTitles.isEmpty == false else { return }

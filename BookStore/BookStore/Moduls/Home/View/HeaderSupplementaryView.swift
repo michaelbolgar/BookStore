@@ -15,16 +15,16 @@ final class HeaderSupplementaryView: UICollectionReusableView {
     private let headerLabel = UILabel.makeLabel(
         text: "Top Books",
         font: .openSansBold(ofSize: 20),
-        textColor: .black
+        textColor: .elements
     )
-    private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .black, borderWidth: 0)
+    private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .elements, borderWidth: 0)
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = .background
         
         
         addSubview(headerLabel)

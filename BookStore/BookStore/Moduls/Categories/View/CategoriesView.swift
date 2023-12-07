@@ -30,15 +30,17 @@ class CategoriesView: UIView {
     //MARK: - PrivateMethods
     private func configureCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .background
         addSubview(collectionView)
     }
     
     private func setConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
+//            make.top.equalToSuperview()
+//            make.leading.equalToSuperview()
+//            make.trailing.equalToSuperview()
+//            make.bottom.equalToSuperview()
         }
     }
 }

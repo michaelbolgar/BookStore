@@ -11,11 +11,20 @@ import SnapKit
 final class LikesCell: UICollectionViewCell {
 
     //MARK: - Create UIElements
-    private lazy var genre = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Genre", font: UIFont(name: "OpenSans-Regular", size: 12), textColor: .white, numberOfLines: 2)
+    private lazy var genre = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Genre",
+                                                                             font: UIFont(name: "OpenSans-Regular", size: 12),
+                                                                             textColor: .label,
+                                                                             numberOfLines: 2)
     
-    private lazy var name = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Name Book", font: UIFont(name: "OpenSans-Bold", size: 18), textColor: .white, numberOfLines: 2)
+    private lazy var name = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Name Book",
+                                                                            font: UIFont(name: "OpenSans-Bold", size: 18),
+                                                                            textColor: .label,
+                                                                            numberOfLines: 2)
     
-    private lazy var author = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Author", font: UIFont(name: "OpenSans-Regular", size: 14), textColor: .white, numberOfLines: 2)
+    private lazy var author = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Author",
+                                                                              font: UIFont(name: "OpenSans-Regular", size: 14),
+                                                                              textColor: .label,
+                                                                              numberOfLines: 2)
     
     private lazy var image: UIImageView = {
         let image = UIImageView(image: UIImage(systemName: "moon.dust"))
@@ -26,7 +35,7 @@ final class LikesCell: UICollectionViewCell {
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .label
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -43,6 +52,7 @@ final class LikesCell: UICollectionViewCell {
 
     //MARK: - PrivateMethods
     private func setLayout() {
+        contentView.backgroundColor = .elements
         contentView.addSubview(genre)
         contentView.addSubview(name)
         contentView.addSubview(author)
@@ -86,7 +96,7 @@ final class LikesCell: UICollectionViewCell {
     }
 }
 
-extension UILabel {
+private extension UILabel {
     static func makeMultiLineLabelWithLeftTextAlignment(text: String = "", font: UIFont?, textColor: UIColor, numberOfLines: Int) -> UILabel {
         let label = UILabel()
         label.text = text
