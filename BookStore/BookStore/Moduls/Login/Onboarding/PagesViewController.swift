@@ -11,7 +11,6 @@ import SnapKit
 
 final class PagesViewController: UIView {
     
-    
     //MARK: - UI Elements
     let blurView: UIVisualEffectView = {
         let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
@@ -206,6 +205,7 @@ extension UILabel {
         self.textColor = .white
         self.font = UIFont.openSansBold(ofSize: withTextSize)
         self.textAlignment = .center
+        self.adjustsFontSizeToFitWidth = true
         self.numberOfLines = 0
     }
 }
