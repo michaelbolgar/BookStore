@@ -3,7 +3,7 @@ import SnapKit
 
 extension UIButton {
     static func makeButton(text: String, buttonColor: UIColor, tintColor: UIColor, borderWidth: CGFloat) -> UIButton {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         button.setTitle(text, for: .normal)
         button.backgroundColor = buttonColor
         button.setTitleColor(tintColor, for: .normal)

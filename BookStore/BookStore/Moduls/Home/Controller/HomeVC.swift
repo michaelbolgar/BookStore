@@ -13,7 +13,6 @@ final class HomeVC: UIViewController {
         font: .openSansBold(ofSize: 20),
         textColor: .black
     )
-    //
     private let buttonTitles: [String] = ["This Week", "This Month", "This Year"]
     private lazy var segmentedControl: CustomSegmentedControl = CustomSegmentedControl(buttonTitles: buttonTitles)
     private let centeredTitle: UILabel = UILabel()
@@ -124,32 +123,7 @@ final class HomeVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    //
-    private func configure() {
-        setViews()
-        prepareSegmentedControl()
-        prepareCenteredTitle()
-    }
-    //
-    private func prepareSegmentedControl() {
-        segmentedControl.delegate = self
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        ])
-    }
-    
-    private func prepareCenteredTitle() {
-        centeredTitle.translatesAutoresizingMaskIntoConstraints = false
-        centeredTitle.text = "Button 1 selected"
-        NSLayoutConstraint.activate([
-            centeredTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            centeredTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        ])
-    }
-    
+
 }
 
 extension UIStackView {
