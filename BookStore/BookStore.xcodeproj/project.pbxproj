@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF24B6B62B22661800B2991D /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF24B6B32B22661700B2991D /* CategoriesCell.swift */; };
+		AF24B6B72B22661800B2991D /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF24B6B42B22661700B2991D /* CategoriesView.swift */; };
+		AF24B6B82B22661800B2991D /* CategoriesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF24B6B52B22661800B2991D /* CategoriesHeader.swift */; };
+		AF24B6BA2B22662400B2991D /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF24B6B92B22662400B2991D /* CategoriesVC.swift */; };
 		F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */; };
 		F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */; };
 		F48F38F52B1CDD02009DAFA8 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F42B1CDD02009DAFA8 /* HomeVC.swift */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF24B6B32B22661700B2991D /* CategoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
+		AF24B6B42B22661700B2991D /* CategoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		AF24B6B52B22661800B2991D /* CategoriesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesHeader.swift; sourceTree = "<group>"; };
+		AF24B6B92B22662400B2991D /* CategoriesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		F48F38ED2B1CDD02009DAFA8 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +244,7 @@
 		F48F393F2B1D424E009DAFA8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AF24B6B92B22662400B2991D /* CategoriesVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -243,6 +252,9 @@
 		F48F39402B1D4254009DAFA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF24B6B32B22661700B2991D /* CategoriesCell.swift */,
+				AF24B6B52B22661800B2991D /* CategoriesHeader.swift */,
+				AF24B6B42B22661700B2991D /* CategoriesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -381,7 +393,10 @@
 				F48F38F52B1CDD02009DAFA8 /* HomeVC.swift in Sources */,
 				F48F393E2B1D4208009DAFA8 /* LikesModel.swift in Sources */,
 				F48F394A2B1D42D5009DAFA8 /* HomeView.swift in Sources */,
+				AF24B6BA2B22662400B2991D /* CategoriesVC.swift in Sources */,
 				F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */,
+				AF24B6B62B22661800B2991D /* CategoriesCell.swift in Sources */,
+				AF24B6B72B22661800B2991D /* CategoriesView.swift in Sources */,
 				F48F391F2B1D1F63009DAFA8 /* UIColor Extension.swift in Sources */,
 				F48F39182B1CF4AE009DAFA8 /* UIButton Extension.swift in Sources */,
 				F48F39092B1CE4C0009DAFA8 /* AccountVC.swift in Sources */,
@@ -392,6 +407,7 @@
 				F48F39162B1CF49A009DAFA8 /* UILabel Extension.swift in Sources */,
 				F48F39522B1D44A3009DAFA8 /* OnboardingVC.swift in Sources */,
 				F48F39322B1D3C4D009DAFA8 /* UIViewController Extension.swift in Sources */,
+				AF24B6B82B22661800B2991D /* CategoriesHeader.swift in Sources */,
 				F48F39072B1CE48B009DAFA8 /* LikesVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
