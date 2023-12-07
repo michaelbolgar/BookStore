@@ -13,12 +13,14 @@ final class HomeVC: UIViewController {
         font: .openSansBold(ofSize: 20),
         textColor: .black
     )
+    //
+    private let buttonTitles: [String] = ["This Week", "This Month", "This Year"]
+    private lazy var segmentedControl: CustomSegmentedControl = CustomSegmentedControl(buttonTitles: buttonTitles)
+    private let centeredTitle: UILabel = UILabel()
+    
     private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .black, borderWidth: 0)
     
-    private let topButtonsStackView = UIStackView(spacing: 10, axis: .horizontal, alignment: .center)
-    private let weekButton = UIButton.makeButton(text: "This Week", buttonColor: .white, tintColor: .black, borderWidth: 1.2)
-    private let monthButton = UIButton.makeButton(text: "This Month", buttonColor: .white, tintColor: .black, borderWidth: 1.2)
-    private let yearButton = UIButton.makeButton(text: "This Year", buttonColor: .white, tintColor: .black, borderWidth: 1.2)
+    private let topButtonsStackView = UIStackView(spacing: 0, axis: .horizontal, alignment: .center)
     
     private lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
@@ -81,9 +83,8 @@ final class HomeVC: UIViewController {
         topBooksStackView.addArrangedSubview(topBooksTitleLabel)
         topBooksStackView.addArrangedSubview(seeMoreButton)
         
-        topButtonsStackView.addArrangedSubview(weekButton)
-        topButtonsStackView.addArrangedSubview(monthButton)
-        topButtonsStackView.addArrangedSubview(yearButton)
+        topButtonsStackView.addArrangedSubview(segmentedControl)
+        topButtonsStackView.addArrangedSubview(centeredTitle)
         
     }
     
@@ -105,22 +106,10 @@ final class HomeVC: UIViewController {
             make.height.equalTo(20)
         }
         
-        weekButton.snp.makeConstraints { make in
-            make.width.equalTo(79)
-            make.height.equalTo(32)
-            
+        topButtonsStackView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-10)
         }
-        
-        monthButton.snp.makeConstraints { make in
-            make.width.equalTo(93)
-            make.height.equalTo(32)
-        }
-        
-        yearButton.snp.makeConstraints { make in
-            make.width.equalTo(79)
-            make.height.equalTo(32)
-        }
-        
+                
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
@@ -134,6 +123,31 @@ final class HomeVC: UIViewController {
     private func setDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    //
+    private func configure() {
+        setViews()
+        prepareSegmentedControl()
+        prepareCenteredTitle()
+    }
+    //
+    private func prepareSegmentedControl() {
+        segmentedControl.delegate = self
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        ])
+    }
+    
+    private func prepareCenteredTitle() {
+        centeredTitle.translatesAutoresizingMaskIntoConstraints = false
+        centeredTitle.text = "Button 1 selected"
+        NSLayoutConstraint.activate([
+            centeredTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            centeredTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
     
 }
@@ -285,5 +299,12 @@ extension HomeVC: UICollectionViewDataSource {
     }
     
     
+}
+
+// MARK: SegmentedControl delegate
+extension HomeVC: CustomSegmentedControlDelegate {
+    func buttonPressed(buttonTitlesIndex: Int, title: String?) {
+        centeredTitle.text = "\(buttonTitles[buttonTitlesIndex]) selected"
+    }
 }
 
