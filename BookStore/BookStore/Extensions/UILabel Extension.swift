@@ -8,7 +8,7 @@ extension UILabel {
         label.font = font
         label.textColor = textColor
         label.numberOfLines = 0
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
