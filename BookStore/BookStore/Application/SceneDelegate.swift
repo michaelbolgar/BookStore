@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        }
 //        UserDefaults.standard.set(true, forKey: "appLaunchedBefore")
         
-        window?.rootViewController = OnboardingViewController()
+        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     }
 }
