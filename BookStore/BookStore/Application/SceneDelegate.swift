@@ -20,8 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            window?.rootViewController = onboardingVC
 //        }
 //        UserDefaults.standard.set(true, forKey: "appLaunchedBefore")
-        
-        window?.rootViewController = MainTabBarController()
+        window?.rootViewController = RegistrationViewController()
+//        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     }
 }

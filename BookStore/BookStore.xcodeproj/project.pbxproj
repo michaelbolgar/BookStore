@@ -17,10 +17,10 @@
 		790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */; };
 		790E5E662B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */; };
 		79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */; };
-		79191A0F2B24BB1D00BD2C95 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0E2B24BB1D00BD2C95 /* RegistrationViewController.swift */; };
 		79191A112B24DCEB00BD2C95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79191A102B24DCEB00BD2C95 /* GoogleService-Info.plist */; };
 		79191A142B24E23000BD2C95 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 79191A132B24E23000BD2C95 /* FirebaseAuth */; };
 		79191A162B24E23000BD2C95 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 79191A152B24E23000BD2C95 /* FirebaseFirestore */; };
+		79191A182B2502AD00BD2C95 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0E2B24BB1D00BD2C95 /* RegistrationViewController.swift */; };
 		795ABDEB2B22A0AB00569104 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */; };
 		79C6979A2B210B190055129C /* RecentBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697942B210B190055129C /* RecentBooksViewCell.swift */; };
 		79C6979B2B210B190055129C /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697952B210B190055129C /* ListItem.swift */; };
@@ -285,7 +285,6 @@
 				F48F391C2B1CF782009DAFA8 /* UIFont Extension.swift */,
 				F48F391E2B1D1F63009DAFA8 /* UIColor Extension.swift */,
 				F48F39312B1D3C4D009DAFA8 /* UIViewController Extension.swift */,
-				377B3EB22B1FD94100C81F6A /* UIView + ext.swift */,
 				79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */,
 				377B3EB22B1FD94100C81F6A /* UIView Extension.swift */,
 			);
@@ -591,6 +590,7 @@
 				377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */,
 				F48F39522B1D44A3009DAFA8 /* OnboardingViewController.swift in Sources */,
 				79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */,
+				79191A182B2502AD00BD2C95 /* RegistrationViewController.swift in Sources */,
 				F48F39322B1D3C4D009DAFA8 /* UIViewController Extension.swift in Sources */,
 				79C6979D2B210B190055129C /* TopBooksViewCell.swift in Sources */,
 				AF24B6B82B22661800B2991D /* CategoriesHeader.swift in Sources */,
