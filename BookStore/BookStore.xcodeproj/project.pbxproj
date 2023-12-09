@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		353AB0662B23C0B0009396DE /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AB0652B23C0B0009396DE /* NetworkingManager.swift */; };
+		3550DEDA2B23DF9C00250CA3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3550DED92B23DF9C00250CA3 /* SearchModel.swift */; };
 		377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA32B1E641700C81F6A /* MainTabBarController.swift */; };
 		377B3EA72B1E721F00C81F6A /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */; };
 		377B3EAA2B1FB6F100C81F6A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 377B3EA92B1FB6F100C81F6A /* Lottie */; };
@@ -52,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		353AB0652B23C0B0009396DE /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		3550DED92B23DF9C00250CA3 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		377B3EA32B1E641700C81F6A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		377B3EAB2B1FB87000C81F6A /* Animation - 2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 2.json"; sourceTree = "<group>"; };
@@ -109,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3550DED82B23DF8900250CA3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				353AB0652B23C0B0009396DE /* NetworkingManager.swift */,
+				3550DED92B23DF9C00250CA3 /* SearchModel.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		377B3EA52B1E641D00C81F6A /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +144,7 @@
 		79C697A02B211AB80055129C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3550DED82B23DF8900250CA3 /* Networking */,
 				79C697992B210B190055129C /* MockData.swift */,
 			);
 			path = Services;
@@ -483,6 +497,7 @@
 				AF71D9142B1F472800771C9E /* LikesCell.swift in Sources */,
 				F48F39092B1CE4C0009DAFA8 /* AccountVC.swift in Sources */,
 				F48F391D2B1CF782009DAFA8 /* UIFont Extension.swift in Sources */,
+				353AB0662B23C0B0009396DE /* NetworkingManager.swift in Sources */,
 				377B3EB32B1FD94100C81F6A /* UIView + ext.swift in Sources */,
 				377B3EA72B1E721F00C81F6A /* NavigationViewController.swift in Sources */,
 				F48F39502B1D4484009DAFA8 /* PagesViewController.swift in Sources */,
@@ -491,6 +506,7 @@
 				F48F39052B1CE3D7009DAFA8 /* CategoriesVC.swift in Sources */,
 				F48F39162B1CF49A009DAFA8 /* UILabel Extension.swift in Sources */,
 				790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */,
+				3550DEDA2B23DF9C00250CA3 /* SearchModel.swift in Sources */,
 				79C6979B2B210B190055129C /* ListItem.swift in Sources */,
 				377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */,
 				F48F39522B1D44A3009DAFA8 /* OnboardingViewController.swift in Sources */,
