@@ -1,13 +1,13 @@
 //
-//  AuthorizationView.swift
+//  RegistrationViewController.swift
 //  BookStore
 //
-//  Created by Anna Zaitsava on 8.12.23.
+//  Created by Anna Zaitsava on 9.12.23.
 //
 
 import UIKit
 
-class AuthorizationViewController: UIViewController {
+class RegistrationViewController: UIViewController {
     
     //MARK: - Elements
     private lazy var bgImage: UIView = {
@@ -32,25 +32,17 @@ class AuthorizationViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var logButton = UIButton(cornerRadius: 5, title: "Sing In",background: UIColor.black.cgColor,titleColor: .white, fontSize: 14)
+    private lazy var logButton = UIButton(cornerRadius: 5, title: "Sing Up",background: UIColor.black.cgColor,titleColor: .white, fontSize: 14)
     
-    private lazy var welcomeLabel = UILabel.makeLabel(text:"Welcome back!", font: .openSansBold(ofSize: 24), textColor: .customBlack)
+    private lazy var welcomeLabel = UILabel.makeLabel(text:"Get started", font: .openSansBold(ofSize: 24), textColor: .customBlack)
     
-    private lazy var bottomLabel = UILabel.makeLabel(text:"We missed you!", font: .openSansRegular(ofSize: 14), textColor: .customBlack)
+    private lazy var bottomLabel = UILabel.makeLabel(text:"By creating an account", font: .openSansRegular(ofSize: 14), textColor: .customBlack)
+    
+    private lazy var nameTextField = UITextField(placeholder: "Name")
     private lazy var emailTextField = UITextField(placeholder: "Email")
-    
     private lazy var passwordTextField = UITextField(placeholder: "Password")
-    
-    private lazy var forgotPasswordButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Forgot password?", for: .normal)
-        button.setTitleColor(.customBlack, for: .normal)
-        button.titleLabel?.font = .openSansBold(ofSize: 14)
-        button.backgroundColor = .clear
-        return button
-    }()
-    
-    private lazy var createNewAccountButton: UIButton = {
+
+    private lazy var haveAccountButton: UIButton = {
         let button = UIButton()
         button.setTitle("Create new account", for: .normal)
         button.setTitleColor(.customBlack, for: .normal)
@@ -68,7 +60,7 @@ class AuthorizationViewController: UIViewController {
     //MARK: - Private Methods
     private func setupUI() {
         view.addSubviewsTamicOff(bgImage , bg)
-        bg.addSubviewsTamicOff(iconImage, welcomeLabel,bottomLabel,emailTextField,passwordTextField,forgotPasswordButton,createNewAccountButton,logButton)
+        bg.addSubviewsTamicOff(iconImage, welcomeLabel,bottomLabel,nameTextField,emailTextField,passwordTextField,haveAccountButton,logButton)
         let offset: CGFloat = 20
         
         NSLayoutConstraint.activate([
@@ -93,27 +85,29 @@ class AuthorizationViewController: UIViewController {
             bottomLabel.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
             bottomLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 8),
             
+            nameTextField.heightAnchor.constraint(equalToConstant: 56),
+            nameTextField.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
+            nameTextField.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
+            nameTextField.topAnchor.constraint(equalTo: bottomLabel.bottomAnchor, constant: 30),
+            
             emailTextField.heightAnchor.constraint(equalToConstant: 56),
             emailTextField.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
             emailTextField.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
-            emailTextField.topAnchor.constraint(equalTo: bottomLabel.bottomAnchor, constant: 30),
+            emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 25),
             
             passwordTextField.heightAnchor.constraint(equalToConstant: 56),
             passwordTextField.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
             passwordTextField.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 25),
             
-            forgotPasswordButton.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
-            forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
-            
             logButton.heightAnchor.constraint(equalToConstant: 56),
             logButton.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
             logButton.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
-            logButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 24),
+            logButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 25),
             
-            createNewAccountButton.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
-            createNewAccountButton.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 18),
-            createNewAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -offset)
+            haveAccountButton.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
+            haveAccountButton.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 18),
+            haveAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -offset)
             
         ])
         

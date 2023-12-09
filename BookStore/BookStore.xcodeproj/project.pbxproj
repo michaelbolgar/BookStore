@@ -17,6 +17,7 @@
 		790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */; };
 		790E5E662B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */; };
 		79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */; };
+		79191A0F2B24BB1D00BD2C95 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0E2B24BB1D00BD2C95 /* RegistrationViewController.swift */; };
 		795ABDEB2B22A0AB00569104 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */; };
 		79C6979A2B210B190055129C /* RecentBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697942B210B190055129C /* RecentBooksViewCell.swift */; };
 		79C6979B2B210B190055129C /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697952B210B190055129C /* ListItem.swift */; };
@@ -65,6 +66,7 @@
 		790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlDelegate.swift; sourceTree = "<group>"; };
 		79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField Extension.swift"; sourceTree = "<group>"; };
+		79191A0E2B24BB1D00BD2C95 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		79C697942B210B190055129C /* RecentBooksViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentBooksViewCell.swift; sourceTree = "<group>"; };
 		79C697952B210B190055129C /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */,
+				79191A0E2B24BB1D00BD2C95 /* RegistrationViewController.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				AF71D9142B1F472800771C9E /* LikesCell.swift in Sources */,
 				F48F39092B1CE4C0009DAFA8 /* AccountVC.swift in Sources */,
 				F48F391D2B1CF782009DAFA8 /* UIFont Extension.swift in Sources */,
+				79191A0F2B24BB1D00BD2C95 /* RegistrationViewController.swift in Sources */,
 				377B3EB32B1FD94100C81F6A /* UIView + ext.swift in Sources */,
 				377B3EA72B1E721F00C81F6A /* NavigationViewController.swift in Sources */,
 				F48F39502B1D4484009DAFA8 /* PagesViewController.swift in Sources */,

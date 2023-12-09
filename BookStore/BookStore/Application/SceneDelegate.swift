@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        UserDefaults.standard.set(true, forKey: "appLaunchedBefore")
         
 //        window?.rootViewController = OnboardingViewController()
-        window?.rootViewController = AuthorizationViewController()
+        window?.rootViewController = RegistrationViewController()
         window?.makeKeyAndVisible()
     }
 }
