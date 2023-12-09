@@ -55,4 +55,18 @@ extension UIColor {
             return UIColor.customLightGray
         }
     }()
+    
+    static let labelColors: UIColor = {
+        if #available(iOS 13, *) {
+            return UIColor (dynamicProvider: { (traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .light {
+                    return UIColor.customBlack
+                } else {
+                    return UIColor.white
+                }
+            })
+        } else {
+            return UIColor.customLightGray
+        }
+    }()
 }

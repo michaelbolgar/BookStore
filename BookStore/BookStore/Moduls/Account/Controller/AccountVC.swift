@@ -6,7 +6,7 @@ class AccountVC: UIViewController {
     private let avatarUserDefaultsKey = "UserAvatar"
     
     private lazy var label: UILabel = {
-        let label = UILabel.makeLabel(font: .openSansBold(ofSize: 16), textColor: .customBlack)
+        let label = UILabel.makeLabel(font: .openSansBold(ofSize: 16), textColor: .labelColors)
         label.text = "Account"
         return label
     }()
@@ -23,14 +23,14 @@ class AccountVC: UIViewController {
     }()
     
     private lazy var nameLabel: UILabel = {
-        let label = UILabel.makeLabel(font: .openSansRegular(ofSize: 14), textColor: .customBlack)
+        let label = UILabel.makeLabel(font: .openSansRegular(ofSize: 14), textColor: .labelColors)
         label.textAlignment = .left
         label.text = "Name:"
         return label
     }()
     
     private lazy var nameValueLabel: UILabel = {
-        let label = UILabel.makeLabel(font: .openSansSemiBoldItalic(ofSize: 16), textColor: .customBlack)
+        let label = UILabel.makeLabel(font: .openSansSemiBoldItalic(ofSize: 16), textColor: .labelColors)
         label.textAlignment = .left
         label.text = "John Doe"
         return label
@@ -46,7 +46,7 @@ class AccountVC: UIViewController {
     
     private lazy var nameBackgroundView:  UIView = {
         let view = UIView()
-        view.backgroundColor = .customLightGray
+        view.backgroundColor = .label
         view.layer.cornerRadius = 5
         view.addSubviewsTamicOff(nameStackView)
         return view
@@ -57,7 +57,7 @@ class AccountVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         loadAvatarFromUserDefaults()
-        view.backgroundColor = .white
+        view.backgroundColor = .background
     }
     
     //MARK: - Private Methods
