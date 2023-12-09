@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegistrationViewController: UIViewController {
     
@@ -41,13 +42,14 @@ class RegistrationViewController: UIViewController {
     private lazy var nameTextField = UITextField(placeholder: "Name")
     private lazy var emailTextField = UITextField(placeholder: "Email")
     private lazy var passwordTextField = UITextField(placeholder: "Password")
-
+    
     private lazy var haveAccountButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Create new account", for: .normal)
+        button.setTitle("Already have an account", for: .normal)
         button.setTitleColor(.customBlack, for: .normal)
         button.titleLabel?.font = .openSansBold(ofSize: 14)
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(haveAccountButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -58,7 +60,33 @@ class RegistrationViewController: UIViewController {
     }
     
     //MARK: - Private Methods
+    
+    @objc func haveAccountButtonTapped() {
+        let vc = AuthorizationViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
+    @objc func logButtonTapped() {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+                print("Invalid email or password")
+                return
+            }
+
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if let error = error {
+                    print("Registration error: \(error.localizedDescription)")
+                } else {
+                    print("User registered successfully!")
+                    let vc = MainTabBarController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+    }
+    
     private func setupUI() {
+        logButton.addTarget(self, action: #selector(logButtonTapped), for: .touchUpInside)
+        
         view.addSubviewsTamicOff(bgImage , bg)
         bg.addSubviewsTamicOff(iconImage, welcomeLabel,bottomLabel,nameTextField,emailTextField,passwordTextField,haveAccountButton,logButton)
         let offset: CGFloat = 20
