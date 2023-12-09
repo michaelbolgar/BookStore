@@ -54,6 +54,8 @@
 		F4DE52DB2B24EB1F003CA4A1 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE52DA2B24EB1F003CA4A1 /* SearchResultVC.swift */; };
 		F4DE52DD2B24EB4C003CA4A1 /* BookModelHard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE52DC2B24EB4C003CA4A1 /* BookModelHard.swift */; };
 		F4DE52DF2B24EB7C003CA4A1 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE52DE2B24EB7C003CA4A1 /* SearchCell.swift */; };
+		F4DE52E92B250588003CA4A1 /* BookDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE52E82B250588003CA4A1 /* BookDetailsModel.swift */; };
+		F4DE52EB2B2507FD003CA4A1 /* BookDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE52EA2B2507FD003CA4A1 /* BookDetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,8 @@
 		F4DE52DA2B24EB1F003CA4A1 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		F4DE52DC2B24EB4C003CA4A1 /* BookModelHard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModelHard.swift; sourceTree = "<group>"; };
 		F4DE52DE2B24EB7C003CA4A1 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		F4DE52E82B250588003CA4A1 /* BookDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsModel.swift; sourceTree = "<group>"; };
+		F4DE52EA2B2507FD003CA4A1 /* BookDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,7 @@
 		F48F390A2B1CE710009DAFA8 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				F4DE52E52B25050E003CA4A1 /* BookDetails */,
 				F4DE52E02B24EEB5003CA4A1 /* SearchResults */,
 				79C697A02B211AB80055129C /* Services */,
 				F48F394D2B1D4429009DAFA8 /* Login */,
@@ -436,6 +441,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F4DE52E52B25050E003CA4A1 /* BookDetails */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52E72B25051C003CA4A1 /* Model */,
+				F4DE52E62B250516003CA4A1 /* Controller */,
+			);
+			path = BookDetails;
+			sourceTree = "<group>";
+		};
+		F4DE52E62B250516003CA4A1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52EA2B2507FD003CA4A1 /* BookDetailsVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F4DE52E72B25051C003CA4A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52E82B250588003CA4A1 /* BookDetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -524,6 +554,7 @@
 				F48F39432B1D4269009DAFA8 /* CategoriesModel.swift in Sources */,
 				F48F394C2B1D42EE009DAFA8 /* HomeModel.swift in Sources */,
 				F48F393A2B1D41A9009DAFA8 /* AccountView.swift in Sources */,
+				F4DE52E92B250588003CA4A1 /* BookDetailsModel.swift in Sources */,
 				790E5E662B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift in Sources */,
 				F48F38F52B1CDD02009DAFA8 /* HomeVC.swift in Sources */,
 				F4DE52DB2B24EB1F003CA4A1 /* SearchResultVC.swift in Sources */,
@@ -541,6 +572,7 @@
 				F48F39182B1CF4AE009DAFA8 /* UIButton Extension.swift in Sources */,
 				AF71D9142B1F472800771C9E /* LikesCell.swift in Sources */,
 				F48F39092B1CE4C0009DAFA8 /* AccountVC.swift in Sources */,
+				F4DE52EB2B2507FD003CA4A1 /* BookDetailsVC.swift in Sources */,
 				F48F391D2B1CF782009DAFA8 /* UIFont Extension.swift in Sources */,
 				F4DE52DD2B24EB4C003CA4A1 /* BookModelHard.swift in Sources */,
 				377B3EB32B1FD94100C81F6A /* UIView Extension.swift in Sources */,
