@@ -187,6 +187,7 @@
 		F48F390A2B1CE710009DAFA8 /* Moduls */ = {
 			isa = PBXGroup;
 			children = (
+				F4DE52E02B24EEB5003CA4A1 /* SearchResults */,
 				79C697A02B211AB80055129C /* Services */,
 				F48F394D2B1D4429009DAFA8 /* Login */,
 				F48F390F2B1CE752009DAFA8 /* Account */,
@@ -194,9 +195,6 @@
 				F48F390D2B1CE744009DAFA8 /* Categories */,
 				F48F390C2B1CE73D009DAFA8 /* Home */,
 				377B3EA52B1E641D00C81F6A /* MainTabBar */,
-				F4DE52DA2B24EB1F003CA4A1 /* SearchResultVC.swift */,
-				F4DE52DC2B24EB4C003CA4A1 /* BookModelHard.swift */,
-				F4DE52DE2B24EB7C003CA4A1 /* SearchCell.swift */,
 			);
 			path = Moduls;
 			sourceTree = "<group>";
@@ -394,6 +392,48 @@
 				F48F39512B1D44A3009DAFA8 /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		F4DE52E02B24EEB5003CA4A1 /* SearchResults */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52E42B24EEF2003CA4A1 /* Model */,
+				F4DE52E22B24EEDB003CA4A1 /* View */,
+				F4DE52E12B24EED1003CA4A1 /* Controller */,
+			);
+			path = SearchResults;
+			sourceTree = "<group>";
+		};
+		F4DE52E12B24EED1003CA4A1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52DA2B24EB1F003CA4A1 /* SearchResultVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F4DE52E22B24EEDB003CA4A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52E32B24EEE6003CA4A1 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F4DE52E32B24EEE6003CA4A1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52DE2B24EB7C003CA4A1 /* SearchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F4DE52E42B24EEF2003CA4A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE52DC2B24EB4C003CA4A1 /* BookModelHard.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
