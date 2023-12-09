@@ -11,9 +11,9 @@ import FirebaseAuth
 class AuthorizationViewController: UIViewController {
     
     //MARK: - Elements
-    private lazy var bgImage: UIView = {
-        let view = UIView()
-        let image = UIImage()
+    private lazy var bgImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "authorization_bg")
         view.backgroundColor = .black
         return view
     }()
@@ -27,9 +27,8 @@ class AuthorizationViewController: UIViewController {
     
     private lazy var iconImage: UIImageView =  {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "appIconM")
+        imageView.image = UIImage(named: "iconforauth")
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .orange
         return imageView
     }()
     
@@ -93,73 +92,86 @@ class AuthorizationViewController: UIViewController {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) {user, error in
+        Auth.auth().signIn(withEmail: email, password: password) {authResult, error in
             if let error = error {
-                print("Login error: \(error.localizedDescription)")
+                let alertController = UIAlertController(title: "Registration Error", message: error.localizedDescription, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                
+                self.present(alertController, animated: true, completion: nil)
             } else {
-                if let user = user {
-                    print("User logged in successfully!")
-                    let homeVC = MainTabBarController()
-                    homeVC.modalPresentationStyle = .fullScreen
-                    self.present(homeVC, animated: true)
-                }
+                print("User logged in successfully!")
+                let homeVC = MainTabBarController()
+                homeVC.modalPresentationStyle = .fullScreen
+                self.present(homeVC, animated: true)
             }
         }
     }
-            
-            private func setupUI() {
-                logButton.addTarget(self, action: #selector(logButtonTapped), for: .touchUpInside)
-                
-                view.addSubviewsTamicOff(bgImage , bg)
-                bg.addSubviewsTamicOff(iconImage, welcomeLabel,bottomLabel,emailTextField,passwordTextField,forgotPasswordButton,createNewAccountButton,logButton)
-                let offset: CGFloat = 20
-                
-                NSLayoutConstraint.activate([
-                    bgImage.topAnchor.constraint(equalTo: view.topAnchor),
-                    bgImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                    bgImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    bgImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                    
-                    bg.bottomAnchor.constraint(equalTo: bgImage.bottomAnchor),
-                    bg.trailingAnchor.constraint(equalTo: bgImage.trailingAnchor),
-                    bg.leadingAnchor.constraint(equalTo: bgImage.leadingAnchor),
-                    bg.heightAnchor.constraint(greaterThanOrEqualToConstant: 564),
-                    
-                    iconImage.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
-                    iconImage.centerYAnchor.constraint(equalTo: bg.topAnchor),
-                    iconImage.heightAnchor.constraint(equalToConstant: 136),
-                    iconImage.widthAnchor.constraint(equalToConstant: 136),
-                    
-                    welcomeLabel.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
-                    welcomeLabel.topAnchor.constraint(equalTo: iconImage.bottomAnchor, constant: 30),
-                    
-                    bottomLabel.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
-                    bottomLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 8),
-                    
-                    emailTextField.heightAnchor.constraint(equalToConstant: 56),
-                    emailTextField.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
-                    emailTextField.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
-                    emailTextField.topAnchor.constraint(equalTo: bottomLabel.bottomAnchor, constant: 30),
-                    
-                    passwordTextField.heightAnchor.constraint(equalToConstant: 56),
-                    passwordTextField.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
-                    passwordTextField.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
-                    passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 25),
-                    
-                    forgotPasswordButton.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
-                    forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
-                    
-                    logButton.heightAnchor.constraint(equalToConstant: 56),
-                    logButton.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
-                    logButton.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
-                    logButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 24),
-                    
-                    createNewAccountButton.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
-                    createNewAccountButton.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 18),
-                    createNewAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -offset)
-                    
-                ])
-                
-            }
-        }
+    
+    //MARK: - Setup UI
+    private func setupUI() {
+        logButton.addTarget(self, action: #selector(logButtonTapped), for: .touchUpInside)
         
+        view.addSubviewsTamicOff(bgImage , bg)
+        bg.addSubviewsTamicOff(iconImage, welcomeLabel,bottomLabel,emailTextField,passwordTextField,forgotPasswordButton,createNewAccountButton,logButton)
+        let offset: CGFloat = 20
+        
+        NSLayoutConstraint.activate([
+            bgImage.topAnchor.constraint(equalTo: view.topAnchor),
+            bgImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bgImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bgImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            bg.bottomAnchor.constraint(equalTo: bgImage.bottomAnchor),
+            bg.trailingAnchor.constraint(equalTo: bgImage.trailingAnchor),
+            bg.leadingAnchor.constraint(equalTo: bgImage.leadingAnchor),
+            bg.heightAnchor.constraint(greaterThanOrEqualToConstant: 564),
+            
+            iconImage.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
+            iconImage.centerYAnchor.constraint(equalTo: bg.topAnchor),
+            iconImage.heightAnchor.constraint(equalToConstant: 136),
+            iconImage.widthAnchor.constraint(equalToConstant: 136),
+            
+            welcomeLabel.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
+            welcomeLabel.topAnchor.constraint(equalTo: iconImage.bottomAnchor, constant: 30),
+            
+            bottomLabel.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
+            bottomLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 8),
+            
+            emailTextField.heightAnchor.constraint(equalToConstant: 56),
+            emailTextField.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
+            emailTextField.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
+            emailTextField.topAnchor.constraint(equalTo: bottomLabel.bottomAnchor, constant: 30),
+            
+            passwordTextField.heightAnchor.constraint(equalToConstant: 56),
+            passwordTextField.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
+            passwordTextField.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 25),
+            
+            forgotPasswordButton.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
+            forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
+            
+            logButton.heightAnchor.constraint(equalToConstant: 56),
+            logButton.trailingAnchor.constraint(equalTo: bg.trailingAnchor, constant: -offset),
+            logButton.leadingAnchor.constraint(equalTo: bg.leadingAnchor, constant: offset),
+            logButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 24),
+            
+            createNewAccountButton.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
+            createNewAccountButton.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 18),
+            createNewAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -offset)
+        ])
+    }
+}
+
+//MARK: - UITextField Delegate
+extension AuthorizationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+}
+

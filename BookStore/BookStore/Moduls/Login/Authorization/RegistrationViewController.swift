@@ -11,9 +11,11 @@ import FirebaseAuth
 class RegistrationViewController: UIViewController {
     
     //MARK: - Elements
-    private lazy var bgImage: UIView = {
-        let view = UIView()
-        let image = UIImage()
+    private let nameUserDefaultsKey = "UserName"
+    
+    private lazy var bgImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "authorization_bg")
         view.backgroundColor = .black
         return view
     }()
@@ -27,9 +29,8 @@ class RegistrationViewController: UIViewController {
     
     private lazy var iconImage: UIImageView =  {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "appIconM")
+        imageView.image = UIImage(named: "iconforauth")
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .orange
         return imageView
     }()
     
@@ -68,22 +69,35 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc func logButtonTapped() {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-                print("Invalid email or password")
-                return
+        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+            print("Invalid email or password")
+            return
+        }
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                let alertController = UIAlertController(title: "Registration Error", message: error.localizedDescription, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                print("User registered successfully!")
+                self.saveUserDataToUserDefaults(name: name)
+                let vc = MainTabBarController()
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             }
-
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if let error = error {
-                    print("Registration error: \(error.localizedDescription)")
-                } else {
-                    print("User registered successfully!")
-                    let vc = MainTabBarController()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
+        }
     }
     
+    private func errorAlert() {
+    }
+    
+    private func saveUserDataToUserDefaults(name: String) {
+        UserDefaults.standard.set(name, forKey: nameUserDefaultsKey)
+    }
+    
+    //MARK: - Setup UI
     private func setupUI() {
         logButton.addTarget(self, action: #selector(logButtonTapped), for: .touchUpInside)
         
@@ -136,10 +150,19 @@ class RegistrationViewController: UIViewController {
             haveAccountButton.centerXAnchor.constraint(equalTo: bg.centerXAnchor),
             haveAccountButton.topAnchor.constraint(equalTo: logButton.bottomAnchor, constant: 18),
             haveAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -offset)
-            
-        ])
-        
+        ])        
+    }
+}
+//MARK: - UITextField Delegate
+extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 
-// MARK: - UITextField Padding
+

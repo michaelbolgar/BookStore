@@ -9,20 +9,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         
-        
-        let appLaunchedBefore = UserDefaults.standard.bool(forKey: "appLaunchedBefore")
-        if appLaunchedBefore {
-            let mainVC = MainTabBarController()
-            let navigationController = UINavigationController(rootViewController: mainVC)
-            window?.rootViewController = navigationController
-        } else {
-            let onboardingVC = OnboardingViewController()
-            window?.rootViewController = onboardingVC
-        }
-        UserDefaults.standard.set(true, forKey: "appLaunchedBefore")
+//
+//        let appLaunchedBefore = UserDefaults.standard.bool(forKey: "appLaunchedBefore")
+//        if appLaunchedBefore {
+//            let mainVC = MainTabBarController()
+//            let navigationController = UINavigationController(rootViewController: mainVC)
+//            window?.rootViewController = navigationController
+//        } else {
+//            let onboardingVC = OnboardingViewController()
+//            window?.rootViewController = onboardingVC
+//        }
+//        UserDefaults.standard.set(true, forKey: "appLaunchedBefore")
         
 //        window?.rootViewController = OnboardingViewController()
-//        window?.rootViewController = RegistrationViewController()
+        window?.rootViewController = RegistrationViewController()
         window?.makeKeyAndVisible()
     }
 }
