@@ -9,6 +9,7 @@ import UIKit
 
 class AuthorizationView: UIViewController {
     
+    //MARK: - Elements
     private lazy var bgImage: UIView = {
         let view = UIView()
         let image = UIImage()
@@ -23,10 +24,12 @@ class AuthorizationView: UIViewController {
         return view
     }()
     
-    private lazy var iconImage: UIView =  {
-        let image = UIView()
-        image.backgroundColor = .orange
-        return image
+    private lazy var iconImage: UIImageView =  {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "appIconM")
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .orange
+        return imageView
     }()
     
     private lazy var logButton = UIButton(cornerRadius: 5, title: "Sing In",background: UIColor.black.cgColor,titleColor: .white, fontSize: 14)
@@ -42,6 +45,9 @@ class AuthorizationView: UIViewController {
         textField.placeholder = "Name"
         textField.font = .openSansRegular(ofSize: 14)
         textField.backgroundColor = .customLightGray
+        textField.layer.cornerRadius = 5
+        textField.setLeftPaddingPoints(12)
+        textField.setRightPaddingPoints(12)
         return textField
     }()
     
@@ -50,13 +56,16 @@ class AuthorizationView: UIViewController {
         textField.placeholder = "Password"
         textField.font = .openSansRegular(ofSize: 14)
         textField.backgroundColor = .customLightGray
+        textField.layer.cornerRadius = 5
+        textField.setLeftPaddingPoints(12)
+        textField.setRightPaddingPoints(12)
         return textField
     }()
     
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("Forgot password?", for: .normal)
-        button.titleLabel?.textColor = .customBlack
+        button.setTitleColor(.customBlack, for: .normal)
         button.titleLabel?.font = .openSansBold(ofSize: 14)
         button.backgroundColor = .clear
         return button
@@ -64,24 +73,22 @@ class AuthorizationView: UIViewController {
     
     private lazy var createNewAccountButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Forgot password?", for: .normal)
-        button.titleLabel?.textColor = .customBlack
+        button.setTitle("Create new account", for: .normal)
+        button.setTitleColor(.customBlack, for: .normal)
         button.titleLabel?.font = .openSansBold(ofSize: 14)
         button.backgroundColor = .clear
         return button
     }()
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        
     }
     
+    //MARK: - Private Methods
     private func setupUI() {
-        
         view.addSubviewsTamicOff(bgImage , bg)
-        
         bg.addSubviewsTamicOff(iconImage, welcomeLabel,bottomLabel,nameTextField,passwordTextField,forgotPasswordButton,createNewAccountButton,logButton)
         let offset: CGFloat = 20
         
@@ -131,5 +138,20 @@ class AuthorizationView: UIViewController {
             
         ])
         
+    }
+}
+
+// MARK: - UITextField Padding
+extension UITextField {
+    func setLeftPaddingPoints(_ amount: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: frame.size.height))
+        leftView = paddingView
+        leftViewMode = .always
+    }
+    
+    func setRightPaddingPoints(_ amount: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: frame.size.height))
+        rightView = paddingView
+        rightViewMode = .always
     }
 }
