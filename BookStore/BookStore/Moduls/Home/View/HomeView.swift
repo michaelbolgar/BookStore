@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 
 final class HomeView: UIView {
+    
     //MARK: UI Elements
     
     private let mainStackView = UIStackView(spacing: 10, axis: .vertical, alignment: .leading)
@@ -29,10 +30,8 @@ final class HomeView: UIView {
     }()
     
     // MARK: - Private Properties
+    
     private let sections = MockData.shared.pageData
-    
-    //MARK: View Lifecycle Methods
-    
     
     // MARK: - Actions
     
@@ -94,10 +93,6 @@ final class HomeView: UIView {
         seeMoreButton.snp.makeConstraints { make in
             make.width.equalTo(62)
             make.height.equalTo(20)
-        }
-        
-        topButtonsStackView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-10)
         }
         
         collectionView.snp.makeConstraints { make in
@@ -263,10 +258,10 @@ extension HomeView: UICollectionViewDataSource {
         }
     }
     
-    
 }
 
 // MARK: SegmentedControl delegate
+
 extension HomeView: CustomSegmentedControlDelegate {
     func buttonPressed(buttonTitlesIndex: Int, title: String?) {
         centeredTitle.text = "\(buttonTitles[buttonTitlesIndex]) selected"
