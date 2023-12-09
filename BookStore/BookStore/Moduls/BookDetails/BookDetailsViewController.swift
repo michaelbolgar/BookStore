@@ -92,7 +92,7 @@ final class BookDetailsViewController: UIViewController {
     
     //MARK: - Private Methods
     private func setupViews() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         
         view.addSubviewsTamicOff(
             topLabel,
@@ -157,16 +157,12 @@ extension UILabel {
         let boldFont = UIFont.openSansBold(ofSize: 14)
         let attributedText = NSMutableAttributedString(
             string: text1,
-            attributes: [.font: regularFont ?? UIFont.systemFont(
-                ofSize: 14
-            )]
-        )
+            attributes: [.font: regularFont ?? UIFont.systemFont(ofSize: 14),
+                         .foregroundColor: UIColor.label])
         let categoryText = NSAttributedString(
             string: text2,
-            attributes: [.font: boldFont ?? UIFont.boldSystemFont(
-                ofSize: 14
-            )]
-        )
+            attributes: [.font: boldFont ?? UIFont.boldSystemFont(ofSize: 14),
+                         .foregroundColor: UIColor.red])
         attributedText.append(categoryText)
         self.attributedText = attributedText
     }
