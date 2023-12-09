@@ -4,7 +4,9 @@ import SnapKit
 final class HomeView: UIView {
     
     //MARK: UI Elements
-    
+
+    //большинство ошибок с констрейнтами связано со стеками. Я не уверен, что эти стеки здесь уместны: стеки логично использовать в случае с 3+ элементами, причём когда расстояния между объектами одинаковые. А когда два объекта, причём ещё по каким-то причинам нужно насилу прибить один из элементов в ходе вёрстки, ты нисколько не выигрываешь в коде, ведь получаешь столько же строк кода. Зато проигрываешь в читаемости, потому что надо разбираться, в каком стеке что лежит
+    //В общем, я бы вообще убрал эти стеки, потому что у тебя по факту четыре элемента в ячейке, каждый из которых имеет своё расположение
     private let mainStackView = UIStackView(spacing: 10, axis: .vertical, alignment: .leading)
     
     private let topBooksStackView = UIStackView(spacing: 0, axis: .horizontal, alignment: .fill)
@@ -34,7 +36,8 @@ final class HomeView: UIView {
     private let sections = MockData.shared.pageData
     
     // MARK: - Actions
-    
+
+    //методы селектора обычно группируются вместе после всех приватных методов
     @objc func seeMoreButtonTapped() {
         UIView.animate(withDuration: 0.3, animations: {
             self.seeMoreButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -53,12 +56,14 @@ final class HomeView: UIView {
         self.backgroundColor = .background
         
         self.addSubview(mainStackView)
-        
+
+        //эти четыре строки можно сократить через forEach
+//      [... ... ...].forEach { self.addSubview($0) }
         mainStackView.addArrangedSubview(collectionView)
-        
         mainStackView.addArrangedSubview(topBooksStackView)
         mainStackView.addArrangedSubview(topButtonsStackView)
         mainStackView.addArrangedSubview(collectionView)
+
         collectionView.register(TopBooksViewCell.self,
                                 forCellWithReuseIdentifier: "TopBooksCollectionViewCell")
         collectionView.register(RecentBooksViewCell.self,
@@ -68,10 +73,10 @@ final class HomeView: UIView {
                                 withReuseIdentifier: "HeaderSupplementaryView")
         
         collectionView.collectionViewLayout = createLayout()
-        
+
+        //аналогично сокращается
         topBooksStackView.addArrangedSubview(topBooksTitleLabel)
         topBooksStackView.addArrangedSubview(seeMoreButton)
-        
         topButtonsStackView.addArrangedSubview(segmentedControl)
         topButtonsStackView.addArrangedSubview(centeredTitle)
         
@@ -81,20 +86,25 @@ final class HomeView: UIView {
     
     func setupConstraints() {
         mainStackView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)
-            make.left.equalToSuperview().inset(19)
+//            make.edges.equalTo(self.safeAreaLayoutGuide)
+            make.top.bottom.equalTo(self.safeAreaLayoutGuide)
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview().inset(19)
         }
-        
+
+        //вот тут всегда будет появляться ошибка с констрейнтами, потому что этот стек добавлен в другой стек и соответственно получается свои констрейнты из коробки, а тут ты их перебиваешь
         topBooksStackView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(100)
         }
+
         
         seeMoreButton.snp.makeConstraints { make in
             make.width.equalTo(62)
             make.height.equalTo(20)
         }
-        
+
+        //для leading и trailing нет смысла задавать safeAreaLayoutGuide, она всегда равна краю
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(100)
             make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
@@ -205,7 +215,7 @@ extension HomeView {
 // MARK: - UICollectionViewDelegate
 
 extension HomeView: UICollectionViewDelegate {
-    
+
 }
 // MARK: - UICollectionViewDataSource
 
