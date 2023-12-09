@@ -16,7 +16,8 @@
 		377B3EB32B1FD94100C81F6A /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EB22B1FD94100C81F6A /* UIView + ext.swift */; };
 		790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */; };
 		790E5E662B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */; };
-		795ABDEB2B22A0AB00569104 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795ABDEA2B22A0AB00569104 /* AuthorizationView.swift */; };
+		79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */; };
+		795ABDEB2B22A0AB00569104 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */; };
 		79C6979A2B210B190055129C /* RecentBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697942B210B190055129C /* RecentBooksViewCell.swift */; };
 		79C6979B2B210B190055129C /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697952B210B190055129C /* ListItem.swift */; };
 		79C6979C2B210B190055129C /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697962B210B190055129C /* ListSection.swift */; };
@@ -63,7 +64,8 @@
 		377B3EB22B1FD94100C81F6A /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
 		790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlDelegate.swift; sourceTree = "<group>"; };
-		795ABDEA2B22A0AB00569104 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField Extension.swift"; sourceTree = "<group>"; };
+		795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		79C697942B210B190055129C /* RecentBooksViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentBooksViewCell.swift; sourceTree = "<group>"; };
 		79C697952B210B190055129C /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		79C697962B210B190055129C /* ListSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
@@ -137,7 +139,7 @@
 		795ABDE92B22A02400569104 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				795ABDEA2B22A0AB00569104 /* AuthorizationView.swift */,
+				795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -259,6 +261,7 @@
 				F48F391E2B1D1F63009DAFA8 /* UIColor Extension.swift */,
 				F48F39312B1D3C4D009DAFA8 /* UIViewController Extension.swift */,
 				377B3EB22B1FD94100C81F6A /* UIView + ext.swift */,
+				79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -512,10 +515,11 @@
 				79C6979B2B210B190055129C /* ListItem.swift in Sources */,
 				377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */,
 				F48F39522B1D44A3009DAFA8 /* OnboardingViewController.swift in Sources */,
+				79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */,
 				F48F39322B1D3C4D009DAFA8 /* UIViewController Extension.swift in Sources */,
 				79C6979D2B210B190055129C /* TopBooksViewCell.swift in Sources */,
 				AF24B6B82B22661800B2991D /* CategoriesHeader.swift in Sources */,
-				795ABDEB2B22A0AB00569104 /* AuthorizationView.swift in Sources */,
+				795ABDEB2B22A0AB00569104 /* AuthorizationViewController.swift in Sources */,
 				F48F39072B1CE48B009DAFA8 /* LikesVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

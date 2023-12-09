@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AuthorizationView: UIViewController {
+class AuthorizationViewController: UIViewController {
     
     //MARK: - Elements
     private lazy var bgImage: UIView = {
@@ -37,30 +37,9 @@ class AuthorizationView: UIViewController {
     private lazy var welcomeLabel = UILabel.makeLabel(text:"Welcome back!", font: .openSansBold(ofSize: 24), textColor: .customBlack)
     
     private lazy var bottomLabel = UILabel.makeLabel(text:"We missed you!", font: .openSansRegular(ofSize: 14), textColor: .customBlack)
+    private lazy var nameTextField = UITextField(placeholder: "Name")
     
-    
-    
-    private lazy var nameTextField: UITextField =  {
-        let textField = UITextField()
-        textField.placeholder = "Name"
-        textField.font = .openSansRegular(ofSize: 14)
-        textField.backgroundColor = .customLightGray
-        textField.layer.cornerRadius = 5
-        textField.setLeftPaddingPoints(12)
-        textField.setRightPaddingPoints(12)
-        return textField
-    }()
-    
-    private lazy var passwordTextField: UITextField =  {
-        let textField = UITextField()
-        textField.placeholder = "Password"
-        textField.font = .openSansRegular(ofSize: 14)
-        textField.backgroundColor = .customLightGray
-        textField.layer.cornerRadius = 5
-        textField.setLeftPaddingPoints(12)
-        textField.setRightPaddingPoints(12)
-        return textField
-    }()
+    private lazy var passwordTextField = UITextField(placeholder: "Password")
     
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
@@ -142,16 +121,3 @@ class AuthorizationView: UIViewController {
 }
 
 // MARK: - UITextField Padding
-extension UITextField {
-    func setLeftPaddingPoints(_ amount: CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: frame.size.height))
-        leftView = paddingView
-        leftViewMode = .always
-    }
-    
-    func setRightPaddingPoints(_ amount: CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: frame.size.height))
-        rightView = paddingView
-        rightViewMode = .always
-    }
-}
