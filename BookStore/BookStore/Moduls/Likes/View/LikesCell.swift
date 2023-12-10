@@ -97,4 +97,5 @@ extension UILabel {
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }
 }

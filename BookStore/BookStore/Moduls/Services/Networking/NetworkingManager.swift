@@ -5,6 +5,7 @@ public class NetworkingManager {
     static let instance = NetworkingManager()
 
     var searchCompletion: ((BookObject) -> Void)?
+    var timer: Timer?
     
     var urlEndpoints = [("&mode=everything",false),
                        ("&sort=editions&mode=everything",false),
@@ -35,7 +36,7 @@ public class NetworkingManager {
     }
     
     public func searchBooks(keyword: String, emptyCompletion: () -> Void, searchCompletion: @escaping (BookObject) -> Void) {
-
+        timer?.invalidate()
         self.searchCompletion = searchCompletion
         if keyword.isEmpty {
             emptyCompletion()
@@ -53,6 +54,14 @@ public class NetworkingManager {
             }
         }
         let passData = (url: url, completion: searchCompletion)
+        timer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(startSearching), userInfo: url, repeats: false)
+    }
+    
+    @objc func startSearching() {
+        let url = timer!.userInfo as! String
+        let finalUrl = getUrl(rawUrl: url)
+        guard let completion = searchCompletion else { return }
+        importJson(url: finalUrl, completion: completion)
     }
 }
 
