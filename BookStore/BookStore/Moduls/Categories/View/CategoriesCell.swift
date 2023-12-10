@@ -11,13 +11,12 @@ import SnapKit
 final class CategoriesCell: UICollectionViewCell {
     
     //MARK: - Create UIElements
-    private lazy var genre = UILabel.makeMultiLineLabel(font: UIFont(name: "OpenSans-Regular",
-                                                                     size: 20),
+    private lazy var genre = UILabel.makeMultiLineLabel(font: UIFont.openSansRegular(ofSize: 20),
                                                         textColor: .label,
                                                         numberOfLines: 2)
     
     private lazy var image: UIImageView = {
-        let image = UIImageView(image: UIImage(systemName: "moon.dust"))
+        let image = UIImageView(image: UIImage(named: "AppIcon"))
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -27,6 +26,7 @@ final class CategoriesCell: UICollectionViewCell {
         super.init(frame: frame)
         setLayout()
         genre.text = "Categories" // удалю после создания модельки
+        setImageShadow()
     }
     
     required init?(coder: NSCoder) {
@@ -54,5 +54,16 @@ final class CategoriesCell: UICollectionViewCell {
             make.height.equalTo(32)
             make.width.equalTo(87)
         }
+    }
+    
+    private func setImageShadow() {
+        let topImageGradient = CAGradientLayer()
+        topImageGradient.frame = CGRect(x: 0, 
+                                        y: 0,
+                                        width: image.bounds.width,
+                                        height: image.bounds.height/10)
+        topImageGradient.colors = [UIColor.black.withAlphaComponent(0.8).cgColor,
+                                   UIColor.black.withAlphaComponent(0.1).cgColor]
+        image.layer.insertSublayer(topImageGradient, at: 0)
     }
 }
