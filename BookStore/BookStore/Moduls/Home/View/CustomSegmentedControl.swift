@@ -9,6 +9,8 @@ import UIKit
 
 final class CustomSegmentedControl: UIView {
     
+    //MARK: UI Elements
+    
     private var verticalContainer: UIView = UIView()
     private var buttonsContainer: UIStackView = UIStackView()
     
@@ -18,16 +20,20 @@ final class CustomSegmentedControl: UIView {
     private var barView: UIView = UIView()
     private var barViewLeadingConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
-    weak var delegate: CustomSegmentedControlDelegate?
+    
     private var selectedButtonIndex: Int = 0
     
     private var elementsTintColor: UIColor = UIColor()
     private var fontSelected: UIFont = UIFont()
     private var fontUnselected: UIFont = UIFont()
     
-    convenience init(buttonTitles: [String], tintColor: UIColor = .elements, fontSelected: UIFont = .preferredFont(forTextStyle: .body, compatibleWith: .init(legibilityWeight: .bold)), fontUnselected: UIFont = .preferredFont(forTextStyle: .body)) {
+    // MARK: - CustomSegmentedControlDelegate
+    
+    weak var delegate: CustomSegmentedControlDelegate?
+    
+    convenience init(buttonTitles: [String], tintColor: UIColor = .black, fontSelected: UIFont = .preferredFont(forTextStyle: .body, compatibleWith: .init(legibilityWeight: .bold)), fontUnselected: UIFont = .preferredFont(forTextStyle: .body)) {
         self.init()
-       
+        
         guard buttonTitles.isEmpty == false else { return }
         self.buttonTitles = buttonTitles
         self.fontSelected = fontSelected
@@ -35,6 +41,8 @@ final class CustomSegmentedControl: UIView {
         self.tintColor = tintColor
         configure()
     }
+    
+    // MARK: - Configure
     
     private func configure() {
         addViews()
@@ -59,6 +67,7 @@ final class CustomSegmentedControl: UIView {
             verticalContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             verticalContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
             
+            
             topAnchor.constraint(equalTo: buttonsContainer.topAnchor),
             bottomAnchor.constraint(equalTo: barView.bottomAnchor)
         ])
@@ -81,7 +90,8 @@ final class CustomSegmentedControl: UIView {
         buttonsContainer.translatesAutoresizingMaskIntoConstraints = false
         buttonsContainer.axis = .horizontal
         buttonsContainer.distribution = .fillEqually
-
+        buttonsContainer.spacing = 30
+        
         buttons.forEach {
             buttonsContainer.addArrangedSubview($0)
         }
@@ -106,6 +116,8 @@ final class CustomSegmentedControl: UIView {
             barViewLeadingConstraint
         ])
     }
+    
+    // MARK: - Actions
     
     @objc private func buttonAction(sender: UIButton) {
         guard let buttonIndex = buttons.firstIndex(of: sender) else { return }
@@ -138,4 +150,5 @@ final class CustomSegmentedControl: UIView {
         }
     }
 }
+
 
