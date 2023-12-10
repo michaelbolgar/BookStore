@@ -13,12 +13,15 @@ extension UITextField {
         cornerRadius: CGFloat = 5,
         placeholder: String,
         padding: CGFloat = 12,
-        fontSize: CGFloat = 14
+        fontSize: CGFloat = 14,
+        isSecure: Bool = false
     ) {
         self.init()
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = cornerRadius
         self.placeholder = placeholder
+        self.isSecureTextEntry = isSecure
+        self.textContentType = .oneTimeCode
         setLeftPaddingPoints(padding)
         setRightPaddingPoints(padding)
         self.font = UIFont.openSansRegular(ofSize: fontSize)
