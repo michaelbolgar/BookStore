@@ -11,10 +11,17 @@ class LikesVC: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .systemGray
+        view.backgroundColor = .systemGray
         likesView.collectionView.delegate = self
         likesView.collectionView.dataSource = self
         view = likesView
+        setNavigationItem()
+    }
+    
+    //MARK: - PrivateMethods
+    private func setNavigationItem() {
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.openSansRegular(ofSize: 16)!]
+        navigationItem.title = "Likes"
     }
 }
     //MARK: - extensions LikesVC

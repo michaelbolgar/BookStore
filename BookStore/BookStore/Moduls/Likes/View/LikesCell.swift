@@ -12,22 +12,22 @@ final class LikesCell: UICollectionViewCell {
 
     //MARK: - Create UIElements
     private lazy var genre = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Genre",
-                                                                             font: UIFont(name: "OpenSans-Regular", size: 12),
+                                                                             font: UIFont.openSansRegular(ofSize: 12),
                                                                              textColor: .label,
                                                                              numberOfLines: 2)
     
     private lazy var name = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Name Book",
-                                                                            font: UIFont(name: "OpenSans-Bold", size: 18),
+                                                                            font: UIFont.openSansBold(ofSize: 18),
                                                                             textColor: .label,
                                                                             numberOfLines: 2)
     
     private lazy var author = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Author",
-                                                                              font: UIFont(name: "OpenSans-Regular", size: 14),
+                                                                              font: UIFont.openSansRegular(ofSize: 14),
                                                                               textColor: .label,
                                                                               numberOfLines: 2)
     
     private lazy var image: UIImageView = {
-        let image = UIImageView(image: UIImage(systemName: "moon.dust"))
+        let image = UIImageView(image: UIImage(named: "AppIcon"))
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()

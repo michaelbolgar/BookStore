@@ -11,7 +11,7 @@ import SnapKit
 final class CategoriesHeader: UICollectionReusableView {
     
     //MARK: - UI Elements
-    lazy var headerLabel = UILabel.makeLabel(text: "Categories", font: UIFont.openSansRegular(ofSize: 20), textColor: .black)
+    lazy var headerLabel = UILabel()
     
     //MARK: - Inits
     override init(frame: CGRect) {
@@ -28,7 +28,7 @@ final class CategoriesHeader: UICollectionReusableView {
         addSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.leading.equalTo(snp.leading).offset(20)
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
