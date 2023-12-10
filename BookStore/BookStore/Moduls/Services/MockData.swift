@@ -16,6 +16,7 @@ struct MockData {
                    .init(image: "home_unselected", title: "", subTitle: ""),
                    .init(image: "home_unselected", title: "", subTitle: ""),
                    .init(image: "home_unselected", title: "", subTitle: ""),
+                   .init(image: "home_unselected", title: "", subTitle: ""),
         ])
     }()
     

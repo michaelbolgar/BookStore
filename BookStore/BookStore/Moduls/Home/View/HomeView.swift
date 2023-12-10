@@ -71,7 +71,7 @@ extension UIStackView {
 
 // MARK: - Create Layout
 
-extension HomeView {
+private extension HomeView {
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         
