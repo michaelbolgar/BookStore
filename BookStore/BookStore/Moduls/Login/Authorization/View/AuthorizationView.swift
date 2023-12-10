@@ -114,6 +114,8 @@ class AuthorizationView: UIView {
         bg.addSubviewsTamicOff(iconImage, welcomeLabel,bottomLabel,emailTextField,passwordTextField,forgotPasswordButton,createNewAccountButton,logButton)
         let offset: CGFloat = 20
         logButton.setTitle("Sing In", for: .normal)
+        welcomeLabel.text = "Welcome back!"
+        bottomLabel.text = "We missed you!"
         
         NSLayoutConstraint.activate([
             bgImage.topAnchor.constraint(equalTo: topAnchor),
