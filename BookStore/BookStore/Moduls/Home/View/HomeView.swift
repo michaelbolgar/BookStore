@@ -4,24 +4,6 @@ import SnapKit
 final class HomeView: UIView {
     
     //MARK: UI Elements
-
-    //большинство ошибок с констрейнтами связано со стеками. Я не уверен, что эти стеки здесь уместны: стеки логично использовать в случае с 3+ элементами, причём когда расстояния между объектами одинаковые. А когда два объекта, причём ещё по каким-то причинам нужно насилу прибить один из элементов в ходе вёрстки, ты нисколько не выигрываешь в коде, ведь получаешь столько же строк кода. Зато проигрываешь в читаемости, потому что надо разбираться, в каком стеке что лежит
-    //В общем, я бы вообще убрал эти стеки, потому что у тебя по факту четыре элемента в ячейке, каждый из которых имеет своё расположение
-    private let mainStackView = UIStackView(spacing: 10, axis: .vertical, alignment: .leading)
-    
-    private let topBooksStackView = UIStackView(spacing: 0, axis: .horizontal, alignment: .fill)
-    private let topBooksTitleLabel = UILabel.makeLabel(
-        text: "Top Books",
-        font: .openSansBold(ofSize: 20),
-        textColor: .elements
-    )
-    private let buttonTitles: [String] = ["This Week", "This Month", "This Year"]
-    private lazy var segmentedControl: CustomSegmentedControl = CustomSegmentedControl(buttonTitles: buttonTitles)
-    private let centeredTitle: UILabel = UILabel()
-    
-    private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .elements, borderWidth: 0)
-    
-    private let topButtonsStackView = UIStackView(spacing: 0, axis: .horizontal, alignment: .center)
     
     private lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
@@ -35,80 +17,35 @@ final class HomeView: UIView {
     
     private let sections = MockData.shared.pageData
     
-    // MARK: - Actions
-
-    //методы селектора обычно группируются вместе после всех приватных методов
-    @objc func seeMoreButtonTapped() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.seeMoreButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.3, animations: {
-                self.seeMoreButton.transform = CGAffineTransform.identity
-            })
-        })
-    }
-    
     // MARK: - Set Views
     
     func setViews() {
-        seeMoreButton.addTarget(self, action: #selector(seeMoreButtonTapped), for: .touchUpInside)
         
         self.backgroundColor = .background
         
-        self.addSubview(mainStackView)
-
-        //эти четыре строки можно сократить через forEach
-//      [... ... ...].forEach { self.addSubview($0) }
-        mainStackView.addArrangedSubview(collectionView)
-        mainStackView.addArrangedSubview(topBooksStackView)
-        mainStackView.addArrangedSubview(topButtonsStackView)
-        mainStackView.addArrangedSubview(collectionView)
-
+        self.addSubview(collectionView)
+        
         collectionView.register(TopBooksViewCell.self,
                                 forCellWithReuseIdentifier: "TopBooksCollectionViewCell")
         collectionView.register(RecentBooksViewCell.self,
                                 forCellWithReuseIdentifier: "RecentBooksViewCell")
         collectionView.register(HeaderSupplementaryView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                forSupplementaryViewOfKind: "headerItem",
                                 withReuseIdentifier: "HeaderSupplementaryView")
+        collectionView.register(CustomSegmentedControlReusableView.self,
+                                forSupplementaryViewOfKind: "segmentedControl",
+                                withReuseIdentifier: "SegmentedControl")
         
         collectionView.collectionViewLayout = createLayout()
-
-        //аналогично сокращается
-        topBooksStackView.addArrangedSubview(topBooksTitleLabel)
-        topBooksStackView.addArrangedSubview(seeMoreButton)
-        topButtonsStackView.addArrangedSubview(segmentedControl)
-        topButtonsStackView.addArrangedSubview(centeredTitle)
-        
     }
     
     // MARK: - Setup Constraints
     
     func setupConstraints() {
-        mainStackView.snp.makeConstraints { make in
-//            make.edges.equalTo(self.safeAreaLayoutGuide)
-            make.top.bottom.equalTo(self.safeAreaLayoutGuide)
-            make.trailing.equalToSuperview()
-            make.leading.equalToSuperview().inset(19)
-        }
-
-        //вот тут всегда будет появляться ошибка с констрейнтами, потому что этот стек добавлен в другой стек и соответственно получается свои констрейнты из коробки, а тут ты их перебиваешь
-        topBooksStackView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-10)
-            make.height.equalTo(100)
-        }
-
-        
-        seeMoreButton.snp.makeConstraints { make in
-            make.width.equalTo(62)
-            make.height.equalTo(20)
-        }
-
-        //для leading и trailing нет смысла задавать safeAreaLayoutGuide, она всегда равна краю
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(100)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
-            make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
     }
@@ -168,16 +105,24 @@ extension HomeView {
     private func createTopBookSection() -> NSCollectionLayoutSection {
         
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
-                                                            heightDimension: .fractionalHeight(1)))
+                                                            heightDimension: .fractionalHeight(0.9)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
                                                                          heightDimension: .fractionalHeight(0.4)),
                                                        subitems: [item])
         
+        
+        let segmentedControlItem = NSCollectionLayoutBoundarySupplementaryItem(
+             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
+                                        heightDimension: .estimated(100)),
+             elementKind: "segmentedControl",
+             alignment: .top
+         )
+        
         let section = createLayoutSection(group: group,
                                           behavior: .continuous,
                                           interGroupSpacing: 10,
-                                          supplementaryItems: [],
+                                          supplementaryItems: [segmentedControlItem],
                                           contentInsets: true)
         section.contentInsets = .init(top: 0, leading: 19, bottom: 0, trailing: 0)
         
@@ -187,7 +132,7 @@ extension HomeView {
     private func createBottomBookSection() -> NSCollectionLayoutSection {
         
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
-                                                            heightDimension: .fractionalHeight(1)))
+                                                            heightDimension: .fractionalHeight(0.9)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
                                                                          heightDimension: .fractionalHeight(0.4)),
@@ -206,16 +151,17 @@ extension HomeView {
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1),
                                 heightDimension: .estimated(50)),
-              elementKind: UICollectionView.elementKindSectionHeader,
+              elementKind: "headerItem",
               alignment: .top)
         
     }
+    
 }
 
 // MARK: - UICollectionViewDelegate
 
 extension HomeView: UICollectionViewDelegate {
-
+    
 }
 // MARK: - UICollectionViewDataSource
 
@@ -253,12 +199,22 @@ extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         switch kind {
-        case UICollectionView.elementKindSectionHeader:
+        case "headerItem":
             if let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                             withReuseIdentifier: "HeaderSupplementaryView",
                                                                             for: indexPath) as? HeaderSupplementaryView {
                 header.configureHeader(categoryName: sections[indexPath.section].title)
                 return header
+                
+            } else {
+                return UICollectionReusableView()
+            }
+            
+        case "segmentedControl":
+            if let segmentedControl = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                                      withReuseIdentifier: "SegmentedControl",
+                                                                                      for: indexPath) as? CustomSegmentedControlReusableView {
+                return segmentedControl
             } else {
                 return UICollectionReusableView()
             }
@@ -270,10 +226,4 @@ extension HomeView: UICollectionViewDataSource {
     
 }
 
-// MARK: SegmentedControl delegate
 
-extension HomeView: CustomSegmentedControlDelegate {
-    func buttonPressed(buttonTitlesIndex: Int, title: String?) {
-        centeredTitle.text = "\(buttonTitles[buttonTitlesIndex]) selected"
-    }
-}

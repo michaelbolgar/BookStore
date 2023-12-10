@@ -10,7 +10,7 @@ import UIKit
 final class CustomSegmentedControl: UIView {
     
     //MARK: UI Elements
-
+    
     private var verticalContainer: UIView = UIView()
     private var buttonsContainer: UIStackView = UIStackView()
     
@@ -33,7 +33,7 @@ final class CustomSegmentedControl: UIView {
     
     convenience init(buttonTitles: [String], tintColor: UIColor = .black, fontSelected: UIFont = .preferredFont(forTextStyle: .body, compatibleWith: .init(legibilityWeight: .bold)), fontUnselected: UIFont = .preferredFont(forTextStyle: .body)) {
         self.init()
-       
+        
         guard buttonTitles.isEmpty == false else { return }
         self.buttonTitles = buttonTitles
         self.fontSelected = fontSelected
@@ -66,7 +66,7 @@ final class CustomSegmentedControl: UIView {
             verticalContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             verticalContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             verticalContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            verticalContainer.widthAnchor.constraint(equalToConstant: 350),
+            
             
             topAnchor.constraint(equalTo: buttonsContainer.topAnchor),
             bottomAnchor.constraint(equalTo: barView.bottomAnchor)
@@ -91,7 +91,7 @@ final class CustomSegmentedControl: UIView {
         buttonsContainer.axis = .horizontal
         buttonsContainer.distribution = .fillEqually
         buttonsContainer.spacing = 30
-
+        
         buttons.forEach {
             buttonsContainer.addArrangedSubview($0)
         }
