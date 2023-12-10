@@ -17,6 +17,7 @@ final class CategoriesCell: UICollectionViewCell {
     
     private lazy var image: UIImageView = {
         let image = UIImageView(image: UIImage(named: "AppIcon"))
+        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -40,17 +41,15 @@ final class CategoriesCell: UICollectionViewCell {
         contentView.addSubview(genre)
         
         image.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.height.equalTo(100)
             make.width.equalTo(150)
         }
         
         genre.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
-            make.verticalEdges.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.height.equalTo(32)
             make.width.equalTo(87)
         }
