@@ -31,7 +31,7 @@ class AuthorizationView: UIView {
     private lazy var bg: UIView  = {
         let view = UIView()
         view.layer.cornerRadius = 16
-        view.backgroundColor = .white
+        view.backgroundColor = .authBg
         return view
     }()
     
@@ -42,11 +42,15 @@ class AuthorizationView: UIView {
         return imageView
     }()
     
-    private lazy var logButton = UIButton(cornerRadius: 5, title: "Sing Up",background: UIColor.black.cgColor,titleColor: .white, fontSize: 14)
+    private lazy var logButton: UIButton = {
+        let button = UIButton(cornerRadius: 5, title: "Sing Up",background: UIColor.elements.cgColor,titleColor: .background, fontSize: 14)
+        button.backgroundColor = .elements
+        return button
+    }()
     
-    private lazy var welcomeLabel = UILabel.makeLabel(text:"Get started", font: .openSansBold(ofSize: 24), textColor: .customBlack)
+    private lazy var welcomeLabel = UILabel.makeLabel(text:"Get started", font: .openSansBold(ofSize: 24), textColor: .elements)
     
-    private lazy var bottomLabel = UILabel.makeLabel(text:"By creating an account", font: .openSansRegular(ofSize: 14), textColor: .customBlack)
+    private lazy var bottomLabel = UILabel.makeLabel(text:"By creating an account", font: .openSansRegular(ofSize: 14), textColor: .elements)
     
     private lazy var nameTextField = UITextField(placeholder: "Name")
     private lazy var emailTextField = UITextField(placeholder: "Email")
@@ -55,7 +59,7 @@ class AuthorizationView: UIView {
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("Forgot password?", for: .normal)
-        button.setTitleColor(.customBlack, for: .normal)
+        button.setTitleColor(.elements, for: .normal)
         button.titleLabel?.font = .openSansBold(ofSize: 14)
         button.backgroundColor = .clear
         return button
@@ -64,7 +68,7 @@ class AuthorizationView: UIView {
     private lazy var createNewAccountButton: UIButton = {
         let button = UIButton()
         button.setTitle("Create new account", for: .normal)
-        button.setTitleColor(.customBlack, for: .normal)
+        button.setTitleColor(.elements, for: .normal)
         button.titleLabel?.font = .openSansBold(ofSize: 14)
         button.backgroundColor = .clear
         return button
@@ -73,7 +77,7 @@ class AuthorizationView: UIView {
     private lazy var haveAccountButton: UIButton = {
         let button = UIButton()
         button.setTitle("Already have an account", for: .normal)
-        button.setTitleColor(.customBlack, for: .normal)
+        button.setTitleColor(.elements, for: .normal)
         button.titleLabel?.font = .openSansBold(ofSize: 14)
         button.backgroundColor = .clear
         return button

@@ -9,7 +9,7 @@ import UIKit
 
 extension UITextField {
     convenience init(
-        backgroundColor: UIColor = .customLightGray,
+        backgroundColor: UIColor = .label,
         cornerRadius: CGFloat = 5,
         placeholder: String,
         padding: CGFloat = 12,
