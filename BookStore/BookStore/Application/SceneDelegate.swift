@@ -8,20 +8,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
+        //                let appLaunchedBefore = UserDefaults.standard.bool(forKey: "appLaunchedBefore")
+        //                if appLaunchedBefore {
+        //                    let mainVC = MainTabBarController()
+        //                    let navigationController = UINavigationController(rootViewController: mainVC)
+        //                    window?.rootViewController = navigationController
+        //                } else {
+        //                    let onboardingVC = OnboardingViewController()
+        //                    window?.rootViewController = onboardingVC
+        //                }
+        //                UserDefaults.standard.set(true, forKey: "appLaunchedBefore")
         
-//
-//        let appLaunchedBefore = UserDefaults.standard.bool(forKey: "appLaunchedBefore")
-//        if appLaunchedBefore {
-//            let mainVC = MainTabBarController()
-//            let navigationController = UINavigationController(rootViewController: mainVC)
-//            window?.rootViewController = navigationController
-//        } else {
-//            let onboardingVC = OnboardingViewController()
-//            window?.rootViewController = onboardingVC
-//        }
-//        UserDefaults.standard.set(true, forKey: "appLaunchedBefore")
-        window?.rootViewController = RegistrationViewController()
-//        window?.rootViewController = MainTabBarController()
+        let savedDarkMode = UserDefaults.standard.bool(forKey: "AppDarkMode")
+        let selectedTheme: UIUserInterfaceStyle = savedDarkMode ? .dark : .light
+        window?.overrideUserInterfaceStyle = selectedTheme
+        
+        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     }
 }

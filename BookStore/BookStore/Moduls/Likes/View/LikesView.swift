@@ -9,12 +9,6 @@ class LikesView: UIView {
     //MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        collectionView = UICollectionView(
-            frame: .zero,
-            collectionViewLayout: UICollectionViewFlowLayout.init())
-        collectionView.register(
-            LikesCell.self,
-            forCellWithReuseIdentifier: LikesCell.self.description())
         configureCollectionView()
         setConstraints()
     }
@@ -25,6 +19,12 @@ class LikesView: UIView {
     
     //MARK: - PrivateMethods
     private func configureCollectionView() {
+        collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout.init())
+        collectionView.register(
+            LikesCell.self,
+            forCellWithReuseIdentifier: LikesCell.self.description())
         collectionView.backgroundColor = .background
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(collectionView)
