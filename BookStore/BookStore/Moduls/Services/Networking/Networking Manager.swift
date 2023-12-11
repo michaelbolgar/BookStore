@@ -6,7 +6,6 @@ enum TrendingPeriod: String {
     case yearly = "yearly"
 }
 
-//добавить больше категорий с https://openlibrary.org/subjects
 enum Categories: String {
     case love = "love"
     case fiction = "fiction"
@@ -16,6 +15,12 @@ enum Categories: String {
     case classics = "classics"
     case forChildren = "children"
     case sci_fi = "sci-fi"
+    case humor = "humor"
+    case poetry = "poetry"
+    case art = "history_of_art__art__design_styles"
+    case history = "history"
+    case biography = "biography"
+    case business = "business"
 }
 
 public class NetworkingManager {
@@ -114,8 +119,8 @@ public class NetworkingManager {
         }.resume()
     }
 
-    //
-    func getCategoryCollection(for category: Categories, completion: @escaping (Result<[SubjectResponse], Error>) -> Void) {
+    //getting categories collection
+    func getCategoryCollection(for category: Categories, completion: @escaping (Result<[CategoryCollection], Error>) -> Void) {
         let trendingURL = "https://openlibrary.org/subjects/\(category.rawValue).json"
 
         guard let url = URL(string: trendingURL) else {
@@ -136,39 +141,18 @@ public class NetworkingManager {
                 return
             }
 
-//            if let jsonString = String(data: data, encoding: .utf8) {
-//                print("Response JSON: \(jsonString)")
-//            }
-
-            //            do {
-            //                let jsonDecoder = JSONDecoder()
-            //                let decodedData = try jsonDecoder.decode([String: [SubjectResponse]].self, from: data)
-            //
-            //                // Извлекаем массив SubjectResponse из словаря
-            //                if let subjectsResponse = decodedData["works"] {
-            //                    completion(.success(subjectsResponse))
-            //                } else {
-            //                    // Если ключ "works" отсутствует, возвращаем ошибку
-            //                    let error = NSError(domain: "Invalid Response", code: 0, userInfo: nil)
-            //                    completion(.failure(error))
-            //                }
-            //            } catch {
-            //                completion(.failure(error))
-            //            }
-            //        }.resume()
-
             //где-то здесь кажется есть лишний код
             do {
                 let jsonDecoder = JSONDecoder()
 
                 // Попытка декодировать массив SubjectResponse
-                if let subjectsResponse = try? jsonDecoder.decode([SubjectResponse].self, from: data) {
+                if let subjectsResponse = try? jsonDecoder.decode([CategoryCollection].self, from: data) {
                     completion(.success(subjectsResponse))
                     return
                 }
 
                 // Если декодирование массива не удалось, попробуем декодировать как одиночный объект SubjectResponse
-                if let singleSubjectResponse = try? jsonDecoder.decode(SubjectResponse.self, from: data) {
+                if let singleSubjectResponse = try? jsonDecoder.decode(CategoryCollection.self, from: data) {
                     completion(.success([singleSubjectResponse]))
                 } else {
                     // Если не удалось декодировать как массив или объект, возвращаем ошибку
@@ -205,48 +189,5 @@ struct Work: Codable {
     let editionKey: [String]?
     let coverID: Int?
     let coverEditionKey: String?
-}
-
-struct TrendingBooks: Codable {
-    let query: String
-    let works: [Book]
-
-    struct Book: Codable {
-        let key: String?
-        let title: String?
-        let first_publish_year: Int?
-        let has_fulltext: Bool?
-        let ia: [String]?
-        let ia_collection_s: String?
-        let cover_edition_key: String?
-        let cover_i: Int?
-        let author_key: [String]?
-        let author_name: [String]?
-    }
-}
-
-struct SubjectResponse: Codable {
-    let key: String?
-    let name: String?
-    let work_count: Int?
-    let works: [Work]
-
-    struct Work: Codable {
-        let key: String?
-        let title: String?
-        let cover_id: Int?
-//        let cover_edition_key: String?
-//        let subject: [Subject] это если понадобятся ключевые слова по теме, нужна будет структурка Subject
-        let edition_count: Int?
-        let authors: [Author]
-        let first_publish_year: Int?
-        let has_fulltext: Bool? //использовать при выгрузке в читалку?
-//        let ia: String?
-
-        struct Author: Codable {
-            let name: String?
-            let key: String?
-        }
-    }
 }
 

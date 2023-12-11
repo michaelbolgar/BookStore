@@ -11,6 +11,9 @@ class SearchResultVC: UIViewController {
 
     // MARK: Properties
 
+    //массив для получения запроса с сервера
+    var array = [Doc]()
+
     private let books: [Book] = [
 
         //ата-та за форс анврап, заменил на безопасное извлечение
@@ -91,6 +94,14 @@ class SearchResultVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
+
+//        search example
+            NetworkingManager.instance.searchBooks(keyword: "Harry Potter") {
+                print("hello")
+            } searchCompletion: { object in
+                self.array = object.docs
+                print(self.array)
+            }
     }
 
     // MARK: Private Methods

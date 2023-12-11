@@ -12,6 +12,24 @@ class CategoriesVC: UIViewController {
         categoriesView.collectionView.delegate = self
         categoriesView.collectionView.dataSource = self
         view = categoriesView
+
+        //get category collection example
+        NetworkingManager.instance.getCategoryCollection (for: .love) { result in
+            switch result {
+            case .success(let subjectResponse):
+//                    print(subjectResponse)
+//                    print(subjectResponse[0].works)
+
+                for book in subjectResponse[0].works {
+                    if let title = book.title {
+                        print(title)
+                    }
+                }
+
+            case .failure(let error):
+                print("Ошибка при получении категорий: \(error)")
+            }
+        }
     }
 }
 //MARK: - extensions CategoriesVC
