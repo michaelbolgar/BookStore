@@ -26,8 +26,6 @@ class SearchResultVC: UIViewController {
 
     //MARK: UI Elements
 
-    //эти элементы нужно перенести на отдельное View, которое потом добавится на этот View Controller. Иначе не MVC
-
     //когда будешь делать не хард, не забудь выставить этим лейблам цвет текста .label или другой подходящий (см. UIColor extension)
     var searchRequest = "Something"
     var numberLabel = "4 Search results"

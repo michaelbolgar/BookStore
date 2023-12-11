@@ -26,16 +26,16 @@ final class HomeVC: UIViewController {
             super.viewDidAppear(animated)
 
             //getting weekly top example
-            NetworkingManager.instance.getTrendingBooks(for: .weekly) { result in
-                switch result {
-                case .success(let trendingBooks):
-                    print(trendingBooks)
-                    print(trendingBooks[0])
-                    print(trendingBooks[0].author_name ?? "No author")
-                case .failure(let error):
-                    print("Ошибка при получении недельной подборки: \(error)")
-                }
-            }
+//            NetworkingManager.instance.getTrendingBooks(for: .weekly) { result in
+//                switch result {
+//                case .success(let trendingBooks):
+//                    print(trendingBooks)
+//                    print(trendingBooks[0])
+//                    print(trendingBooks[0].author_name ?? "No author")
+//                case .failure(let error):
+//                    print("Ошибка при получении недельной подборки: \(error)")
+//                }
+//            }
         }
     
     private func setupConstraints() {

@@ -17,14 +17,14 @@ class CategoriesVC: UIViewController {
         NetworkingManager.instance.getCategoryCollection (for: .love) { result in
             switch result {
             case .success(let subjectResponse):
-//                    print(subjectResponse)
+                print(subjectResponse)
 //                    print(subjectResponse[0].works)
 
-                for book in subjectResponse[0].works {
-                    if let title = book.title {
-                        print(title)
-                    }
-                }
+//                for book in subjectResponse[0].works {
+//                    if let title = book.title {
+//                        print(title)
+//                    }
+//                }
 
             case .failure(let error):
                 print("Ошибка при получении категорий: \(error)")
