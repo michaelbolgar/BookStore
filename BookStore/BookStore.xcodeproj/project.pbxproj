@@ -35,6 +35,8 @@
 		AF24B6B82B22661800B2991D /* CategoriesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF24B6B52B22661800B2991D /* CategoriesHeader.swift */; };
 		AF24B6BA2B22662400B2991D /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF24B6B92B22662400B2991D /* CategoriesVC.swift */; };
 		AF71D9142B1F472800771C9E /* LikesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF71D9132B1F472800771C9E /* LikesCell.swift */; };
+		F43531942B264E5E004A9B09 /* Networking Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43531932B264E5E004A9B09 /* Networking Manager.swift */; };
+		F43531962B264E80004A9B09 /* Search Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43531952B264E80004A9B09 /* Search Model.swift */; };
 		F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */; };
 		F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */; };
 		F48F38F52B1CDD02009DAFA8 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F42B1CDD02009DAFA8 /* HomeVC.swift */; };
@@ -92,6 +94,8 @@
 		AF24B6B52B22661800B2991D /* CategoriesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesHeader.swift; sourceTree = "<group>"; };
 		AF24B6B92B22662400B2991D /* CategoriesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		AF71D9132B1F472800771C9E /* LikesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesCell.swift; sourceTree = "<group>"; };
+		F43531932B264E5E004A9B09 /* Networking Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Networking Manager.swift"; sourceTree = "<group>"; };
+		F43531952B264E80004A9B09 /* Search Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search Model.swift"; sourceTree = "<group>"; };
 		F48F38ED2B1CDD02009DAFA8 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 		79C697A02B211AB80055129C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F43531922B264E4F004A9B09 /* Networking */,
 				79C697992B210B190055129C /* MockData.swift */,
 			);
 			path = Services;
@@ -206,6 +211,15 @@
 				79C697972B210B190055129C /* TopBooksViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F43531922B264E4F004A9B09 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F43531932B264E5E004A9B09 /* Networking Manager.swift */,
+				F43531952B264E80004A9B09 /* Search Model.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		F48F38E42B1CDD01009DAFA8 = {
@@ -622,6 +636,7 @@
 				79C6979C2B210B190055129C /* ListSection.swift in Sources */,
 				F48F394A2B1D42D5009DAFA8 /* HomeView.swift in Sources */,
 				79C6979E2B210B190055129C /* HeaderSupplementaryView.swift in Sources */,
+				F43531962B264E80004A9B09 /* Search Model.swift in Sources */,
 				797ABEC22B25BDD700A50C45 /* CustomSegmentedControlReusableView.swift in Sources */,
 				AF24B6BA2B22662400B2991D /* CategoriesVC.swift in Sources */,
 				F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */,
@@ -640,6 +655,7 @@
 				F48F39502B1D4484009DAFA8 /* PagesViewController.swift in Sources */,
 				F48F393C2B1D41E6009DAFA8 /* LikesView.swift in Sources */,
 				F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */,
+				F43531942B264E5E004A9B09 /* Networking Manager.swift in Sources */,
 				F48F39162B1CF49A009DAFA8 /* UILabel Extension.swift in Sources */,
 				790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */,
 				79C6979B2B210B190055129C /* ListItem.swift in Sources */,
