@@ -32,10 +32,7 @@ class LikesView: UIView {
     
     private func setConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
 }

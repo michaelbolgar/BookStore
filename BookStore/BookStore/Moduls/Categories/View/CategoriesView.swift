@@ -45,7 +45,7 @@ class CategoriesView: UIView {
     
     private func createSection() -> NSCollectionLayoutSection {
         
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(170),
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(190),
                                                             heightDimension: .absolute(140)))
         item.contentInsets = .init(top: 20, leading: 20, bottom: 20, trailing: 20)
         
