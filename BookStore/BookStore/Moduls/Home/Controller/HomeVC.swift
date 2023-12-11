@@ -3,8 +3,9 @@ import SnapKit
 
 final class HomeVC: UIViewController {
 
+    //этот массив можно использовать для наполнения полученными данными
+//    var array = [TrendingBooks]()
     var array = [Doc]()
-    var weeklyArray = [Doc]()
     
     private let homeView = HomeView()
 
@@ -24,26 +25,42 @@ final class HomeVC: UIViewController {
 
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-//            NetworkingManager.instance.searchBooks(keyword: "Lord of the Ring") {
+
+            //search example
+//            NetworkingManager.instance.searchBooks(keyword: "Harry Potter") {
 //                print("hello")
 //            } searchCompletion: { object in
 //                self.array = object.docs
 //                print(self.array)
 //            }
 
-//            NetworkingManager.instance.getWeeklyTrendingBooks {
-//                print("hello")
-//            } searchCompletion: { object in
-//                self.weeklyArray = object.docs
-//                print(self.weeklyArray)
+            //getting weekly top example
+//            NetworkingManager.instance.getTrendingBooks(for: .weekly) { result in
+//                switch result {
+//                case .success(let trendingBooks):
+//                    print(trendingBooks)
+//                    print(trendingBooks[0])
+//                    print(trendingBooks[0].author_name ?? "No author")
+//                case .failure(let error):
+//                    print("Ошибка при получении недельной подборки: \(error)")
+//                }
 //            }
 
-            NetworkingManager.instance.getWeeklyTrendingBooks { result in
+            //get category collection example
+            NetworkingManager.instance.getCategoryCollection (for: .love) { result in
                 switch result {
-                case .success(let weeklyTrendingBooks):
-                    print(weeklyTrendingBooks)
+                case .success(let subjectResponse):
+//                    print(subjectResponse)
+//                    print(subjectResponse[0].works)
+
+                    for book in subjectResponse[0].works {
+                        if let title = book.title {
+                            print(title)
+                        }
+                    }
+
                 case .failure(let error):
-                    print("Ошибка при получении недельной подборки: \(error)")
+                    print("Ошибка при получении категорий: \(error)")
                 }
             }
 
