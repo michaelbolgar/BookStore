@@ -24,24 +24,24 @@ enum Categories: String {
 }
 
 public class NetworkingManager {
-
+    
     static let instance = NetworkingManager()
-
+    
     var searchCompletion: ((BookObject) -> Void)?
     var timer: Timer?
-
+    
     var urlEndpoints = [("&mode=everything", false),
-                       ("&sort=editions&mode=everything", false),
-                       ("&sort=old&mode=everything", false),
-                       ("&sort=new&mode=everything", false),
-                       ("https://openlibrary.org/search.json?title=", true),
-                       ("https://openlibrary.org/search.json?author=", true)]
-
+                        ("&sort=editions&mode=everything", false),
+                        ("&sort=old&mode=everything", false),
+                        ("&sort=new&mode=everything", false),
+                        ("https://openlibrary.org/search.json?title=", true),
+                        ("https://openlibrary.org/search.json?author=", true)]
+    
     func importJson(url: String, completion: @escaping (BookObject) -> Void) {
-
+        
         guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-        guard let data = data else { return }
+            guard let data = data else { return }
             do {
                 let object = try JSONDecoder().decode(BookObject.self, from: data)
                 DispatchQueue.main.async {
@@ -52,12 +52,12 @@ public class NetworkingManager {
             }
         }).resume()
     }
-
+    
     func getUrl(rawUrl: String) -> String {
         let url = rawUrl.replacingOccurrences(of: " ", with: "+")
         return url
     }
-
+    
     public func searchBooks(keyword: String, emptyCompletion: () -> Void, searchCompletion: @escaping (BookObject) -> Void) {
         timer?.invalidate()
         self.searchCompletion = searchCompletion
@@ -66,7 +66,7 @@ public class NetworkingManager {
             return
         }
         var url = "https://openlibrary.org/search.json?q=" + "\(keyword)"
-
+        
         for (i,c) in urlEndpoints.enumerated(){
             if(UserDefaults.standard.bool(forKey: "\(i)") == true){
                 if(c.1 == false){
@@ -79,36 +79,38 @@ public class NetworkingManager {
         let passData = (url: url, completion: searchCompletion)
         timer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(startSearching), userInfo: url, repeats: false)
     }
-
+    
     @objc func startSearching() {
         let url = timer!.userInfo as! String
         let finalUrl = getUrl(rawUrl: url)
         guard let completion = searchCompletion else { return }
         importJson(url: finalUrl, completion: completion)
     }
+// добавляешь в cover_i из модели TrendingBooks
 
+    
     // getting top books
     func getTrendingBooks(for period: TrendingPeriod, completion: @escaping (Result<[TrendingBooks.Book], Error>) -> Void) {
         let trendingURL = "https://openlibrary.org/trending/\(period.rawValue).json"
-
+        
         guard let url = URL(string: trendingURL) else {
             let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
             completion(.failure(error))
             return
         }
-
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 let error = NSError(domain: "No data", code: 0, userInfo: nil)
                 completion(.failure(error))
                 return
             }
-
+            
             do {
                 let trendingBooks = try JSONDecoder().decode(TrendingBooks.self, from: data)
                 let books = trendingBooks.works.compactMap { $0 }
@@ -118,39 +120,39 @@ public class NetworkingManager {
             }
         }.resume()
     }
-
+    
     //getting categories collection
     func getCategoryCollection(for category: Categories, completion: @escaping (Result<[CategoryCollection], Error>) -> Void) {
         let trendingURL = "https://openlibrary.org/subjects/\(category.rawValue).json"
-
+        
         guard let url = URL(string: trendingURL) else {
             let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
             completion(.failure(error))
             return
         }
-
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 let error = NSError(domain: "No data", code: 0, userInfo: nil)
                 completion(.failure(error))
                 return
             }
-
+            
             //где-то здесь кажется есть лишний код
             do {
                 let jsonDecoder = JSONDecoder()
-
+                
                 // Попытка декодировать массив SubjectResponse
                 if let subjectsResponse = try? jsonDecoder.decode([CategoryCollection].self, from: data) {
                     completion(.success(subjectsResponse))
                     return
                 }
-
+                
                 // Если декодирование массива не удалось, попробуем декодировать как одиночный объект SubjectResponse
                 if let singleSubjectResponse = try? jsonDecoder.decode(CategoryCollection.self, from: data) {
                     completion(.success([singleSubjectResponse]))
@@ -164,6 +166,8 @@ public class NetworkingManager {
             }
         }.resume()
     }
+    
+    
 }
 
 // MARK: - Welcome10
