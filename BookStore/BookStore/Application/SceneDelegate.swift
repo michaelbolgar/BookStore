@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let selectedTheme: UIUserInterfaceStyle = savedDarkMode ? .dark : .light
         window?.overrideUserInterfaceStyle = selectedTheme
         
-        window?.rootViewController = MainTabBarController()
+        window?.rootViewController = SearchResultVC()
         window?.makeKeyAndVisible()
     }
 }
