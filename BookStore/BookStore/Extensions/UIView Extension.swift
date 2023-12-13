@@ -8,6 +8,10 @@
 import UIKit
 
 extension UIView {
+
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     func addSubviewsTamicOff(_ views: UIView...) {
         views.forEach {

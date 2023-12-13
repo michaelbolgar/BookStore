@@ -14,8 +14,8 @@
 		377B3EAF2B1FB87000C81F6A /* Animation - 3.json in Resources */ = {isa = PBXBuildFile; fileRef = 377B3EAC2B1FB87000C81F6A /* Animation - 3.json */; };
 		377B3EB02B1FB87000C81F6A /* Animation - 1.json in Resources */ = {isa = PBXBuildFile; fileRef = 377B3EAD2B1FB87000C81F6A /* Animation - 1.json */; };
 		377B3EB32B1FD94100C81F6A /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EB22B1FD94100C81F6A /* UIView Extension.swift */; };
-		378855472B28A0CB006573CE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378855462B28A0CB006573CE /* LaunchViewController.swift */; };
 		3787DCB12B286F58003427D2 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787DCB02B286F58003427D2 /* BookDetailsView.swift */; };
+		378855472B28A0CB006573CE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378855462B28A0CB006573CE /* LaunchViewController.swift */; };
 		790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */; };
 		790E5E662B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */; };
 		79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */; };
@@ -41,6 +41,9 @@
 		F43531962B264E80004A9B09 /* Search Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43531952B264E80004A9B09 /* Search Model.swift */; };
 		F43531982B2753DF004A9B09 /* TrendingBooks Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43531972B2753DF004A9B09 /* TrendingBooks Model.swift */; };
 		F435319A2B27542E004A9B09 /* CategoryCollection Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43531992B27542D004A9B09 /* CategoryCollection Model.swift */; };
+		F439A1042B2A131C00A2DB02 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F439A1032B2A131C00A2DB02 /* ListView.swift */; };
+		F439A1062B2A185200A2DB02 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F439A1052B2A185200A2DB02 /* ListVC.swift */; };
+		F439A1092B2A1E1700A2DB02 /* ListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F439A1082B2A1E1700A2DB02 /* ListCellModel.swift */; };
 		F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */; };
 		F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */; };
 		F48F38F52B1CDD02009DAFA8 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F38F42B1CDD02009DAFA8 /* HomeVC.swift */; };
@@ -79,8 +82,8 @@
 		377B3EAC2B1FB87000C81F6A /* Animation - 3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 3.json"; sourceTree = "<group>"; };
 		377B3EAD2B1FB87000C81F6A /* Animation - 1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 1.json"; sourceTree = "<group>"; };
 		377B3EB22B1FD94100C81F6A /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
-		378855462B28A0CB006573CE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		3787DCB02B286F58003427D2 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
+		378855462B28A0CB006573CE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlDelegate.swift; sourceTree = "<group>"; };
 		79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField Extension.swift"; sourceTree = "<group>"; };
@@ -104,6 +107,9 @@
 		F43531952B264E80004A9B09 /* Search Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search Model.swift"; sourceTree = "<group>"; };
 		F43531972B2753DF004A9B09 /* TrendingBooks Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingBooks Model.swift"; sourceTree = "<group>"; };
 		F43531992B27542D004A9B09 /* CategoryCollection Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryCollection Model.swift"; sourceTree = "<group>"; };
+		F439A1032B2A131C00A2DB02 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		F439A1052B2A185200A2DB02 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
+		F439A1082B2A1E1700A2DB02 /* ListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellModel.swift; sourceTree = "<group>"; };
 		F48F38ED2B1CDD02009DAFA8 /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48F38F02B1CDD02009DAFA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F48F38F22B1CDD02009DAFA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +246,16 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		F439A1072B2A1D9200A2DB02 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				F439A1032B2A131C00A2DB02 /* ListView.swift */,
+				F439A1052B2A185200A2DB02 /* ListVC.swift */,
+				F439A1082B2A1E1700A2DB02 /* ListCellModel.swift */,
+			);
+			path = Lists;
+			sourceTree = "<group>";
+		};
 		F48F38E42B1CDD01009DAFA8 = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +345,7 @@
 		F48F390F2B1CE752009DAFA8 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				F439A1072B2A1D9200A2DB02 /* Lists */,
 				F48F39342B1D4154009DAFA8 /* View */,
 				F48F39332B1D4149009DAFA8 /* Controller */,
 			);
@@ -662,9 +679,11 @@
 				797ABEC22B25BDD700A50C45 /* CustomSegmentedControlReusableView.swift in Sources */,
 				AF24B6BA2B22662400B2991D /* CategoriesVC.swift in Sources */,
 				F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */,
+				F439A1042B2A131C00A2DB02 /* ListView.swift in Sources */,
 				378855472B28A0CB006573CE /* LaunchViewController.swift in Sources */,
 				AF24B6B62B22661800B2991D /* CategoriesCell.swift in Sources */,
 				F435319A2B27542E004A9B09 /* CategoryCollection Model.swift in Sources */,
+				F439A1092B2A1E1700A2DB02 /* ListCellModel.swift in Sources */,
 				AF24B6B72B22661800B2991D /* CategoriesView.swift in Sources */,
 				F48F391F2B1D1F63009DAFA8 /* UIColor Extension.swift in Sources */,
 				F48F39182B1CF4AE009DAFA8 /* UIButton Extension.swift in Sources */,
@@ -681,6 +700,7 @@
 				F48F38F32B1CDD02009DAFA8 /* SceneDelegate.swift in Sources */,
 				F43531942B264E5E004A9B09 /* Networking Manager.swift in Sources */,
 				F48F39162B1CF49A009DAFA8 /* UILabel Extension.swift in Sources */,
+				F439A1062B2A185200A2DB02 /* ListVC.swift in Sources */,
 				790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */,
 				79C6979B2B210B190055129C /* ListItem.swift in Sources */,
 				377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */,

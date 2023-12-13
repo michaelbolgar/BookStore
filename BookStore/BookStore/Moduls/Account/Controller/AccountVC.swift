@@ -73,6 +73,8 @@ class AccountVC: UIViewController {
     
     @objc private func didTapMyListButton() {
         print("Go to my list")
+        let listVC = ListVC()
+        self.navigationController?.pushViewController(listVC, animated: true)
     }
 }
 

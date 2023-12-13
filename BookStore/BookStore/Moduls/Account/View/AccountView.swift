@@ -29,7 +29,8 @@ class AccountView: UIView {
         view.layer.cornerRadius = 5
         return view
     }()
-    
+
+    //переделать это в полноценную кнопку
     private lazy var listBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .label
@@ -40,10 +41,10 @@ class AccountView: UIView {
     private lazy var myListLabel = UILabel.makeLabel(text: "My Lists", font: .openSansRegular(ofSize: 14), textColor: .labelColors)
     
     lazy var goToMyListButton: UIButton = {
-        let modeSwitch = UIButton()
-        modeSwitch.setBackgroundImage(UIImage(systemName: "arrow.forward"), for: .normal)
-        modeSwitch.tintColor = .elements
-        return modeSwitch
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "arrow.forward"), for: .normal)
+        button.tintColor = .elements
+        return button
     }()
     
     lazy var modeSwitch: UIButton = {
