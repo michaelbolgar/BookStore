@@ -14,8 +14,8 @@
 		377B3EAF2B1FB87000C81F6A /* Animation - 3.json in Resources */ = {isa = PBXBuildFile; fileRef = 377B3EAC2B1FB87000C81F6A /* Animation - 3.json */; };
 		377B3EB02B1FB87000C81F6A /* Animation - 1.json in Resources */ = {isa = PBXBuildFile; fileRef = 377B3EAD2B1FB87000C81F6A /* Animation - 1.json */; };
 		377B3EB32B1FD94100C81F6A /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EB22B1FD94100C81F6A /* UIView Extension.swift */; };
-		378855472B28A0CB006573CE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378855462B28A0CB006573CE /* LaunchViewController.swift */; };
 		3787DCB12B286F58003427D2 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787DCB02B286F58003427D2 /* BookDetailsView.swift */; };
+		378855472B28A0CB006573CE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378855462B28A0CB006573CE /* LaunchViewController.swift */; };
 		790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */; };
 		790E5E662B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */; };
 		79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */; };
@@ -79,8 +79,8 @@
 		377B3EAC2B1FB87000C81F6A /* Animation - 3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 3.json"; sourceTree = "<group>"; };
 		377B3EAD2B1FB87000C81F6A /* Animation - 1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 1.json"; sourceTree = "<group>"; };
 		377B3EB22B1FD94100C81F6A /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
-		378855462B28A0CB006573CE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		3787DCB02B286F58003427D2 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
+		378855462B28A0CB006573CE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlDelegate.swift; sourceTree = "<group>"; };
 		79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField Extension.swift"; sourceTree = "<group>"; };

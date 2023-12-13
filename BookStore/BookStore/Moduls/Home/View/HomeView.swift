@@ -19,6 +19,7 @@ final class HomeView: UIView {
     
     private let sections = MockData.shared.pageData
     private let networkManager = NetworkingManager.instance
+    private var spinnerView = UIActivityIndicatorView()
     
     
     // MARK: - Set Views
@@ -30,6 +31,8 @@ final class HomeView: UIView {
         self.addSubview(collectionView)
         
         fetchTrendingBooks()
+        
+        showSpinner(in: self)
         
         collectionView.register(TopBooksViewCell.self,
                                 forCellWithReuseIdentifier: "TopBooksCollectionViewCell")
@@ -48,11 +51,16 @@ final class HomeView: UIView {
     // MARK: - Setup Constraints
     
     func setupConstraints() {
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(self.snp.leading)
             make.trailing.equalTo(self.snp.trailing)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        spinnerView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
     
@@ -242,12 +250,24 @@ extension HomeView: UICollectionViewDataSource {
                 print("Books ARE \(trendingBooks.count)")
                 DispatchQueue.main.async {
                     self.trendingBooksTitle = trendingBooks
+                    self.spinnerView.stopAnimating()
                     self.collectionView.reloadData()
                 }
             case .failure(let error):
                 print("Ошибка при получении недельной подборки: \(error)")
             }
         }
+    }
+    
+    // MARK: - Spinner
+    
+    private func showSpinner(in view: UIView) {
+        spinnerView = UIActivityIndicatorView(style: .large)
+        spinnerView.color = .black
+        spinnerView.startAnimating()
+        spinnerView.hidesWhenStopped = true
+        
+        view.addSubview(spinnerView)
     }
     
 }
