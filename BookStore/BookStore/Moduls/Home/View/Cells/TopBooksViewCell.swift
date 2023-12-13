@@ -52,7 +52,6 @@ final class TopBooksViewCell: UICollectionViewCell {
         setupView()
         setConstraints()
        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -69,7 +68,6 @@ final class TopBooksViewCell: UICollectionViewCell {
         textStackView.addArrangedSubview(bookGenreLabel)
         textStackView.addArrangedSubview(bookTitleLabel)
         textStackView.addArrangedSubview(bookAuthorLabel)
-        
         
         layer.cornerRadius = 8
     }
@@ -95,7 +93,8 @@ final class TopBooksViewCell: UICollectionViewCell {
         
         footerView.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            
+            make.height.equalTo(100)
+             
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             
@@ -103,7 +102,14 @@ final class TopBooksViewCell: UICollectionViewCell {
         
         textStackView.snp.makeConstraints { make in
             make.edges.equalTo(footerView.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
-            
+        }
+        
+        bookGenreLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
+        }
+        
+        bookAuthorLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
         }
         layoutIfNeeded()
     }
