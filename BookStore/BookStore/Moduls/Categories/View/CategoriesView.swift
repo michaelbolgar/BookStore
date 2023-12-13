@@ -5,6 +5,7 @@ class CategoriesView: UIView {
     
     //MARK: - Create UIElements
     var collectionView: UICollectionView!
+    var searchBar = UISearchBar.setSearchBar(with: "Enter a search query...")
     
     //MARK: - Life Cycle
     override init(frame: CGRect) {
@@ -29,13 +30,23 @@ class CategoriesView: UIView {
                                 withReuseIdentifier: CategoriesHeader.self.description())
         collectionView.collectionViewLayout = createLayout()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .background
+        backgroundColor = .background
+        addSubview(searchBar)
         addSubview(collectionView)
     }
     
     private func setConstraints() {
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(13)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(56)
+        }
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(searchBar.snp.bottom).offset(75)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
@@ -65,5 +76,28 @@ class CategoriesView: UIView {
                                 heightDimension: .estimated(32)),
               elementKind: UICollectionView.elementKindSectionHeader,
               alignment: .topLeading)
+    }
+}
+
+extension UISearchBar {
+    static func setSearchBar(with placeholder: String) -> UISearchBar {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = placeholder
+        searchBar.searchBarStyle = .minimal
+        searchBar.backgroundColor = .customLightGray
+        searchBar.barTintColor = .clear
+        searchBar.layer.cornerRadius = 5
+        searchBar.clipsToBounds = true
+
+        // Customizing the text field
+        if let searchTextField = searchBar.value(forKey: "searchField") as? UITextField {
+            searchTextField.textColor = .customBlack
+            searchTextField.font = .openSansRegular(ofSize: 14)
+            searchTextField.backgroundColor = .clear
+            searchTextField.borderStyle = .none
+            searchTextField.leftView?.tintColor = .customBlack
+            searchTextField.leftViewMode = .always
+        }
+        return searchBar
     }
 }
