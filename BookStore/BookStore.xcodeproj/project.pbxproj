@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3570C17B2B291D3E005832CF /* ListsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570C17A2B291D3E005832CF /* ListsVC.swift */; };
 		377B3EA42B1E641700C81F6A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA32B1E641700C81F6A /* MainTabBarController.swift */; };
 		377B3EA72B1E721F00C81F6A /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */; };
 		377B3EAA2B1FB6F100C81F6A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 377B3EA92B1FB6F100C81F6A /* Lottie */; };
@@ -71,6 +72,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3570C17A2B291D3E005832CF /* ListsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsVC.swift; sourceTree = "<group>"; };
 		377B3EA32B1E641700C81F6A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		377B3EA62B1E721F00C81F6A /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		377B3EAB2B1FB87000C81F6A /* Animation - 2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 2.json"; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				F48F39082B1CE4C0009DAFA8 /* AccountVC.swift */,
+				3570C17A2B291D3E005832CF /* ListsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				F48F393E2B1D4208009DAFA8 /* LikesModel.swift in Sources */,
 				F4DE52DF2B24EB7C003CA4A1 /* SearchCell.swift in Sources */,
 				79C6979A2B210B190055129C /* RecentBooksViewCell.swift in Sources */,
+				3570C17B2B291D3E005832CF /* ListsVC.swift in Sources */,
 				79C6979C2B210B190055129C /* ListSection.swift in Sources */,
 				F48F394A2B1D42D5009DAFA8 /* HomeView.swift in Sources */,
 				79C6979E2B210B190055129C /* HeaderSupplementaryView.swift in Sources */,

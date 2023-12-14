@@ -72,7 +72,10 @@ class AccountVC: UIViewController {
     }
     
     @objc private func didTapMyListButton() {
-        print("Go to my list")
+        let listsViewController = ListsVC()
+        let navigationController = UINavigationController(rootViewController: listsViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
 }
 
