@@ -5,12 +5,11 @@ class CategoriesVC: UIViewController {
     //MARK: - CreateUIElements, private constans
     private let categoriesView = CategoriesView()
     var books = [CategoryCollection.Work]()
-    var categoryModel = CategoriesModel()
+    var categoryModel = CategoriesModel(image: UIImage(), genre: nil, name: nil, author: nil)
 
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
         categoriesView.collectionView.delegate = self
         categoriesView.collectionView.dataSource = self
         view = categoriesView
@@ -19,11 +18,12 @@ class CategoriesVC: UIViewController {
     
     //MARK: - PrivateMethods
     private func presentIndicator() -> UIActivityIndicatorView {
-        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
-        activityIndicatorView.frame = self.view.bounds
-        activityIndicatorView.center = self.view.center
+        let activityIndicatorView = UIActivityIndicatorView(style: .large)
+        activityIndicatorView.frame = view.bounds
+        activityIndicatorView.center = view.center
+        activityIndicatorView.color = .black
         activityIndicatorView.backgroundColor = .clear.withAlphaComponent(0.2)
-        self.view.addSubview(activityIndicatorView)
+        view.addSubview(activityIndicatorView)
         return activityIndicatorView
     }
     
@@ -43,13 +43,19 @@ class CategoriesVC: UIViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
-                print("Ошибка при получении категорий: \(error)")
+                DispatchQueue.main.async {
+                    self.presentAlertErorNotCategoryList(with: error.localizedDescription)
+                    activityIndicator.stopAnimating()
+                }
             }
         }
     }
     
-    private func presentAlertErorNotCategoryList() {
-        
+    private func presentAlertErorNotCategoryList(with error: String) {
+        let alert = UIAlertController(title: "Ошибка при получении категорий: \(error)", message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
     
 }

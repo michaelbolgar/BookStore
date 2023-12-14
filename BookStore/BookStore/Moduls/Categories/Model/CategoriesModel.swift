@@ -16,10 +16,10 @@ struct CategoriesModel {
         self.author = author
     }
     
-    init() {
-        self.image = nil
-        self.genre = nil
-        self.name = nil
-        self.author = nil
+    init(image: UIImage?, genre: String?, name: String?, author: String?) {
+        self.image = image
+        self.genre = genre
+        self.name = name
+        self.author = author
     }
 }

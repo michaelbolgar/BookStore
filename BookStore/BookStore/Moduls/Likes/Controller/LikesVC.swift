@@ -14,21 +14,27 @@ class LikesVC: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
         likesView.collectionView.delegate = self
         likesView.collectionView.dataSource = self
         view = likesView
         setNavigationItem()
+        presentEmptyViewOrNot()
     }
     
     //MARK: - PrivateMethods
     private func setNavigationItem() {
         navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.openSansRegular(ofSize: 16) ?? UIFont()]
         if previosVC != "Likes" {
-            navigationItem.title = genre
+            setNavigationBarWithBlackColor(title: genre ?? "Love")
         } else {
-            navigationItem.title = previosVC
+            setNavigationBarWithBlackColor(title: previosVC)
+        }
+    }
+    
+    private func presentEmptyViewOrNot() {
+        if books.isEmpty {
+            likesView.collectionView.isHidden = true
+            navigationController?.navigationBar.isHidden = true
         }
     }
 }
