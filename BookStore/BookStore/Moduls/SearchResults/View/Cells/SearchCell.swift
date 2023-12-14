@@ -98,6 +98,7 @@ class SearchCell: UICollectionViewCell {
             } else {
                 self.authorLabel.text = "Unknown Author"
             }
+        
         self.bookImage.image = UIImage(named: "mockCover")
 //        self.bookImage.image = doc.cover_i
         

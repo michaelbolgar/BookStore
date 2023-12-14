@@ -9,6 +9,13 @@ import UIKit
 
 class SearchResultVC: UIViewController {
     
+    enum SortingMethod {
+        case none
+        case byNewest
+        case byOldest
+    }
+    
+    
     //    public struct BookObject: Decodable {
     //
     //        public let start: Int?
@@ -32,6 +39,7 @@ class SearchResultVC: UIViewController {
     
     //массив для получения запроса с сервера
     var booksArray = [Doc]()
+    var currentSortingMethod: SortingMethod = .none
     
     //MARK: UI Elements
     
@@ -45,6 +53,7 @@ class SearchResultVC: UIViewController {
         label.textAlignment = .left
         label.text = ""
         label.font = .openSansBold(ofSize: 20)
+        label.textColor = .elements
         return label
         
     }()
@@ -68,18 +77,12 @@ class SearchResultVC: UIViewController {
         return button
     }()
     
-    @objc func rightButtonTapped() {
-        print ("cancel")
-        let vc = CategoriesVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.placeholder = "Search title/author/ISBN no"
         searchBar.searchBarStyle = .minimal
-        searchBar.backgroundColor = .customLightGray
+        searchBar.backgroundColor = .label
         searchBar.barTintColor = .clear
         searchBar.layer.cornerRadius = 5
         searchBar.clipsToBounds = true
@@ -94,7 +97,6 @@ class SearchResultVC: UIViewController {
             searchTextField.leftView?.tintColor = .customBlack
             searchTextField.leftViewMode = .always
         }
-//                searchBar.addSubviewsTamicOff(rightButton)
         return searchBar
     }()
     
@@ -103,7 +105,20 @@ class SearchResultVC: UIViewController {
         button.backgroundColor = .customLightGray
         button.setImage(UIImage(named: "filter"), for: .normal)
         button.layer.cornerRadius = 5
+        button.menu = sortMenu
+        button.showsMenuAsPrimaryAction = true
         return button
+    }()
+    
+    private lazy var sortMenu: UIMenu = {
+        let filterByNewest = UIAction(title: "Sort by Newest") { _ in
+            self.sortByNewest()
+        }
+        let filterByOldest = UIAction(title: "Sort by Oldest") { _ in
+            self.sortByOldest()
+        }
+        let menu = UIMenu(title: "Sort by", options: .displayInline, children: [filterByNewest, filterByOldest])
+        return menu
     }()
     
     // MARK: View Controller Life Cycle
@@ -113,34 +128,58 @@ class SearchResultVC: UIViewController {
         view.backgroundColor = .white
         performSearchRequest()
         setupUI()
+        
     }
     
     // MARK: Private Methods
-    
-    
     private func performSearchRequest() {
         NetworkingManager.instance.searchBooks(keyword: searchRequest) {
             print("hello")
         } searchCompletion: { object in
             self.booksArray = object.docs
-            print (self.booksArray)
-            
+            self.sorting()
+            print(self.booksArray)
             DispatchQueue.main.async {
                 self.numberOfBooks = self.booksArray.count
                 self.updateNumberOfResultsLabel(withCount: self.numberOfBooks)
                 self.collectionView.reloadData()
-                
             }
         }
     }
-    
+        
     private func updateNumberOfResultsLabel(withCount count: Int) {
         numberOfResultsLabel.text = "\(count) Search Results"
     }
     
+    private func sorting() {
+        switch currentSortingMethod {
+        case .byNewest:
+            booksArray.sort { ($0.first_publish_year ?? Int.min) > ($1.first_publish_year ?? Int.min) }
+            print ("по убыванию")
+        case .byOldest:
+            booksArray.sort { ($0.first_publish_year ?? Int.max) < ($1.first_publish_year ?? Int.max) }
+            print ("по возрастанию")
+        case .none:
+            break
+        }
+        collectionView.reloadData()
+    }
+    
+    private func sortByNewest() {
+        currentSortingMethod = .byNewest
+    print (currentSortingMethod)
+        sorting()
+    }
+    
+    private func sortByOldest() {
+        currentSortingMethod = .byOldest
+        sorting()
+        print (currentSortingMethod)
+    }
+    
     private func setupUI() {
         view.addSubviewsTamicOff(filterButton, searchBar, numberOfResultsLabel,collectionView)
-
+        
         let offset: CGFloat = 20
         
         NSLayoutConstraint.activate([
@@ -164,12 +203,18 @@ class SearchResultVC: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -offset),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-//            rightButton.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor, constant: -17),
-//            rightButton.heightAnchor.constraint(equalToConstant: 24),
-//            rightButton.widthAnchor.constraint(equalToConstant: 24),
-//            rightButton.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor)
+            //            rightButton.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor, constant: -17),
+            //            rightButton.heightAnchor.constraint(equalToConstant: 24),
+            //            rightButton.widthAnchor.constraint(equalToConstant: 24),
+            //            rightButton.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor)
             
         ])
+    }
+    
+    @objc func rightButtonTapped() {
+        print ("cancel")
+        let vc = CategoriesVC()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -189,9 +234,9 @@ extension SearchResultVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.identifier, for: indexPath) as! SearchCell
         
         guard indexPath.item < booksArray.count else { return cell }
-               cell.configure(with:  booksArray[indexPath.item])
-
-               return cell
+        cell.configure(with:  booksArray[indexPath.item])
+        
+        return cell
     }
 }
 
@@ -217,7 +262,7 @@ extension SearchResultVC: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-
+        
         print("Cancel button clicked")
     }
     
