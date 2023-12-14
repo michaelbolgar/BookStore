@@ -55,18 +55,53 @@ class SearchCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        // Очищаем данные при повторном использовании ячейки
         genreLabel.text = nil
         nameLabel.text = nil
         authorLabel.text = nil
         bookImage.image = nil
     }
 
-    public func configure(with book: Book) {
-        self.authorLabel.text = book.author
-        self.bookImage.image = book.bookImage
-        self.genreLabel.text = book.genre
-        self.nameLabel.text = book.label
+    public func configure(with doc: Doc) {
+        
+        if let genres = doc.subject_key, !genres.isEmpty {
+            let matchingCategories = genres
+                .compactMap { Categories(rawValue: $0.lowercased()) }
+                .shuffled()
+
+            var selectedCategories: [Categories] = []
+
+            if matchingCategories.count >= 2 {
+                selectedCategories = Array(matchingCategories.prefix(2))
+            } else {
+                selectedCategories = matchingCategories
+            }
+
+            if selectedCategories.isEmpty {
+                self.genreLabel.text = "Unknown Genre"
+            } else {
+                let genreLabels = selectedCategories.map { $0.rawValue.capitalized }
+                self.genreLabel.text = genreLabels.joined(separator: ", ")
+            }
+        } else {
+            self.genreLabel.text = "Unknown Genre"
+        }
+
+        
+        if let title = doc.title_suggest, !title.isEmpty {
+                self.nameLabel.text = title
+            } else {
+                self.nameLabel.text = "Unknown Title"
+            }
+        
+        if let authors = doc.author_name, !authors.isEmpty {
+                self.authorLabel.text = authors.joined(separator: ", ")
+            } else {
+                self.authorLabel.text = "Unknown Author"
+            }
+        
+        self.bookImage.image = UIImage(named: "mockCover")
+//        self.bookImage.image = doc.cover_i
+        
     }
 
     private func setupUI() {
@@ -77,6 +112,11 @@ class SearchCell: UICollectionViewCell {
         genreLabel.textAlignment = .left
         nameLabel.textAlignment = .left
         authorLabel.textAlignment = .left
+        
+        authorLabel.lineBreakMode = .byTruncatingTail
+        authorLabel.adjustsFontSizeToFitWidth = false
+        nameLabel.lineBreakMode = .byTruncatingTail
+        nameLabel.adjustsFontSizeToFitWidth = false
 
         NSLayoutConstraint.activate([
 
@@ -93,6 +133,7 @@ class SearchCell: UICollectionViewCell {
             infoBackgroundView.trailingAnchor.constraint(equalTo: backgroundBookView.trailingAnchor),
             infoBackgroundView.leadingAnchor.constraint(equalTo: backgroundBookView.leadingAnchor),
             infoBackgroundView.widthAnchor.constraint(equalTo: backgroundBookView.widthAnchor),
+            infoBackgroundView.heightAnchor.constraint(equalToConstant: 88),
 
             genreLabel.leadingAnchor.constraint(equalTo: infoBackgroundView.leadingAnchor,constant: 10),
             genreLabel.widthAnchor.constraint(equalTo: infoBackgroundView.widthAnchor, constant: -10),

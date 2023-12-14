@@ -26,6 +26,7 @@
 		79191A1A2B25504200BD2C95 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A192B25504200BD2C95 /* AuthorizationView.swift */; };
 		795ABDEB2B22A0AB00569104 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */; };
 		797ABEC22B25BDD700A50C45 /* CustomSegmentedControlReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797ABEC12B25BDD700A50C45 /* CustomSegmentedControlReusableView.swift */; };
+		799070E22B29444600F26B9A /* SearchBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799070E12B29444600F26B9A /* SearchBarVC.swift */; };
 		79C6979A2B210B190055129C /* RecentBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697942B210B190055129C /* RecentBooksViewCell.swift */; };
 		79C6979B2B210B190055129C /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697952B210B190055129C /* ListItem.swift */; };
 		79C6979C2B210B190055129C /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C697962B210B190055129C /* ListSection.swift */; };
@@ -89,6 +90,7 @@
 		79191A192B25504200BD2C95 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		795ABDEA2B22A0AB00569104 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		797ABEC12B25BDD700A50C45 /* CustomSegmentedControlReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlReusableView.swift; sourceTree = "<group>"; };
+		799070E12B29444600F26B9A /* SearchBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarVC.swift; sourceTree = "<group>"; };
 		79C697942B210B190055129C /* RecentBooksViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentBooksViewCell.swift; sourceTree = "<group>"; };
 		79C697952B210B190055129C /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		79C697962B210B190055129C /* ListSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				F4DE52DA2B24EB1F003CA4A1 /* SearchResultVC.swift */,
+				799070E12B29444600F26B9A /* SearchBarVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				3787DCB12B286F58003427D2 /* BookDetailsView.swift in Sources */,
 				F43531962B264E80004A9B09 /* Search Model.swift in Sources */,
 				797ABEC22B25BDD700A50C45 /* CustomSegmentedControlReusableView.swift in Sources */,
+				799070E22B29444600F26B9A /* SearchBarVC.swift in Sources */,
 				AF24B6BA2B22662400B2991D /* CategoriesVC.swift in Sources */,
 				F48F38F12B1CDD02009DAFA8 /* AppDelegate.swift in Sources */,
 				378855472B28A0CB006573CE /* LaunchViewController.swift in Sources */,
