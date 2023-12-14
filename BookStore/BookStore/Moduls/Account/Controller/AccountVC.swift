@@ -73,9 +73,7 @@ class AccountVC: UIViewController {
     
     @objc private func didTapMyListButton() {
         let listsViewController = ListsVC()
-        let navigationController = UINavigationController(rootViewController: listsViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true)
+        navigationController?.pushViewController(listsViewController, animated: true)
     }
 }
 

@@ -13,7 +13,9 @@ final class ListsVC: UIViewController {
         static let mainStackViewTrailingInset: CGFloat = -20
         static let buttonLeadingInset: CGFloat = 15
         
-        static let arrowImage = UIImage(systemName: "arrow.right")
+        static let arrowRightImage = UIImage(systemName: "arrow.right")
+        static let arrowBackwardImage = UIImage(systemName: "arrow.backward")
+        static let plusImage = UIImage(systemName: "plus")
     }
     
     private lazy var mainStackView: UIStackView = {
@@ -29,18 +31,13 @@ final class ListsVC: UIViewController {
         let wantToReadButton = UIButton()
         wantToReadButton.translatesAutoresizingMaskIntoConstraints = false
         wantToReadButton.setTitle(Constants.wantToReadButtonText, for: .normal)
-        wantToReadButton.layer.cornerRadius = 15
-        wantToReadButton.titleLabel?.font = .openSansRegular(ofSize: 15)
-        wantToReadButton.contentHorizontalAlignment = .leading
-//        wantToReadButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: Constants.buttonLeadingInset, bottom: 0, right: 0)
+        wantToReadButton.titleLabel?.font = .openSansRegular(ofSize: 14)
+        wantToReadButton.setImage(Constants.arrowRightImage, for: .normal)
+        wantToReadButton.contentHorizontalAlignment = .left
         wantToReadButton.setTitleColor(.black, for: .normal)
         wantToReadButton.backgroundColor = .label
-        wantToReadButton.setImage(Constants.arrowImage, for: .normal)
-//        let spacing: CGFloat = 8.0
-//        wantToReadButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -spacing/2, bottom: 0, right: spacing/2)
-//        wantToReadButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: spacing/2, bottom: 0, right: -spacing/2)
-//        wantToReadButton.setBackgroundImage(Constants.arrowImage, for: .normal)
-    
+        wantToReadButton.layer.cornerRadius = 15
+        wantToReadButton.layoutIfNeeded()
         return wantToReadButton
     }()
     
@@ -48,7 +45,7 @@ final class ListsVC: UIViewController {
         let classicBooksButton = UIButton()
         classicBooksButton.translatesAutoresizingMaskIntoConstraints = false
         classicBooksButton.setTitle(Constants.classicBooksButtonText, for: .normal)
-        classicBooksButton.titleLabel?.font = .openSansRegular(ofSize: 15)
+        classicBooksButton.titleLabel?.font = .openSansRegular(ofSize: 14)
         classicBooksButton.contentHorizontalAlignment = .leading
         classicBooksButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: Constants.buttonLeadingInset, bottom: 0, right: 0)
         classicBooksButton.layer.cornerRadius = 15
@@ -62,9 +59,10 @@ final class ListsVC: UIViewController {
         readForFunButton.translatesAutoresizingMaskIntoConstraints = false
         readForFunButton.setTitle(Constants.readForFunButtonText, for: .normal)
         readForFunButton.backgroundColor = .label
-        readForFunButton.titleLabel?.font = .openSansRegular(ofSize: 15)
+        readForFunButton.titleLabel?.font = .openSansRegular(ofSize: 14)
         readForFunButton.contentHorizontalAlignment = .leading
         readForFunButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: Constants.buttonLeadingInset, bottom: 0, right: 0)
+        
         readForFunButton.setTitleColor(.black, for: .normal)
         readForFunButton.layer.cornerRadius = 10
         return readForFunButton
@@ -86,6 +84,17 @@ private extension ListsVC {
         mainStackView.addArrangedSubview(readForFunButton)
         let mainStackViewConsraints = setMainStackViewConstraints()
         NSLayoutConstraint.activate(mainStackViewConsraints)
+        navigationController?.navigationBar.backIndicatorImage = Constants.arrowBackwardImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = Constants.arrowBackwardImage
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "",
+                                                                                         style: .plain,
+                                                                                         target: self, action: #selector(leftBarButtonAction))
+        navigationController?.navigationBar.tintColor = .black
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: Constants.plusImage,
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(rightBarButtonAction))
     }
     
     func setMainStackViewConstraints() -> [NSLayoutConstraint] {
@@ -97,5 +106,13 @@ private extension ListsVC {
                 leadingAnchor,
                 trailingAnchor,
                 heightAnchor]
+    }
+    
+    @objc func rightBarButtonAction() {
+        print("plus-plus")
+    }
+    
+    @objc func leftBarButtonAction() {
+        navigationController?.popViewController(animated: true)
     }
 }
