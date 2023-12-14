@@ -32,7 +32,7 @@ final class TopBooksViewCell: UICollectionViewCell {
         font: .openSansRegular(ofSize: 11),
         textColor: .white
     )
-    private let bookTitleLabel = UILabel.makeLabel(
+    private var bookTitleLabel = UILabel.makeLabel(
         text: "Top Books",
         font: .openSansRegular(ofSize: 15),
         textColor: .white
@@ -44,7 +44,6 @@ final class TopBooksViewCell: UICollectionViewCell {
     )
     
     private let textStackView = UIStackView(spacing: 10, axis: .vertical, alignment: .leading)
-    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
@@ -52,7 +51,7 @@ final class TopBooksViewCell: UICollectionViewCell {
         
         setupView()
         setConstraints()
-        
+       
     }
     
     required init?(coder: NSCoder) {
@@ -61,7 +60,7 @@ final class TopBooksViewCell: UICollectionViewCell {
     
     // MARK: - Set Views
     
-    func setupView() {
+    private func setupView() {
         backgroundColor = .lightGray
         addSubview(topBooksImageView)
         addSubview(footerView)
@@ -70,19 +69,20 @@ final class TopBooksViewCell: UICollectionViewCell {
         textStackView.addArrangedSubview(bookTitleLabel)
         textStackView.addArrangedSubview(bookAuthorLabel)
         
-        
         layer.cornerRadius = 8
     }
     
     // MARK: - Cell Configure
-    
-    func configureCell(imageName: String) {
-        topBooksImageView.image = UIImage(named: imageName)
+
+    func configureCell(book: TrendingBooks.Book) {
+//        bookGenreLabel.text = book
+        bookTitleLabel.text = book.title
+        bookAuthorLabel.text = book.author_name?.first
     }
     
     // MARK: - Setup Constraints
     
-    func setConstraints() {
+    private func setConstraints() {
         
         topBooksImageView.snp.makeConstraints { make in
             make.width.equalTo(91)
@@ -93,7 +93,8 @@ final class TopBooksViewCell: UICollectionViewCell {
         
         footerView.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            
+            make.height.equalTo(100)
+             
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             
@@ -101,8 +102,18 @@ final class TopBooksViewCell: UICollectionViewCell {
         
         textStackView.snp.makeConstraints { make in
             make.edges.equalTo(footerView.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
-            
+        }
+        
+        bookGenreLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
+        }
+        
+        bookAuthorLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
         }
         layoutIfNeeded()
     }
+    
+    
+   
 }
