@@ -19,20 +19,24 @@ final class HomeView: UIView {
     
     private let sections = MockData.shared.pageData
     private let networkManager = NetworkingManager.instance
-    private var spinnerView = UIActivityIndicatorView()
+   
+    
+    private var selectedSegment: TrendingPeriod = .weekly
+    
+        private var spinnerView = UIActivityIndicatorView()
     
     
     // MARK: - Set Views
     
     func setViews() {
-        
         self.backgroundColor = .background
         
         self.addSubview(collectionView)
-        
+    
         fetchTrendingBooks()
         
         showSpinner(in: self)
+        
         
         collectionView.register(TopBooksViewCell.self,
                                 forCellWithReuseIdentifier: "TopBooksCollectionViewCell")
@@ -244,7 +248,9 @@ extension HomeView: UICollectionViewDataSource {
     // MARK: - Networking
     
     private func fetchTrendingBooks() {
-        networkManager.getTrendingBooks(for: .weekly) { result in
+        print("fetchTrendingBooks called")
+        print("Fetching trending books for period: \(selectedSegment)")
+        networkManager.getTrendingBooks(for: selectedSegment) { result in
             switch result {
             case .success(let trendingBooks):
                 print("Books ARE \(trendingBooks.count)")
@@ -271,5 +277,14 @@ extension HomeView: UICollectionViewDataSource {
     }
     
 }
+// MARK: - SegmentedControl delegate
+
+extension HomeView: CustomSegmentedControlDelegate {
+    func buttonPressed(selectedSegment: TrendingPeriod) {
+        self.selectedSegment = selectedSegment
+        fetchTrendingBooks()
+        }
+    
+    }
 
 
