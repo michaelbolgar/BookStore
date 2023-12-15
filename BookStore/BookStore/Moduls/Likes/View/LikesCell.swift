@@ -26,8 +26,10 @@ final class LikesCell: UICollectionViewCell {
                                                                               textColor: .label,
                                                                               numberOfLines: 2)
     
-    private lazy var image: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "AppIcon"))
+    var image: UIImageView = {
+        let image = UIImageView(image: UIImage(systemName: "hourglass"))
+        image.backgroundColor = .background
+        image.tintColor = .authDark
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
