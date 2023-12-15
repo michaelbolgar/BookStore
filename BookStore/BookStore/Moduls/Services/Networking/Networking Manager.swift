@@ -153,7 +153,7 @@ public class NetworkingManager {
             //где-то здесь кажется есть лишний код
             do {
                 let jsonDecoder = JSONDecoder()
-                
+
                 if let subjectsResponse = try? jsonDecoder.decode([CategoryCollection].self, from: data) {
                     completion(.success(subjectsResponse))
                     return
@@ -167,11 +167,9 @@ public class NetworkingManager {
                     let error = NSError(domain: "Invalid Response", code: 0, userInfo: nil)
                     completion(.failure(error))
                 }
-            } catch {
-                completion(.failure(error))
             }
-        }.resume()
-    }
+            }.resume()
+        }
 
     func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
