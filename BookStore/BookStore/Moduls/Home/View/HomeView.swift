@@ -3,6 +3,8 @@ import SnapKit
 
 final class HomeView: UIView {
     
+    private var trendingBooksTitle: [TrendingBooks.Book] = []
+    
     //MARK: UI Elements
     
     private lazy var collectionView: UICollectionView = {
@@ -16,6 +18,9 @@ final class HomeView: UIView {
     // MARK: - Private Properties
     
     private let sections = MockData.shared.pageData
+    private let networkManager = NetworkingManager.instance
+    private var spinnerView = UIActivityIndicatorView()
+    
     
     // MARK: - Set Views
     
@@ -24,6 +29,10 @@ final class HomeView: UIView {
         self.backgroundColor = .background
         
         self.addSubview(collectionView)
+        
+        fetchTrendingBooks()
+        
+        showSpinner(in: self)
         
         collectionView.register(TopBooksViewCell.self,
                                 forCellWithReuseIdentifier: "TopBooksCollectionViewCell")
@@ -42,11 +51,16 @@ final class HomeView: UIView {
     // MARK: - Setup Constraints
     
     func setupConstraints() {
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(self.snp.leading)
             make.trailing.equalTo(self.snp.trailing)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        spinnerView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
     
@@ -56,7 +70,6 @@ final class HomeView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
 }
 
 extension UIStackView {
@@ -77,14 +90,16 @@ private extension HomeView {
         
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self = self else { return nil }
-            let section = self.sections[sectionIndex]
-            switch section {
-                
-            case .topBooks(_):
-                return self.createTopBookSection()
-            case .recentBooks(_):
-                return self.createBottomBookSection()
+            let section: NSCollectionLayoutSection
+            switch sectionIndex {
+            case 0:
+                section = self.createTopBookSection()
+            case 1:
+                section = self.createBottomBookSection()
+            default:
+                return nil
             }
+            return section
         }
     }
     
@@ -113,11 +128,11 @@ private extension HomeView {
         
         
         let segmentedControlItem = NSCollectionLayoutBoundarySupplementaryItem(
-             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
-                                        heightDimension: .estimated(100)),
-             elementKind: "segmentedControl",
-             alignment: .top
-         )
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
+                                               heightDimension: .estimated(100)),
+            elementKind: "segmentedControl",
+            alignment: .top
+        )
         
         let section = createLayoutSection(group: group,
                                           behavior: .continuous,
@@ -168,22 +183,24 @@ extension HomeView: UICollectionViewDelegate {
 extension HomeView: UICollectionViewDataSource {
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        return 2
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].count
+        trendingBooksTitle.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section] {
             
-        case .topBooks(let topBook):
+        case .topBooks( _):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopBooksCollectionViewCell", for: indexPath) as? TopBooksViewCell
             else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(imageName: topBook[indexPath.row].image)
+            
+            let book = trendingBooksTitle[indexPath.row]
+            cell.configureCell(book: book)
             return cell
             
         case .recentBooks(let recentBook):
@@ -222,6 +239,35 @@ extension HomeView: UICollectionViewDataSource {
         default:
             return UICollectionReusableView()
         }
+    }
+    
+    // MARK: - Networking
+    
+    private func fetchTrendingBooks() {
+        networkManager.getTrendingBooks(for: .weekly) { result in
+            switch result {
+            case .success(let trendingBooks):
+                print("Books ARE \(trendingBooks.count)")
+                DispatchQueue.main.async {
+                    self.trendingBooksTitle = trendingBooks
+                    self.spinnerView.stopAnimating()
+                    self.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print("Ошибка при получении недельной подборки: \(error)")
+            }
+        }
+    }
+    
+    // MARK: - Spinner
+    
+    private func showSpinner(in view: UIView) {
+        spinnerView = UIActivityIndicatorView(style: .large)
+        spinnerView.color = .black
+        spinnerView.startAnimating()
+        spinnerView.hidesWhenStopped = true
+        
+        view.addSubview(spinnerView)
     }
     
 }

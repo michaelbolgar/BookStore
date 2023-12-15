@@ -21,6 +21,7 @@ enum Categories: String {
     case history = "history"
     case biography = "biography"
     case business = "business"
+    case fantasy = "fantasy"
 }
 
 public class NetworkingManager {

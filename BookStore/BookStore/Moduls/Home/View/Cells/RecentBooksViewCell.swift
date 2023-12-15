@@ -58,7 +58,7 @@ final class RecentBooksViewCell: UICollectionViewCell {
     
     // MARK: - Set Views
     
-    func setupView() {
+    private func setupView() {
         backgroundColor = .lightGray
         addSubview(recentBooksImageView)
         addSubview(footerView)
@@ -79,7 +79,7 @@ final class RecentBooksViewCell: UICollectionViewCell {
     
     // MARK: - Setup Constraints
     
-    func setConstraints() {
+    private func setConstraints() {
         
         recentBooksImageView.snp.makeConstraints { make in
             make.width.equalTo(91)
