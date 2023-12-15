@@ -247,7 +247,7 @@ extension HomeView: UICollectionViewDataSource {
         networkManager.getTrendingBooks(for: .weekly) { result in
             switch result {
             case .success(let trendingBooks):
-                print("Books ARE \(trendingBooks.count)")
+                print("fetch Trends: Books ARE \(trendingBooks.count)")
                 DispatchQueue.main.async {
                     self.trendingBooksTitle = trendingBooks
                     self.spinnerView.stopAnimating()

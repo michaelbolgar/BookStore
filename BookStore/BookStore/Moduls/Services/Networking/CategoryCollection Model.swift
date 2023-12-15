@@ -8,6 +8,9 @@
 import Foundation
 
 public struct CategoryCollection: Codable {
+
+    let categories: [String: [Work]]
+
     let key: String?
     let name: String?
     let work_count: Int?
