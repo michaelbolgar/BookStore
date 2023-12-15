@@ -3,9 +3,6 @@ import SnapKit
 
 final class HomeVC: UIViewController {
 
-    //этот массив можно использовать для наполнения полученными данными
-    var array = [TrendingBooks]()
-    
     private let homeView = HomeView()
 
       override func viewDidLoad() {
@@ -19,7 +16,6 @@ final class HomeVC: UIViewController {
           homeView.setViews()
           homeView.setupConstraints()
           homeView.setDelegates()
-
       }
 
         override func viewDidAppear(_ animated: Bool) {

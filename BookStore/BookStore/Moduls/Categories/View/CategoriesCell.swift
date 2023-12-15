@@ -11,7 +11,7 @@ import SnapKit
 final class CategoriesCell: UICollectionViewCell {
     
     //MARK: - Create UIElements
-    private lazy var genre = UILabel.makeMultiLineLabel(font: UIFont.openSansRegular(ofSize: 20),
+    var genre = UILabel.makeMultiLineLabel(font: UIFont.openSansRegular(ofSize: 20),
                                                         textColor: .label,
                                                         numberOfLines: 2)
     

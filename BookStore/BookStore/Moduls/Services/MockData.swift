@@ -12,11 +12,7 @@ struct MockData {
     static let shared = MockData()
     
     private let topBooks: ListSection = {
-        .topBooks([.init(image: "home_unselected", title: "testImage", subTitle: ""),
-                   .init(image: "home_unselected", title: "", subTitle: ""),
-                   .init(image: "home_unselected", title: "", subTitle: ""),
-                   .init(image: "home_unselected", title: "", subTitle: ""),
-                   .init(image: "home_unselected", title: "", subTitle: ""),
+        .topBooks([
         ])
     }()
     
@@ -31,4 +27,6 @@ struct MockData {
     var pageData: [ListSection] {
         [topBooks, recentBooks]
     }
+    
+ 
 }

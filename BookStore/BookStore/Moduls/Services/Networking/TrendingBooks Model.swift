@@ -23,4 +23,6 @@ public struct TrendingBooks: Codable {
         let author_key: [String]?
         let author_name: [String]?
     }
+    
+    
 }

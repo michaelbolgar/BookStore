@@ -11,18 +11,18 @@ import SnapKit
 final class LikesCell: UICollectionViewCell {
 
     //MARK: - Create UIElements
-    private lazy var genre = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Genre",
+    var genre = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Genre",
                                                                              font: UIFont.openSansRegular(ofSize: 12),
                                                                              textColor: .label,
                                                                              numberOfLines: 2)
     
-    private lazy var name = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Name Book",
+    var name = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Name Book",
                                                                             font: UIFont.openSansBold(ofSize: 18),
                                                                             textColor: .label,
                                                                             numberOfLines: 2)
     
-    private lazy var author = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Author",
-                                                                              font: UIFont.openSansRegular(ofSize: 14),
+    var author = UILabel.makeMultiLineLabelWithLeftTextAlignment(text: "Author",
+                                                                              font: UIFont.openSansRegular(ofSize: 12),
                                                                               textColor: .label,
                                                                               numberOfLines: 2)
     
@@ -32,7 +32,7 @@ final class LikesCell: UICollectionViewCell {
         return image
     }()
     
-    private lazy var closeButton: UIButton = {
+    var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .label
@@ -68,7 +68,6 @@ final class LikesCell: UICollectionViewCell {
         
         genre.snp.makeConstraints { make in
             make.top.equalTo(14)
-            make.height.equalTo(14)
             make.width.equalTo(160)
             make.leading.equalTo(image.snp.trailing).offset(11)
         }
@@ -76,15 +75,13 @@ final class LikesCell: UICollectionViewCell {
         name.snp.makeConstraints { make in
             make.top.equalTo(genre.snp.bottom).offset(4)
             make.leading.equalTo(image.snp.trailing).offset(11)
-            make.height.equalTo(38)
-            make.width.equalTo(142)
+            make.width.equalTo(160)
         }
         
         author.snp.makeConstraints { make in
             make.top.equalTo(name.snp.bottom).offset(4)
             make.leading.equalTo(image.snp.trailing).offset(11)
-            make.height.equalTo(14)
-            make.width.equalTo(62)
+            make.width.equalTo(160)
         }
         
         closeButton.snp.makeConstraints { make in
