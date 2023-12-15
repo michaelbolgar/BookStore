@@ -12,6 +12,11 @@ final class BookDetailsViewController: UIViewController {
     //MARK: - Dependencies
     let spacing: CGFloat = 24
     let labelHeight: CGFloat = 20
+    var book = BookDetailsModel(key: "",
+                                image: UIImage(),
+                                title: "",
+                                hasFullText: true,
+                                ia: "")
     
     //MARK: - UI Elements
     
@@ -19,7 +24,7 @@ final class BookDetailsViewController: UIViewController {
     
     private lazy var topLabel: UILabel = {
         let element = UILabel()
-        element.text = "The Picture of Dorian Gray"
+        element.text = book.title
         element.textAlignment = .center
         element.font = UIFont.openSansBold(ofSize: 24)
         element.adjustsFontSizeToFitWidth = true
@@ -73,9 +78,9 @@ final class BookDetailsViewController: UIViewController {
         return element
     }()
     
-    private lazy var bookCover: UIImageView = {
+    lazy var bookCover: UIImageView = {
         let element = UIImageView()
-        element.image = UIImage(named: "mockCover")
+        element.image = book.image
         element.contentMode = .scaleAspectFit
         return element
     }()
@@ -105,11 +110,11 @@ final class BookDetailsViewController: UIViewController {
     
     //у этих трёх лейблов тоже нужно заменить цвет текста на .label
     //!!!: - Эти элементы собираются из Convenience Init, где и установлен цвет.
-    private lazy var authorLabel = UILabel(text1: "Author: ", text2: BookDetailsModel.authorName)
-    private lazy var categoryLabel = UILabel(text1: "Category: ", text2: BookDetailsModel.category)
+    var authorLabel = UILabel(text1: "Author: ", text2: BookDetailsModel.authorName)
+    var categoryLabel = UILabel(text1: "Category: ", text2: BookDetailsModel.category)
     private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: BookDetailsModel.raiting)
     
-    private lazy var descriptionLabel: UILabel = {
+    var descriptionLabel: UILabel = {
         let element = UILabel()
         element.text = "Description:"
         element.font = UIFont.openSansBold(ofSize: 14)
@@ -136,6 +141,7 @@ final class BookDetailsViewController: UIViewController {
         setupViews()
         setStack()
         setConstraints()
+        
     }
     
     //MARK: - Private Methods

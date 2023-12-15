@@ -5,12 +5,13 @@ class CategoriesVC: UIViewController {
     //MARK: - CreateUIElements, private constans
     private let categoriesView = CategoriesView()
     var books = [CategoryCollection.Work]()
-    var categoryModel = CategoriesModel()
-
+    private let categoriesName = ["Love", "Fiction", "Horror", "Crime", "Drama", "Classics", "Children", "Sci-fi", "Humor", "Poetry", "History of art design styles", "History", "Biography", "Business"]
+    private let category: [String: Categories] = ["Love": .love, "Fiction": .fiction, "Horror": .horror, "Crime": .crime, "Drama": .drama, "Classics": .classics, "Children": .forChildren, "Sci-fi": .sci_fi, "Humor": .humor, "Poetry": .poetry, "History of art design styles": .art, "History": .history, "Biography": .biography, "Business": .business]
+    private let imageCategoriesName = ["Rectangle 11-2", "Rectangle 11-3", "Rectangle 11", "Rectangle 12"]
+    
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
         categoriesView.collectionView.delegate = self
         categoriesView.collectionView.dataSource = self
         view = categoriesView
@@ -19,11 +20,12 @@ class CategoriesVC: UIViewController {
     
     //MARK: - PrivateMethods
     private func presentIndicator() -> UIActivityIndicatorView {
-        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
-        activityIndicatorView.frame = self.view.bounds
-        activityIndicatorView.center = self.view.center
+        let activityIndicatorView = UIActivityIndicatorView(style: .large)
+        activityIndicatorView.frame = view.bounds
+        activityIndicatorView.center = view.center
+        activityIndicatorView.color = .black
         activityIndicatorView.backgroundColor = .clear.withAlphaComponent(0.2)
-        self.view.addSubview(activityIndicatorView)
+        view.addSubview(activityIndicatorView)
         return activityIndicatorView
     }
     
@@ -43,16 +45,27 @@ class CategoriesVC: UIViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
-                print("Ошибка при получении категорий: \(error)")
+                DispatchQueue.main.async {
+                    self.presentAlertErorNotCategoryList(with: error.localizedDescription)
+                    activityIndicator.stopAnimating()
+                }
             }
         }
     }
     
-    private func presentAlertErorNotCategoryList() {
-        
+    private func presentAlertErorNotCategoryList(with error: String) {
+        let alert = UIAlertController(title: "Ошибка при получении категорий: \(error)", message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
     
+    private func setImageCategory() -> UIImage {
+        let imageString = imageCategoriesName.randomElement()
+        return UIImage(named: imageString ?? "Rectangle 11-2") ?? UIImage()
+    }
 }
+
 //MARK: - extensions CategoriesVC
 extension CategoriesVC: UICollectionViewDelegate,
                         UICollectionViewDataSource,
@@ -60,7 +73,7 @@ extension CategoriesVC: UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return categoryModel.categoriesName.count
+        return categoriesName.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -72,14 +85,15 @@ extension CategoriesVC: UICollectionViewDelegate,
         }
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 5
-        cell.genre.text = categoryModel.categoriesName[indexPath.item]
+        cell.genre.text = categoriesName[indexPath.item]
+        cell.image.image = setImageCategory()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let category = categoryModel.category[categoryModel.categoriesName[indexPath.item]]
+        let category = category[categoriesName[indexPath.item]]
         getBooksFromNetwork(with: category ?? .art,
-                            categoryString: categoryModel.categoriesName[indexPath.item])
+                            categoryString: categoriesName[indexPath.item])
     }
     
     func collectionView(_ collectionView: UICollectionView,

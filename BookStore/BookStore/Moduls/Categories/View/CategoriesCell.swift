@@ -15,8 +15,8 @@ final class CategoriesCell: UICollectionViewCell {
                                                         textColor: .label,
                                                         numberOfLines: 2)
     
-    private lazy var image: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "AppIcon"))
+    var image: UIImageView = {
+        let image = UIImageView(image: UIImage())
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -26,8 +26,6 @@ final class CategoriesCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
-        genre.text = "Categories" // удалю после создания модельки
-        setImageShadow()
     }
     
     required init?(coder: NSCoder) {
@@ -53,16 +51,5 @@ final class CategoriesCell: UICollectionViewCell {
             make.height.equalTo(32)
             make.width.equalTo(87)
         }
-    }
-    
-    private func setImageShadow() {
-        let topImageGradient = CAGradientLayer()
-        topImageGradient.frame = CGRect(x: 0, 
-                                        y: 0,
-                                        width: image.bounds.width,
-                                        height: image.bounds.height/10)
-        topImageGradient.colors = [UIColor.black.withAlphaComponent(0.8).cgColor,
-                                   UIColor.black.withAlphaComponent(0.1).cgColor]
-        image.layer.insertSublayer(topImageGradient, at: 0)
     }
 }
