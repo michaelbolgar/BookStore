@@ -186,6 +186,12 @@ public class NetworkingManager {
             }
         }.resume()
     }
+
+//    func getBookDetails(for key: String, completion: @escaping (Result<[BookDetailsModel], Error)) {
+//        let detailsURL = "https://openlibrary.org/works/OL45804W.json"
+//
+//        func getCategoryCollection(for category: Categories, completion: @escaping (Result<[CategoryCollection], Error>) -> Void)
+//    }
 }
 
 // MARK: - Welcome10
