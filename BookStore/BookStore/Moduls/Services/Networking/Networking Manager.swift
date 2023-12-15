@@ -86,9 +86,7 @@ public class NetworkingManager {
         guard let completion = searchCompletion else { return }
         importJson(url: finalUrl, completion: completion)
     }
-// добавляешь в cover_i из модели TrendingBooks
 
-    
     // getting top books
     func getTrendingBooks(for period: TrendingPeriod, completion: @escaping (Result<[(TrendingBooks.Book, URL)], Error>) -> Void) {
         let trendingURL = "https://openlibrary.org/trending/\(period.rawValue).json"
@@ -113,6 +111,7 @@ public class NetworkingManager {
             
             do {
                 let trendingBooks = try JSONDecoder().decode(TrendingBooks.self, from: data)
+                
                 let booksWithCover = trendingBooks.works.compactMap { work -> (TrendingBooks.Book, URL)? in
                     guard let coverID = work.cover_i else {
                         return nil
@@ -170,7 +169,7 @@ public class NetworkingManager {
             }.resume()
         }
 
-    //загрузка изображения по ссылке
+    //присваивание изображения по ссылке
     func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
