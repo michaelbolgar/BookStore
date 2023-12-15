@@ -35,8 +35,6 @@ class LikesView: UIView {
         addSubview(collectionView)
     }
     
-    
-    
     private func setConstraints() {
         emptyLabel.snp.makeConstraints { make in
             make.verticalEdges.equalTo(self.safeAreaLayoutGuide)
