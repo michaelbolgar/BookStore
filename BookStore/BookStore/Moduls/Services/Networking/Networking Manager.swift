@@ -149,8 +149,7 @@ public class NetworkingManager {
                 completion(.failure(error))
                 return
             }
-            
-            //где-то здесь кажется есть лишний код
+
             do {
                 let jsonDecoder = JSONDecoder()
 
@@ -171,6 +170,7 @@ public class NetworkingManager {
             }.resume()
         }
 
+    //загрузка изображения по ссылке
     func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
