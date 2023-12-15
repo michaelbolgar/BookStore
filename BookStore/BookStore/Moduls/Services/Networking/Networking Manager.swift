@@ -90,7 +90,7 @@ public class NetworkingManager {
 
     
     // getting top books
-    func getTrendingBooks(for period: TrendingPeriod, completion: @escaping (Result<[TrendingBooks.Book], Error>) -> Void) {
+    func getTrendingBooks(for period: TrendingPeriod, completion: @escaping (Result<[(TrendingBooks.Book, URL)], Error>) -> Void) {
         let trendingURL = "https://openlibrary.org/trending/\(period.rawValue).json"
         
         guard let url = URL(string: trendingURL) else {
@@ -113,8 +113,15 @@ public class NetworkingManager {
             
             do {
                 let trendingBooks = try JSONDecoder().decode(TrendingBooks.self, from: data)
-                let books = trendingBooks.works.compactMap { $0 }
-                completion(.success(books))
+                let booksWithCover = trendingBooks.works.compactMap { work -> (TrendingBooks.Book, URL)? in
+                    guard let coverID = work.cover_i else {
+                        return nil
+                    }
+
+                    let coverURL = URL(string: "https://covers.openlibrary.org/b/id/" + "\(coverID)-M.jpg")!
+                    return (work, coverURL)
+                }
+                completion(.success(booksWithCover))
             } catch {
                 completion(.failure(error))
             }
@@ -147,7 +154,6 @@ public class NetworkingManager {
             do {
                 let jsonDecoder = JSONDecoder()
                 
-                // Попытка декодировать массив SubjectResponse
                 if let subjectsResponse = try? jsonDecoder.decode([CategoryCollection].self, from: data) {
                     completion(.success(subjectsResponse))
                     return
@@ -166,8 +172,23 @@ public class NetworkingManager {
             }
         }.resume()
     }
-    
-    
+
+    func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error loading image: \(error)")
+                completion(nil)
+                return
+            }
+
+            if let data = data, let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                print("Error creating image from data")
+                completion(nil)
+            }
+        }.resume()
+    }
 }
 
 // MARK: - Welcome10
