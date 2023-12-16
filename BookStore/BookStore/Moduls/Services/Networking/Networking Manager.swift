@@ -187,6 +187,37 @@ public class NetworkingManager {
             }
         }.resume()
     }
+
+    func getBookDetails(for key: String, completion: @escaping (Result<DetailsModel, Error>) -> Void) {
+        let detailsURL = "https://openlibrary.org\(key).json"
+
+        guard let url = URL(string: detailsURL) else {
+            let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+            completion(.failure(error))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                let error = NSError(domain: "No data", code: 0, userInfo: nil)
+                completion(.failure(error))
+                return
+            }
+
+            do {
+                let bookDetails = try JSONDecoder().decode(DetailsModel.self, from: data)
+
+                completion(.success(bookDetails))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }
 
 // MARK: - Welcome10
