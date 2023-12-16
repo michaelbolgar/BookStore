@@ -16,6 +16,7 @@
 		377B3EB32B1FD94100C81F6A /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B3EB22B1FD94100C81F6A /* UIView Extension.swift */; };
 		3787DCB12B286F58003427D2 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787DCB02B286F58003427D2 /* BookDetailsView.swift */; };
 		378855472B28A0CB006573CE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378855462B28A0CB006573CE /* LaunchViewController.swift */; };
+		37E5CDB72B2D1B8900A42960 /* ReadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E5CDB62B2D1B8900A42960 /* ReadingViewController.swift */; };
 		790E5E642B21E5D000B8AA0D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */; };
 		790E5E662B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */; };
 		79191A0D2B24B18000BD2C95 /* UITextField Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */; };
@@ -82,6 +83,7 @@
 		377B3EB22B1FD94100C81F6A /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
 		3787DCB02B286F58003427D2 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
 		378855462B28A0CB006573CE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		37E5CDB62B2D1B8900A42960 /* ReadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingViewController.swift; sourceTree = "<group>"; };
 		790E5E632B21E5D000B8AA0D /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		790E5E652B21E60400B8AA0D /* CustomSegmentedControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlDelegate.swift; sourceTree = "<group>"; };
 		79191A0C2B24B18000BD2C95 /* UITextField Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField Extension.swift"; sourceTree = "<group>"; };
@@ -178,6 +180,14 @@
 				3787DCB02B286F58003427D2 /* BookDetailsView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		37E5CDB82B2D1B8E00A42960 /* ReadingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				37E5CDB62B2D1B8900A42960 /* ReadingViewController.swift */,
+			);
+			path = ReadingScreen;
 			sourceTree = "<group>";
 		};
 		79191A172B24E53900BD2C95 /* Frameworks */ = {
@@ -285,6 +295,7 @@
 				F48F390D2B1CE744009DAFA8 /* Categories */,
 				F48F390C2B1CE73D009DAFA8 /* Home */,
 				377B3EA52B1E641D00C81F6A /* MainTabBar */,
+				37E5CDB82B2D1B8E00A42960 /* ReadingScreen */,
 			);
 			path = Moduls;
 			sourceTree = "<group>";
@@ -591,7 +602,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					F48F38EC2B1CDD02009DAFA8 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -693,6 +704,7 @@
 				79191A182B2502AD00BD2C95 /* RegistrationViewController.swift in Sources */,
 				F48F39322B1D3C4D009DAFA8 /* UIViewController Extension.swift in Sources */,
 				79C6979D2B210B190055129C /* TopBooksViewCell.swift in Sources */,
+				37E5CDB72B2D1B8900A42960 /* ReadingViewController.swift in Sources */,
 				AF24B6B82B22661800B2991D /* CategoriesHeader.swift in Sources */,
 				795ABDEB2B22A0AB00569104 /* AuthorizationViewController.swift in Sources */,
 				F48F39072B1CE48B009DAFA8 /* LikesVC.swift in Sources */,

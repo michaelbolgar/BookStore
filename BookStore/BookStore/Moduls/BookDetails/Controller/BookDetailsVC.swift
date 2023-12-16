@@ -89,6 +89,7 @@ final class BookDetailsViewController: UIViewController {
     
     private lazy var readButton = UIButton.makeButton(text: "Read", buttonColor: UIColor.black, tintColor: .white, borderWidth: 0)
     
+    
     private lazy var starButton: UIButton = {
         let element = UIButton()
         element.imageView?.contentMode = .scaleAspectFill
@@ -153,6 +154,8 @@ final class BookDetailsViewController: UIViewController {
             descriptionLabel,
             descriptionTextView
         )
+        
+        readButton.addTarget(self, action: #selector(readButtonTapped), for: .touchUpInside)
     }
     
     private func setStack() {
@@ -166,6 +169,15 @@ final class BookDetailsViewController: UIViewController {
         
         labelsStack.addSubviewsTamicOff(authorLabel, categoryLabel, raitingLabel)
         buttonsStack.addSubviewsTamicOff(addToListButton, readButton)
+    }
+    
+    //MARK: - @OBJC Methods
+    @objc private func readButtonTapped() {
+        let vc = ReadingViewController()
+        vc.urlString = "https://archive.org/embed/diebruderkarama00dost"
+//        navigationController?.pushViewController(readingViewController, animated: true)
+        present(vc, animated: true)
+        print("tap-tap")
     }
 }
 
