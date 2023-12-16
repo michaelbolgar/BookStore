@@ -15,6 +15,8 @@ class CategoriesVC: UIViewController {
         categoriesView.collectionView.delegate = self
         categoriesView.collectionView.dataSource = self
         view = categoriesView
+        view.backgroundColor = .background
+        categoriesView.searchBar.delegate = self
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -108,6 +110,20 @@ extension CategoriesVC: UICollectionViewDelegate,
         header.headerLabel.text = "Categories"
         header.headerLabel.font = UIFont.openSansRegular(ofSize: 20)
         return header
+    }
+}
+
+extension CategoriesVC: SearchBarVCDelegate {
+    func searchCancelButtonClicked() {
+        self.categoriesView.searchBar.endEditing(true)
+        self.categoriesView.searchBar.resignFirstResponder()
+    }
+    
+    func searchButtonClicked(withRequest text: String, sortingMethod: SearchResultVC.SortingMethod) {
+        let vc = SearchResultVC()
+        vc.searchRequest = text
+        vc.currentSortingMethod = sortingMethod
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
