@@ -4,179 +4,127 @@
 //
 //  Created by Anna Zaitsava on 13.12.23.
 //
-//
-//import UIKit
-//
-//protocol SearchBarDelegate: AnyObject {
-//    func filterButtonTapped()
-//}
-//
-//class SearchBar: UIView {
-//
-//    weak var delegate: SearchBarDelegate?
-//    var searchRequest = ""
-//    var basePlaceholder = "Search title/author/ISBN no"
-//
-//    private lazy var searchBar: UISearchBar = {
-//        let searchBar = UISearchBar()
-//        searchBar.delegate = self
-//        searchBar.searchBarStyle = .minimal
-//        configureSearchBar(searchBar)
-//        return searchBar
-//    }()
-//
-//    private lazy var filterButton: UIButton = {
-//        let button = UIButton()
-//        button.backgroundColor = .customLightGray
-//        button.setImage(UIImage(named: "filter"), for: .normal)
-//        button.layer.cornerRadius = 5
-//        button.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    init() {
-//        super.init(frame: .zero)
-//        setupUI()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//        setupUI()
-//    }
-//
-//    private func setupUI() {
-//        addSubviewsTamicOff(searchBar,filterButton)
-//
-//        searchBar.translatesAutoresizingMaskIntoConstraints = false
-//        filterButton.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            searchBar.topAnchor.constraint(equalTo: topAnchor),
-//            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            searchBar.trailingAnchor.constraint(equalTo: filterButton.leadingAnchor, constant: -8),
-//            searchBar.heightAnchor.constraint(equalToConstant: 56),
-//
-//            filterButton.topAnchor.constraint(equalTo: topAnchor),
-//            filterButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            filterButton.widthAnchor.constraint(equalToConstant: 52),
-//            filterButton.heightAnchor.constraint(equalToConstant: 56)
-//        ])
-//    }
-//
-//    @objc private func filterButtonTapped() {
-//        delegate?.filterButtonTapped()
-//    }
-//
-//    func setPlaceholder(_ placeholder: String) {
-//        searchBar.placeholder = placeholder
-//    }
-//
-//
-//
-//    private func configureSearchBar(_ searchBar: UISearchBar) {
-//        searchBar.placeholder = basePlaceholder
-//        searchBar.backgroundColor = .customLightGray
-//        searchBar.barTintColor = .clear
-//        searchBar.layer.cornerRadius = 5
-//        searchBar.clipsToBounds = true
-//
-//        // Customizing the text field
-//        if let searchTextField = searchBar.value(forKey: "searchField") as? UITextField {
-//            searchTextField.textColor = .customBlack
-//            searchTextField.font = .openSansRegular(ofSize: 14)
-//            searchTextField.backgroundColor = .clear
-//            searchTextField.borderStyle = .none
-//            searchTextField.leftView?.tintColor = .customBlack
-//            searchTextField.leftViewMode = .always
-//        }
-//    }
-//}
-//
-//extension SearchBar: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        if let text = searchBar.text, !text.isEmpty {
-//            let vc = SearchResultVC()
-//            vc.searchRequest = text
-//            navigationController?.pushViewController(vc, animated: true)
-//        } else {
-//            searchBar.resignFirstResponder()
-//        }
-//    }
-//
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.text = nil
-//        searchBar.placeholder = "Search title/author/ISBN no"
-//        searchBar.resignFirstResponder()
-//        navigationController?.popViewController(animated: true)
-//    }
-//}
 
+import UIKit
 
-//import UIKit
-//
-//class SearchableViewController: UIViewController, UISearchBarDelegate {
-//    var searchBar: UISearchBar = {
-//        let searchBar = UISearchBar()
-//        searchBar.searchBarStyle = .minimal
-//        searchBar.backgroundColor = .customLightGray
-//        searchBar.barTintColor = .clear
-//        searchBar.layer.cornerRadius = 5
-//        searchBar.clipsToBounds = true
-//        return searchBar
-//    }()
-//
-//    var filterButton: UIButton = {
-//        let button = UIButton()
-//        button.backgroundColor = .customLightGray
-//        button.setImage(UIImage(named: "filter"), for: .normal)
-//        button.layer.cornerRadius = 5
-//        return button
-//    }()
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setupSearchBar()
-//
-//    }
-//
-//    func setupSearchBar() {
-//        searchBar.delegate = self
-//addSubviewsTamicOff(searchBar,filterButton)
-//
-//searchBar.translatesAutoresizingMaskIntoConstraints = false
-//filterButton.translatesAutoresizingMaskIntoConstraints = false
-//
-//NSLayoutConstraint.activate([
-//    searchBar.topAnchor.constraint(equalTo: topAnchor),
-//    searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-//    searchBar.trailingAnchor.constraint(equalTo: filterButton.leadingAnchor, constant: -8),
-//    searchBar.heightAnchor.constraint(equalToConstant: 56),
-//
-//    filterButton.topAnchor.constraint(equalTo: topAnchor),
-//    filterButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-//    filterButton.widthAnchor.constraint(equalToConstant: 52),
-//    filterButton.heightAnchor.constraint(equalToConstant: 56)
-//])
-//}
-//    }
-//
-//    // Дополнительный код вашего контроллера
-//
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        if let text = searchBar.text, !text.isEmpty {
-//let vc = SearchResultVC()
-//vc.searchRequest = text
-//        } else {
-//            searchBar.resignFirstResponder()
-//        }
-//    }
-//
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.text = nil
-//        searchBar.placeholder = "Search title/author/ISBN no"
-//        searchBar.resignFirstResponder()
-//        navigationController?.popViewController(animated: true)
-//    }
-//
-//
-//}
+protocol SearchBarVCDelegate: AnyObject {
+    func searchButtonClicked(withRequest text: String, sortingMethod: SearchResultVC.SortingMethod)
+    func searchCancelButtonClicked()
+}
+
+class SearchBarVC: UIView {
+    
+    weak var delegate: SearchBarVCDelegate?
+    
+    private var choosenSortingMethod: SearchResultVC.SortingMethod = .none
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.placeholder = "Search title/author/ISBN no"
+        searchBar.searchBarStyle = .minimal
+        searchBar.backgroundColor = .label
+        searchBar.barTintColor = .clear
+        searchBar.layer.cornerRadius = 5
+        searchBar.clipsToBounds = true
+        searchBar.showsCancelButton = false
+        
+        // Customizing the text field
+        if let searchTextField = searchBar.value(forKey: "searchField") as? UITextField {
+            searchTextField.textColor = .elements
+            searchTextField.font = .openSansRegular(ofSize: 14)
+            searchTextField.backgroundColor = .clear
+            searchTextField.borderStyle = .none
+            searchTextField.leftView?.tintColor = .elements
+            searchTextField.leftViewMode = .always
+        }
+        return searchBar
+    }()
+    
+    
+    private lazy var filterButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .label
+        button.setImage(UIImage(named: "filter"), for: .normal)
+        button.layer.cornerRadius = 5
+        button.menu = sortMenu
+        button.showsMenuAsPrimaryAction = true
+        return button
+    }()
+    
+    //    private lazy var sortMenu: UIMenu = {
+    //        let filterByNewest = UIAction(title: "Sort by Newest") { _ in
+    //            let vc  = SearchResultVC()
+    //            vc.currentSortingMethod = .byNewest
+    //            print (vc.currentSortingMethod)
+    //        }
+    //        let filterByOldest = UIAction(title: "Sort by Oldest") { _ in
+    //            let vc  = SearchResultVC()
+    //            vc.currentSortingMethod = .byOldest
+    //            print(vc.currentSortingMethod)
+    //        }
+    //        return UIMenu(title: "Sort by", options: .displayInline, children: [filterByNewest, filterByOldest])
+    //    }()
+    
+    private lazy var sortMenu: UIMenu = {
+        let filterByNewest = UIAction(title: "Sort by Newest", handler: { [weak self] _ in
+            self?.choosenSortingMethod = .byNewest
+        })
+        
+        let filterByOldest = UIAction(title: "Sort by Oldest", handler: { [weak self] _ in
+            self?.choosenSortingMethod = .byOldest
+        })
+        
+        return UIMenu(title: "Sort by", options: .displayInline, children: [filterByNewest, filterByOldest])
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
+    
+    private func setupUI() {
+        addSubviewsTamicOff(searchBar,filterButton)
+        
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: filterButton.leadingAnchor, constant: -8),
+            searchBar.heightAnchor.constraint(equalToConstant: 56),
+            
+            filterButton.topAnchor.constraint(equalTo: topAnchor),
+            filterButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            filterButton.widthAnchor.constraint(equalToConstant: 52),
+            filterButton.heightAnchor.constraint(equalToConstant: 56)
+        ])
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension SearchBarVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text, !text.isEmpty {
+            let vc = SearchResultVC()
+            vc.searchRequest = text
+            vc.currentSortingMethod = choosenSortingMethod
+            self.delegate?.searchButtonClicked(withRequest: text, sortingMethod: choosenSortingMethod)
+            searchBar.resignFirstResponder()
+        } else {
+            searchBar.resignFirstResponder()
+        }
+    }
+        
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.text = ""
+            self.endEditing(true)  
+            searchBar.resignFirstResponder()
+            self.delegate?.searchCancelButtonClicked()
+        }
+
+  }
+

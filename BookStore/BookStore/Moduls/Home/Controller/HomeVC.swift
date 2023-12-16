@@ -4,23 +4,23 @@ import SnapKit
 final class HomeVC: UIViewController {
     
     private let homeView = HomeView()
-  
-        override func viewDidLoad() {
-            
-           
-            super.viewDidLoad()
-            view.backgroundColor = .background
-            
-            view.addSubview(homeView)
-            
-            setupConstraints()
-            
-            homeView.setViews()
-            homeView.setupConstraints()
-            homeView.setDelegates()
 
-        }
-        
+    private lazy var search =  SearchBarVC()
+
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          view.backgroundColor = .background
+          search.delegate = self
+          
+          view.addSubviewsTamicOff(homeView,search)
+          
+          setupConstraints()
+          
+          homeView.setViews()
+          homeView.setupConstraints()
+          homeView.setDelegates()
+      }
+
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
 
@@ -57,12 +57,42 @@ final class HomeVC: UIViewController {
         }
     
 
-        private func setupConstraints() {
-            homeView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
+    private func setupConstraints() {
+        
+        let offset: CGFloat = 20
+        
+        NSLayoutConstraint.activate([
             
-        }
+            
+            homeView.topAnchor.constraint(equalTo: search.bottomAnchor, constant: offset),
+            homeView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            homeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            homeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            search.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: offset),
+            search.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: offset),
+            search.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -offset),
+            search.heightAnchor.constraint(equalToConstant: 56),
+        ])
+//        homeView.snp.makeConstraints { make in
+//              make.edges.equalToSuperview()
+//          }
+        
+    }
+}
+
+// MARK: - SearchBarDelegate
+extension HomeVC: SearchBarVCDelegate {
+    func searchCancelButtonClicked() {
+        self.search.endEditing(true)
+        self.search.resignFirstResponder()
+    }
+    
+    func searchButtonClicked(withRequest text: String, sortingMethod: SearchResultVC.SortingMethod) {
+        let vc = SearchResultVC()
+        vc.searchRequest = text
+        vc.currentSortingMethod = sortingMethod
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 

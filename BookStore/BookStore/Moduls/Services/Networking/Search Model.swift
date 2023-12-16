@@ -8,15 +8,13 @@ import Foundation
 public struct Doc: Decodable {
 
     public let title_suggest: String?
-//    public let subtitle: String?
     public let author_name: [String]?
     public let first_publish_year: Int?
     public let cover_i: Int?
     public let subject_key: [String]?
-//    public let publisher: [String]?
-//    public let author_alternative_name: [String]?
-//    public let ia: [String]?
-    //ненужные свойства^^^
+    public let has_fulltext: Bool?
+    public let key: String?
+    public let ia: [String]?
 }
 
 public struct BookObject: Decodable {
