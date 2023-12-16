@@ -44,36 +44,16 @@ final class HomeVC: UIViewController {
                 }
             }
 
-//            NetworkingManager.instance.getCategoryCollection(for: .fiction) { result in
-//                switch result {
-//                case .success(let categoryCollection):
-//                    print(categoryCollection)
-//                    if let firstBook = categoryCollection.first?.works.first {
-//
-//                        print("Title: \(firstBook.title ?? "No title")")
-////                        print("Author: \(firstBook.authors.name ?? "No author")")
-//
-//                        //формируем ссылку для получения обложки
-//                        if let coverID = firstBook.cover_id {
-//                            let coverURL = URL(string: "https://covers.openlibrary.org/b/id/\(coverID)-M.jpg")!
-//
-//                            NetworkingManager.instance.loadImage(from: coverURL) { image in
-//                                DispatchQueue.main.async {
-//                                    //тут нужно присваивать вьюшкам соответствующую картинку по ссылке
-////                                    imageView.image = image
-//                                    print(coverURL)
-//                                }
-//                            }
-//                        } else {
-//                            print("No cover information available")
-//                        }
-//                    } else {
-//                        print("No books in the collection")
-//                    }
-//                case .failure(let error):
-//                    print("Error: \(error)")
-//                }
-//            }
+
+            //пример получения данных книги по ключу
+            NetworkingManager.instance.getBookDetails(for: "/works/OL82586W") { result in
+                switch result {
+                case .success(let bookDetails):
+                    print(bookDetails.description?.value ?? "No description")
+                case .failure(let error):
+                    print ("Ошибка при получении деталей книги: \(error)")
+                }
+            }
         }
     
     

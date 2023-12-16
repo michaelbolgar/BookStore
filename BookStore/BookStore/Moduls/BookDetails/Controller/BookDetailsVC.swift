@@ -15,8 +15,10 @@ final class BookDetailsViewController: UIViewController {
     var book = BookDetailsModel(key: "",
                                 image: UIImage(),
                                 title: "",
+                                authorName: "",
                                 hasFullText: true,
-                                ia: "")
+                                ia: "",
+                                category: "")
     
     //MARK: - UI Elements
     
@@ -89,6 +91,7 @@ final class BookDetailsViewController: UIViewController {
     
     private lazy var readButton = UIButton.makeButton(text: "Read", buttonColor: UIColor.black, tintColor: .white, borderWidth: 0)
     
+    
     private lazy var starButton: UIButton = {
         let element = UIButton()
         element.imageView?.contentMode = .scaleAspectFill
@@ -110,9 +113,9 @@ final class BookDetailsViewController: UIViewController {
     
     //у этих трёх лейблов тоже нужно заменить цвет текста на .label
     //!!!: - Эти элементы собираются из Convenience Init, где и установлен цвет.
-    var authorLabel = UILabel(text1: "Author: ", text2: BookDetailsModel.authorName)
-    var categoryLabel = UILabel(text1: "Category: ", text2: BookDetailsModel.category)
-    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: BookDetailsModel.raiting)
+    lazy var authorLabel = UILabel(text1: "Author: ", text2: book.authorName)
+    lazy var categoryLabel = UILabel(text1: "Category: ", text2: book.category)
+    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: book.raiting)
     
     var descriptionLabel: UILabel = {
         let element = UILabel()
@@ -124,7 +127,7 @@ final class BookDetailsViewController: UIViewController {
     private lazy var descriptionTextView: UITextView = {
         let element = UITextView()
         element.isScrollEnabled = true
-        element.text = BookDetailsModel.descriptionText
+        element.text = book.descriptionText
         element.font = UIFont.openSansRegular(ofSize: 14)
         element.backgroundColor = .clear
         
@@ -142,6 +145,8 @@ final class BookDetailsViewController: UIViewController {
         setStack()
         setConstraints()
         
+        print(book.title)
+        
     }
     
     //MARK: - Private Methods
@@ -153,6 +158,8 @@ final class BookDetailsViewController: UIViewController {
             descriptionLabel,
             descriptionTextView
         )
+        
+        readButton.addTarget(self, action: #selector(readButtonTapped), for: .touchUpInside)
     }
     
     private func setStack() {
@@ -166,6 +173,14 @@ final class BookDetailsViewController: UIViewController {
         
         labelsStack.addSubviewsTamicOff(authorLabel, categoryLabel, raitingLabel)
         buttonsStack.addSubviewsTamicOff(addToListButton, readButton)
+    }
+    
+    //MARK: - @OBJC Methods
+    @objc private func readButtonTapped() {
+        let vc = ReadingViewController()
+        vc.urlString = "https://archive.org/embed/\(book.ia)"
+        navigationController?.pushViewController(vc, animated: true)
+        print("tap-tap")
     }
 }
 
