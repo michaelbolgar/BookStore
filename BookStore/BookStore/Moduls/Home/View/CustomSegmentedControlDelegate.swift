@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CustomSegmentedControlDelegate: AnyObject {
     
-    func buttonPressed(buttonTitlesIndex: Int, title: String?)
+    func buttonPressed(selectedSegment: TrendingPeriod)
 }

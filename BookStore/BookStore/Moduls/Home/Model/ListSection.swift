@@ -22,7 +22,7 @@ enum ListSection {
     var count: Int {
         items.count
     }
-    
+
     var title: String {
         switch self {
             

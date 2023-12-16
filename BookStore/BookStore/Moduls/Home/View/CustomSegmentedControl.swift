@@ -8,7 +8,9 @@
 import UIKit
 
 final class CustomSegmentedControl: UIView {
-    
+
+    private var selectedSegment: TrendingPeriod = .weekly
+
     //MARK: UI Elements
     
     private var verticalContainer: UIView = UIView()
@@ -19,7 +21,6 @@ final class CustomSegmentedControl: UIView {
     
     private var barView: UIView = UIView()
     private var barViewLeadingConstraint: NSLayoutConstraint = NSLayoutConstraint()
-    
     
     private var selectedButtonIndex: Int = 0
     
@@ -66,7 +67,6 @@ final class CustomSegmentedControl: UIView {
             verticalContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             verticalContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             verticalContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
             
             topAnchor.constraint(equalTo: buttonsContainer.topAnchor),
             bottomAnchor.constraint(equalTo: barView.bottomAnchor)
@@ -117,11 +117,29 @@ final class CustomSegmentedControl: UIView {
         ])
     }
     
+    
+    
     // MARK: - Actions
     
     @objc private func buttonAction(sender: UIButton) {
         guard let buttonIndex = buttons.firstIndex(of: sender) else { return }
-        delegate?.buttonPressed(buttonTitlesIndex: buttonIndex, title: sender.titleLabel?.text)
+        delegate?.buttonPressed(selectedSegment: selectedSegment)
+    
+        switch buttonIndex {
+        case 0:
+            selectedSegment = .weekly
+          
+        case 1:
+            selectedSegment = .monthly
+          
+        case 2:
+            selectedSegment = .yearly
+       
+        default:
+            break
+        }
+        
+        print("Selected segment: \(selectedSegment)")
         selectedButtonIndex = buttonIndex
         prepareButtonsUI()
         animateBarViewPosition()

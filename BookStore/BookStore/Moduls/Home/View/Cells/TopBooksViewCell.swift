@@ -28,7 +28,7 @@ final class TopBooksViewCell: UICollectionViewCell {
     }()
     
     private let bookGenreLabel = UILabel.makeLabel(
-        text: "Top Books",
+        text: "Classic",
         font: .openSansRegular(ofSize: 11),
         textColor: .white
     )
@@ -51,7 +51,7 @@ final class TopBooksViewCell: UICollectionViewCell {
         
         setupView()
         setConstraints()
-       
+        
     }
     
     required init?(coder: NSCoder) {
@@ -73,11 +73,11 @@ final class TopBooksViewCell: UICollectionViewCell {
     }
     
     // MARK: - Cell Configure
-
-    func configureCell(book: TrendingBooks.Book) {
-//        bookGenreLabel.text = book
-        bookTitleLabel.text = book.title
-        bookAuthorLabel.text = book.author_name?.first
+    
+    func configureCell(book: TrendingBooks.Book, image: UIImage?) {
+     bookTitleLabel.text = book.title
+     bookAuthorLabel.text = book.author_name?.first
+     topBooksImageView.image = image
     }
     
     // MARK: - Setup Constraints
@@ -85,16 +85,17 @@ final class TopBooksViewCell: UICollectionViewCell {
     private func setConstraints() {
         
         topBooksImageView.snp.makeConstraints { make in
-            make.width.equalTo(91)
-            make.height.equalTo(141)
-            make.top.equalToSuperview()
+            make.width.equalTo(121)
+            make.height.equalTo(171)
+            make.top.equalTo(20)
             make.centerX.equalToSuperview()
+            
         }
         
         footerView.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            make.height.equalTo(100)
-             
+            make.height.equalTo(60)
+            
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             
@@ -115,5 +116,5 @@ final class TopBooksViewCell: UICollectionViewCell {
     }
     
     
-   
+    
 }

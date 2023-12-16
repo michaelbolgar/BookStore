@@ -2,8 +2,9 @@ import UIKit
 import SnapKit
 
 final class HomeVC: UIViewController {
-
+    
     private let homeView = HomeView()
+
     private lazy var search =  SearchBarVC()
 
       override func viewDidLoad() {
@@ -33,7 +34,7 @@ final class HomeVC: UIViewController {
 
                     if let firstBook = trendingBooks.first {
                         print("Title: \(firstBook.0.title ?? "No title")")
-                        print("Author: \(firstBook.0.author_name?.joined(separator: ", ") ?? "No author")")
+//                        print("Author: \(firstBook.0.author_name?.joined(separator: ", ") ?? "No author")")
                         print("Cover URL: \(firstBook.1)")
 
                         //в данной функции результат выводится кортежем, поэтому firstBook.0 -- это инфа по книга, а firstBook.1 -- это ссылка
@@ -55,6 +56,7 @@ final class HomeVC: UIViewController {
             }
         }
     
+
     private func setupConstraints() {
         
         let offset: CGFloat = 20
@@ -92,4 +94,6 @@ extension HomeVC: SearchBarVCDelegate {
         vc.currentSortingMethod = sortingMethod
         self.navigationController?.pushViewController(vc, animated: true)
     }
-}
+
+
+    
