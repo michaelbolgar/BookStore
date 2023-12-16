@@ -20,6 +20,13 @@ class CategoriesVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first != nil {
+            view.endEditing(true)
+        }
+        super .touchesBegan(touches, with: event)
+    }
+    
     //MARK: - PrivateMethods
     private func presentIndicator() -> UIActivityIndicatorView {
         let activityIndicatorView = UIActivityIndicatorView(style: .large)

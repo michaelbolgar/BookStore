@@ -56,10 +56,18 @@ class SearchResultVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .background
         searchBar.delegate = self
+        searchBar.searchBar.text = searchRequest
         performSearchRequest()
         setupUI()
         self.navigationController?.navigationBar.tintColor = .elements
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first != nil {
+            view.endEditing(true)
+        }
+        super .touchesBegan(touches, with: event)
     }
     
     // MARK: Private Methods

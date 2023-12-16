@@ -18,7 +18,7 @@ class SearchBarVC: UIView {
     
     private var choosenSortingMethod: SearchResultVC.SortingMethod = .none
     
-    private lazy var searchBar: UISearchBar = {
+    lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.placeholder = "Search title/author/ISBN no"
@@ -51,20 +51,6 @@ class SearchBarVC: UIView {
         button.showsMenuAsPrimaryAction = true
         return button
     }()
-    
-    //    private lazy var sortMenu: UIMenu = {
-    //        let filterByNewest = UIAction(title: "Sort by Newest") { _ in
-    //            let vc  = SearchResultVC()
-    //            vc.currentSortingMethod = .byNewest
-    //            print (vc.currentSortingMethod)
-    //        }
-    //        let filterByOldest = UIAction(title: "Sort by Oldest") { _ in
-    //            let vc  = SearchResultVC()
-    //            vc.currentSortingMethod = .byOldest
-    //            print(vc.currentSortingMethod)
-    //        }
-    //        return UIMenu(title: "Sort by", options: .displayInline, children: [filterByNewest, filterByOldest])
-    //    }()
     
     private lazy var sortMenu: UIMenu = {
         let filterByNewest = UIAction(title: "Sort by Newest", handler: { [weak self] _ in
@@ -118,13 +104,13 @@ extension SearchBarVC: UISearchBarDelegate {
             searchBar.resignFirstResponder()
         }
     }
-        
-        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-            searchBar.text = ""
-            self.endEditing(true)  
-            searchBar.resignFirstResponder()
-            self.delegate?.searchCancelButtonClicked()
-        }
-
-  }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchBar.resignFirstResponder()
+        self.delegate?.searchCancelButtonClicked()
+    }
+    
+}
 
