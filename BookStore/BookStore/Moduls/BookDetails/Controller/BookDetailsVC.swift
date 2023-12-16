@@ -12,6 +12,13 @@ final class BookDetailsViewController: UIViewController {
     //MARK: - Dependencies
     let spacing: CGFloat = 24
     let labelHeight: CGFloat = 20
+    var book = BookDetailsModel(key: "",
+                                image: UIImage(),
+                                title: "",
+                                authorName: "",
+                                hasFullText: true,
+                                ia: "",
+                                category: "")
     
     //MARK: - UI Elements
     
@@ -19,7 +26,7 @@ final class BookDetailsViewController: UIViewController {
     
     private lazy var topLabel: UILabel = {
         let element = UILabel()
-        element.text = "The Picture of Dorian Gray"
+        element.text = book.title
         element.textAlignment = .center
         element.font = UIFont.openSansBold(ofSize: 24)
         element.adjustsFontSizeToFitWidth = true
@@ -73,9 +80,9 @@ final class BookDetailsViewController: UIViewController {
         return element
     }()
     
-    private lazy var bookCover: UIImageView = {
+    lazy var bookCover: UIImageView = {
         let element = UIImageView()
-        element.image = UIImage(named: "mockCover")
+        element.image = book.image
         element.contentMode = .scaleAspectFit
         return element
     }()
@@ -83,6 +90,7 @@ final class BookDetailsViewController: UIViewController {
     private lazy var addToListButton = UIButton.makeButton(text: "Add to list", buttonColor: UIColor.darkGray, tintColor: UIColor.label, borderWidth: 0)
     
     private lazy var readButton = UIButton.makeButton(text: "Read", buttonColor: UIColor.black, tintColor: .white, borderWidth: 0)
+    
     
     private lazy var starButton: UIButton = {
         let element = UIButton()
@@ -105,11 +113,11 @@ final class BookDetailsViewController: UIViewController {
     
     //у этих трёх лейблов тоже нужно заменить цвет текста на .label
     //!!!: - Эти элементы собираются из Convenience Init, где и установлен цвет.
-    private lazy var authorLabel = UILabel(text1: "Author: ", text2: BookDetailsModel.authorName)
-    private lazy var categoryLabel = UILabel(text1: "Category: ", text2: BookDetailsModel.category)
-    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: BookDetailsModel.raiting)
+    lazy var authorLabel = UILabel(text1: "Author: ", text2: book.authorName)
+    lazy var categoryLabel = UILabel(text1: "Category: ", text2: book.category)
+    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: book.raiting)
     
-    private lazy var descriptionLabel: UILabel = {
+    var descriptionLabel: UILabel = {
         let element = UILabel()
         element.text = "Description:"
         element.font = UIFont.openSansBold(ofSize: 14)
@@ -119,7 +127,7 @@ final class BookDetailsViewController: UIViewController {
     private lazy var descriptionTextView: UITextView = {
         let element = UITextView()
         element.isScrollEnabled = true
-        element.text = BookDetailsModel.descriptionText
+        element.text = book.descriptionText
         element.font = UIFont.openSansRegular(ofSize: 14)
         element.backgroundColor = .clear
         
@@ -136,6 +144,9 @@ final class BookDetailsViewController: UIViewController {
         setupViews()
         setStack()
         setConstraints()
+        
+        print(book.title)
+        
     }
     
     //MARK: - Private Methods
@@ -147,6 +158,8 @@ final class BookDetailsViewController: UIViewController {
             descriptionLabel,
             descriptionTextView
         )
+        
+        readButton.addTarget(self, action: #selector(readButtonTapped), for: .touchUpInside)
     }
     
     private func setStack() {
@@ -160,6 +173,14 @@ final class BookDetailsViewController: UIViewController {
         
         labelsStack.addSubviewsTamicOff(authorLabel, categoryLabel, raitingLabel)
         buttonsStack.addSubviewsTamicOff(addToListButton, readButton)
+    }
+    
+    //MARK: - @OBJC Methods
+    @objc private func readButtonTapped() {
+        let vc = ReadingViewController()
+        vc.urlString = "https://archive.org/embed/\(book.ia)"
+        navigationController?.pushViewController(vc, animated: true)
+        print("tap-tap")
     }
 }
 

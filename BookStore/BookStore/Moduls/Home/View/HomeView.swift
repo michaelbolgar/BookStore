@@ -249,7 +249,7 @@ extension HomeView: UICollectionViewDataSource {
             case .success(let trendingBooks):
                 print("Books ARE \(trendingBooks.count)")
                 DispatchQueue.main.async {
-                    self.trendingBooksTitle = trendingBooks
+                    self.trendingBooksTitle = trendingBooks.map { $0.0 }
                     self.spinnerView.stopAnimating()
                     self.collectionView.reloadData()
                 }
