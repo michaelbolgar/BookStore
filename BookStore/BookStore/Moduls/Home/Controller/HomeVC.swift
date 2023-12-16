@@ -94,6 +94,4 @@ extension HomeVC: SearchBarVCDelegate {
         vc.currentSortingMethod = sortingMethod
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
-
-    
+}

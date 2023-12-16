@@ -80,7 +80,7 @@ public class NetworkingManager {
         let passData = (url: url, completion: searchCompletion)
         timer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(startSearching), userInfo: url, repeats: false)
     }
-    
+
     @objc func startSearching() {
         let url = timer!.userInfo as! String
         let finalUrl = getUrl(rawUrl: url)
