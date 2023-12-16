@@ -260,7 +260,6 @@ extension HomeView: UICollectionViewDataSource {
         networkManager.getTrendingBooks(for: selectedSegment) { [weak self] result in
             switch result {
             case .success(let trendingBooks):
-                print("Books ARE \(trendingBooks.count)")
                 for bookWithCoverURL in trendingBooks {
                     let coverURL = bookWithCoverURL.1
                     NetworkingManager.instance.loadImage(from: coverURL) { image in

@@ -88,16 +88,16 @@ final class RecentBooksViewCell: UICollectionViewCell {
     private func setConstraints() {
         
         recentBooksImageView.snp.makeConstraints { make in
-            make.width.equalTo(91)
-            make.height.equalTo(141)
-            make.top.equalToSuperview()
+            make.width.equalTo(121)
+            make.height.equalTo(171)
+            make.top.equalTo(20)
             make.centerX.equalToSuperview()
         }
         
         footerView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             
-            make.height.equalTo(100)
+            make.height.equalTo(60)
             
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
