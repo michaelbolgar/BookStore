@@ -56,7 +56,7 @@ final class HomeVC: UIViewController {
             }
         }
     
-    
+
         private func setupConstraints() {
             homeView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()

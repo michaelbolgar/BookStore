@@ -15,16 +15,13 @@ final class HomeView: UIView {
     
     // MARK: - Private Properties
     
-    private let sections = MockData.shared.pageData
+    private let sections = HomeModel.shared.pageData
     private let networkManager = NetworkingManager.instance
     private var trendingBooks: [(book: TrendingBooks.Book, image: UIImage?)] = []
     private var works: [(work: CategoryCollection.Work, image: UIImage?)] = []
-    
-    
     private var selectedSegment: TrendingPeriod = .weekly
     
     private var spinnerView = UIActivityIndicatorView()
-    
     
     // MARK: - Set Views
     
@@ -38,7 +35,6 @@ final class HomeView: UIView {
         fetchCategoryCollection()
         
         showSpinner(in: self)
-        
         
         collectionView.register(TopBooksViewCell.self,
                                 forCellWithReuseIdentifier: "TopBooksCollectionViewCell")
@@ -84,7 +80,6 @@ extension UIStackView {
         self.spacing = spacing
         self.axis = axis
         self.alignment = alignment
-        
     }
 }
 
@@ -121,7 +116,6 @@ private extension HomeView {
         section.supplementariesFollowContentInsets = contentInsets
         return section
     }
-    
     
     private func createTopBookSection() -> NSCollectionLayoutSection {
         
@@ -174,9 +168,8 @@ private extension HomeView {
                                 heightDimension: .estimated(50)),
               elementKind: "headerItem",
               alignment: .top)
-        
     }
-    
+
 }
 
 // MARK: - UICollectionViewDelegate
@@ -184,6 +177,7 @@ private extension HomeView {
 extension HomeView: UICollectionViewDelegate {
     
 }
+
 // MARK: - UICollectionViewDataSource
 
 extension HomeView: UICollectionViewDataSource {
@@ -199,7 +193,7 @@ extension HomeView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section] {
             
-        case .topBooks( _):
+        case .topBooks(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopBooksCollectionViewCell", for: indexPath) as? TopBooksViewCell
             else {
                 return UICollectionViewCell()
@@ -299,9 +293,6 @@ extension HomeView: UICollectionViewDataSource {
         }
     }
     
-    
-    
-    
     // MARK: - Spinner
     
     private func showSpinner(in view: UIView) {
@@ -312,8 +303,8 @@ extension HomeView: UICollectionViewDataSource {
         
         view.addSubview(spinnerView)
     }
-    
 }
+
 // MARK: - SegmentedControl delegate
 
 extension HomeView: CustomSegmentedControlDelegate {
@@ -321,7 +312,6 @@ extension HomeView: CustomSegmentedControlDelegate {
         self.selectedSegment = selectedSegment
         fetchTrendingBooks()
     }
-    
 }
 
 
