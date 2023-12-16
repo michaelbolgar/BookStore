@@ -17,7 +17,7 @@ final class HomeView: UIView {
     
     private let sections = MockData.shared.pageData
     private let networkManager = NetworkingManager.instance
-    private var trendingBooks: [TrendingBooks.Book] = []
+    private var trendingBooks: [(book: TrendingBooks.Book, coverURL: URL)] = []
     private var categoryCollection: [CategoryCollection.Work] = []
     
     
@@ -205,9 +205,12 @@ extension HomeView: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            let book = trendingBooks[indexPath.row]
-            cell.configureCell(book: book)
-            
+            let bookWithCover = trendingBooks[indexPath.row]
+            let book = bookWithCover.book
+            let coverURL = bookWithCover.coverURL
+         
+            cell.configureCell(book: book, coverURL: coverURL)
+
             return cell
             
         case .recentBooks(let recentBook):
@@ -251,25 +254,20 @@ extension HomeView: UICollectionViewDataSource {
     // MARK: - Networking
     
     private func fetchTrendingBooks() {
-        print("fetchTrendingBooks called")
-        print("Fetching trending books for period: \(selectedSegment)")
-        networkManager.getTrendingBooks(for: selectedSegment) { result in
-            switch result {
-            case .success(let trendingBooks):
-                
-                print(trendingBooks)
-                print("Books ARE \(trendingBooks.count)")
-                print(trendingBooks.first?.1 as Any)
-                DispatchQueue.main.async {
-                    
-                    self.trendingBooks = trendingBooks.map { $0.0 }
-                    self.spinnerView.stopAnimating()
-                    self.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print("Ошибка при получении недельной подборки: \(error)")
-            }
-        }
+       print("Fetching trending books for period: \(selectedSegment)")
+       networkManager.getTrendingBooks(for: selectedSegment) { result in
+           switch result {
+           case .success(let trendingBooks):
+               print("Books ARE \(trendingBooks.count)")
+               DispatchQueue.main.async {
+                   self.trendingBooks = trendingBooks
+                   self.spinnerView.stopAnimating()
+                   self.collectionView.reloadData()
+               }
+           case .failure(let error):
+               print("Ошибка при получении недельной подборки: \(error)")
+           }
+       }
     }
     
     private func fetchCategoryCollection() {
@@ -279,8 +277,6 @@ extension HomeView: UICollectionViewDataSource {
                 self.categoryCollection = subjectResponse.first?.works ?? [CategoryCollection.Work]()
                 print(subjectResponse)
                 DispatchQueue.main.async {
-                    
-                 
                 }
             case .failure(let error):
                 print("Ошибка при получении недельной подборки: \(error)")
