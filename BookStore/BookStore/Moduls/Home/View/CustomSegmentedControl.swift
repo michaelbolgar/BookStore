@@ -121,6 +121,8 @@ final class CustomSegmentedControl: UIView {
         ])
     }
     
+    
+    
     // MARK: - Actions
     
     @objc private func buttonAction(sender: UIButton) {

@@ -4,10 +4,10 @@ import SnapKit
 final class HomeVC: UIViewController {
     
     private let homeView = HomeView()
-   
-        
-        
+  
         override func viewDidLoad() {
+            
+           
             super.viewDidLoad()
             view.backgroundColor = .background
             
@@ -34,7 +34,7 @@ final class HomeVC: UIViewController {
 
                     if let firstBook = trendingBooks.first {
                         print("Title: \(firstBook.0.title ?? "No title")")
-                        print("Author: \(firstBook.0.author_name?.joined(separator: ", ") ?? "No author")")
+//                        print("Author: \(firstBook.0.author_name?.joined(separator: ", ") ?? "No author")")
                         print("Cover URL: \(firstBook.1)")
 
                         //в данной функции результат выводится кортежем, поэтому firstBook.0 -- это инфа по книга, а firstBook.1 -- это ссылка
@@ -75,7 +75,8 @@ final class HomeVC: UIViewController {
 //                }
 //            }
         }
-        
+    
+    
         private func setupConstraints() {
             homeView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()

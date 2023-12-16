@@ -3,8 +3,6 @@ import SnapKit
 
 final class HomeView: UIView {
     
-    private var trendingBooksTitle: [TrendingBooks.Book] = []
-    
     //MARK: UI Elements
     
     private lazy var collectionView: UICollectionView = {
@@ -19,11 +17,13 @@ final class HomeView: UIView {
     
     private let sections = MockData.shared.pageData
     private let networkManager = NetworkingManager.instance
-   
+    private var trendingBooks: [TrendingBooks.Book] = []
+    private var categoryCollection: [CategoryCollection.Work] = []
+    
     
     private var selectedSegment: TrendingPeriod = .weekly
     
-        private var spinnerView = UIActivityIndicatorView()
+    private var spinnerView = UIActivityIndicatorView()
     
     
     // MARK: - Set Views
@@ -34,6 +34,8 @@ final class HomeView: UIView {
         self.addSubview(collectionView)
     
         fetchTrendingBooks()
+        
+        fetchCategoryCollection()
         
         showSpinner(in: self)
         
@@ -191,7 +193,7 @@ extension HomeView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        trendingBooksTitle.count
+        trendingBooks.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -203,8 +205,9 @@ extension HomeView: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            let book = trendingBooksTitle[indexPath.row]
+            let book = trendingBooks[indexPath.row]
             cell.configureCell(book: book)
+            
             return cell
             
         case .recentBooks(let recentBook):
@@ -253,9 +256,13 @@ extension HomeView: UICollectionViewDataSource {
         networkManager.getTrendingBooks(for: selectedSegment) { result in
             switch result {
             case .success(let trendingBooks):
+                
+                print(trendingBooks)
                 print("Books ARE \(trendingBooks.count)")
+                print(trendingBooks.first?.1 as Any)
                 DispatchQueue.main.async {
-                    self.trendingBooksTitle = trendingBooks.map { $0.0 }
+                    
+                    self.trendingBooks = trendingBooks.map { $0.0 }
                     self.spinnerView.stopAnimating()
                     self.collectionView.reloadData()
                 }
@@ -264,6 +271,24 @@ extension HomeView: UICollectionViewDataSource {
             }
         }
     }
+    
+    private func fetchCategoryCollection() {
+        NetworkingManager.instance.getCategoryCollection (for: .fiction) { result in
+            switch result {
+            case .success(let subjectResponse):
+                self.categoryCollection = subjectResponse.first?.works ?? [CategoryCollection.Work]()
+                print(subjectResponse)
+                DispatchQueue.main.async {
+                    
+                 
+                }
+            case .failure(let error):
+                print("Ошибка при получении недельной подборки: \(error)")
+            }
+        }
+    }
+    
+
     
     // MARK: - Spinner
     
@@ -283,8 +308,8 @@ extension HomeView: CustomSegmentedControlDelegate {
     func buttonPressed(selectedSegment: TrendingPeriod) {
         self.selectedSegment = selectedSegment
         fetchTrendingBooks()
-        }
-    
     }
+    
+}
 
 

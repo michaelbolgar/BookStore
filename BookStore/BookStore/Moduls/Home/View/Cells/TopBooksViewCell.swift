@@ -51,7 +51,7 @@ final class TopBooksViewCell: UICollectionViewCell {
         
         setupView()
         setConstraints()
-       
+        
     }
     
     required init?(coder: NSCoder) {
@@ -73,12 +73,32 @@ final class TopBooksViewCell: UICollectionViewCell {
     }
     
     // MARK: - Cell Configure
-
+    
     func configureCell(book: TrendingBooks.Book) {
-//        bookGenreLabel.text = book
+        //        bookGenreLabel.text = book
         bookTitleLabel.text = book.title
         bookAuthorLabel.text = book.author_name?.first
+        if let coverId = book.cover_i, let imageUrl = URL(string: "https://covers.openlibrary.org/b/id/\(coverId)-M.jpg") {
+            let session = URLSession(configuration: .default)
+            let downloadPicTask = session.dataTask(with: imageUrl) { (data, response, error) in
+                if let e = error {
+                    print("Error downloading image: \(e)")
+                } else {
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.topBooksImageView.image = image
+                        }
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                }
+            }
+            downloadPicTask.resume()
+        }
     }
+    
+    
     
     // MARK: - Setup Constraints
     
@@ -94,7 +114,7 @@ final class TopBooksViewCell: UICollectionViewCell {
         footerView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(100)
-             
+            
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             
@@ -115,5 +135,5 @@ final class TopBooksViewCell: UICollectionViewCell {
     }
     
     
-   
+    
 }
