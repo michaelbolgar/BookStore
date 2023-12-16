@@ -74,6 +74,7 @@ final class RecentBooksViewCell: UICollectionViewCell {
     // MARK: - Cell Configure
     
     func configureCell(work: (work: CategoryCollection.Work, image: UIImage?)) {
+        
       bookTitleLabel.text = work.work.title ?? "No title"
       if let author = work.work.authors.first {
           bookAuthorLabel.text = author.name ?? "No author"

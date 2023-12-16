@@ -91,16 +91,14 @@ private extension HomeView {
         
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self = self else { return nil }
-            let section: NSCollectionLayoutSection
-            switch sectionIndex {
-            case 0:
-                section = self.createTopBookSection()
-            case 1:
-                section = self.createBottomBookSection()
-            default:
-                return nil
+            let section = self.sections[sectionIndex]
+            switch section {
+                
+            case .topBooks(_):
+                return self.createTopBookSection()
+            case .recentBooks(_):
+                return self.createBottomBookSection()
             }
-            return section
         }
     }
     
@@ -183,7 +181,7 @@ extension HomeView: UICollectionViewDelegate {
 extension HomeView: UICollectionViewDataSource {
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        sections.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
