@@ -40,7 +40,6 @@ class SearchResultVC: UIViewController {
     //массив для получения запроса с сервера
     var booksArray = [Doc]()
     var currentSortingMethod: SortingMethod = .none
-    var books = [CategoryCollection.Work]()
     var url = [URL]()
     
     //MARK: UI Elements
@@ -70,14 +69,14 @@ class SearchResultVC: UIViewController {
         return collectionView
     }()
     
-//    private lazy var rightButton: UIButton = {
-//        let button = UIButton(type: .custom)
-//        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-//        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-//        button.tintColor = .customBlack
-//        button.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
-//        return button
-//    }()
+    //    private lazy var rightButton: UIButton = {
+    //        let button = UIButton(type: .custom)
+    //        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    //        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+    //        button.tintColor = .customBlack
+    //        button.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
+    //        return button
+    //    }()
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -140,7 +139,7 @@ class SearchResultVC: UIViewController {
         } searchCompletion: { object in
             self.booksArray = object.docs
             self.sorting()
-            print(self.booksArray)
+//            print(self.booksArray)
             DispatchQueue.main.async {
                 self.numberOfBooks = self.booksArray.count
                 self.updateNumberOfResultsLabel(withCount: self.numberOfBooks)
@@ -148,7 +147,7 @@ class SearchResultVC: UIViewController {
             }
         }
     }
-        
+    
     private func updateNumberOfResultsLabel(withCount count: Int) {
         numberOfResultsLabel.text = "\(count) Search Results"
     }
@@ -169,7 +168,7 @@ class SearchResultVC: UIViewController {
     
     private func sortByNewest() {
         currentSortingMethod = .byNewest
-    print (currentSortingMethod)
+        print (currentSortingMethod)
         sorting()
     }
     
@@ -243,15 +242,30 @@ extension SearchResultVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
-}
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print ("tap cell")
+        let vc = BookDetailsViewController()
+                let booksModel = BookDetailsModel(key: self.booksArray[indexPath.item].key ?? "",
+                                                 title: self.booksArray[indexPath.item].title_suggest ?? "Unknowed Name",
+                                                 authorName: self.booksArray[indexPath.item].author_name?[0] ?? "",
+                                                 hasFullText: self.booksArray[indexPath.item].has_fulltext ?? false,
+                                                 ia: self.booksArray[indexPath.item].ia?[0] ?? "" ,
+                                                 category: self.booksArray[indexPath.item].subject_key?[0] ?? "" )
+                //!!!: - Затянуть рейтинг и описание книги
+                
+                
+                vc.book = booksModel
+                self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
 extension SearchResultVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text, !text.isEmpty {
             searchRequest = text
-            performSearchRequest()
             searchBar.resignFirstResponder()
+            performSearchRequest()
         } else {
             searchBar.resignFirstResponder()
         }
