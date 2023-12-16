@@ -257,7 +257,7 @@ extension HomeView: UICollectionViewDataSource {
     
     private func fetchTrendingBooks() {
         print("Fetching trending books for period: \(selectedSegment)")
-        networkManager.getTrendingBooks(for: selectedSegment) { result in
+        networkManager.getTrendingBooks(for: selectedSegment) { [weak self] result in
             switch result {
             case .success(let trendingBooks):
                 print("Books ARE \(trendingBooks.count)")
@@ -265,9 +265,9 @@ extension HomeView: UICollectionViewDataSource {
                     let coverURL = bookWithCoverURL.1
                     NetworkingManager.instance.loadImage(from: coverURL) { image in
                         DispatchQueue.main.async {
-                            self.trendingBooks.append((bookWithCoverURL.0, image))
-                            self.spinnerView.stopAnimating()
-                            self.collectionView.reloadData()
+                            self?.trendingBooks.append((bookWithCoverURL.0, image))
+                            self?.spinnerView.stopAnimating()
+                            self?.collectionView.reloadData()
                         }
                     }
                 }
@@ -278,17 +278,17 @@ extension HomeView: UICollectionViewDataSource {
     }
     
     private func fetchCategoryCollection() {
-        NetworkingManager.instance.getCategoryCollection(for: .fiction) { result in
+        networkManager.getCategoryCollection(for: .fiction) { [weak self] result in
             switch result {
             case .success(let categoryCollection):
                 if let firstCategory = categoryCollection.first {
                     for work in firstCategory.works {
                         if let coverID = work.cover_id {
                             let coverURL = URL(string: "https://covers.openlibrary.org/b/id/\(coverID)-M.jpg")!
-                            NetworkingManager.instance.loadImage(from: coverURL) { image in
+                            self?.networkManager.loadImage(from: coverURL) { image in
                                 DispatchQueue.main.async {
-                                    self.works.append((work, image))
-                                    self.collectionView.reloadData()
+                                    self?.works.append((work, image))
+                                    self?.collectionView.reloadData()
                                 }
                             }
                         }
