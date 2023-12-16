@@ -22,7 +22,7 @@ class SearchCell: UICollectionViewCell {
 
     private lazy var backgroundBookView: UIView = {
         let view = UIView()
-        view.backgroundColor = .customDarkGray
+        view.backgroundColor = .label
         view.layer.cornerRadius = 8
         return view
     }()
