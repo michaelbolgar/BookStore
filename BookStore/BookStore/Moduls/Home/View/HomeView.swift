@@ -17,8 +17,8 @@ final class HomeView: UIView {
     
     private let sections = MockData.shared.pageData
     private let networkManager = NetworkingManager.instance
-    private var trendingBooks: [(book: TrendingBooks.Book, coverURL: URL)] = []
-    private var categoryCollection: [CategoryCollection.Work] = []
+    private var trendingBooks: [(book: TrendingBooks.Book, image: UIImage?)] = []
+    private var works: [(work: CategoryCollection.Work, image: UIImage?)] = []
     
     
     private var selectedSegment: TrendingPeriod = .weekly
@@ -32,7 +32,7 @@ final class HomeView: UIView {
         self.backgroundColor = .background
         
         self.addSubview(collectionView)
-    
+        
         fetchTrendingBooks()
         
         fetchCategoryCollection()
@@ -205,21 +205,23 @@ extension HomeView: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            let bookWithCover = trendingBooks[indexPath.row]
-            let book = bookWithCover.book
-            let coverURL = bookWithCover.coverURL
-         
-            cell.configureCell(book: book, coverURL: coverURL)
-
+            let bookWithImage = trendingBooks[indexPath.row]
+            let book = bookWithImage.book
+            let image = bookWithImage.image
+            cell.configureCell(book: book, image: image)
+            
             return cell
             
-        case .recentBooks(let recentBook):
+        case .recentBooks(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentBooksViewCell", for: indexPath) as? RecentBooksViewCell
             else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(imageName: recentBook[indexPath.row].image)
+            let work = works[indexPath.row]
+            cell.configureCell(work: work)
+            
             return cell
+            
         }
     }
     
@@ -254,29 +256,20 @@ extension HomeView: UICollectionViewDataSource {
     // MARK: - Networking
     
     private func fetchTrendingBooks() {
-       print("Fetching trending books for period: \(selectedSegment)")
-       networkManager.getTrendingBooks(for: selectedSegment) { result in
-           switch result {
-           case .success(let trendingBooks):
-               print("Books ARE \(trendingBooks.count)")
-               DispatchQueue.main.async {
-                   self.trendingBooks = trendingBooks
-                   self.spinnerView.stopAnimating()
-                   self.collectionView.reloadData()
-               }
-           case .failure(let error):
-               print("Ошибка при получении недельной подборки: \(error)")
-           }
-       }
-    }
-    
-    private func fetchCategoryCollection() {
-        NetworkingManager.instance.getCategoryCollection (for: .fiction) { result in
+        print("Fetching trending books for period: \(selectedSegment)")
+        networkManager.getTrendingBooks(for: selectedSegment) { result in
             switch result {
-            case .success(let subjectResponse):
-                self.categoryCollection = subjectResponse.first?.works ?? [CategoryCollection.Work]()
-                print(subjectResponse)
-                DispatchQueue.main.async {
+            case .success(let trendingBooks):
+                print("Books ARE \(trendingBooks.count)")
+                for bookWithCoverURL in trendingBooks {
+                    let coverURL = bookWithCoverURL.1
+                    NetworkingManager.instance.loadImage(from: coverURL) { image in
+                        DispatchQueue.main.async {
+                            self.trendingBooks.append((bookWithCoverURL.0, image))
+                            self.spinnerView.stopAnimating()
+                            self.collectionView.reloadData()
+                        }
+                    }
                 }
             case .failure(let error):
                 print("Ошибка при получении недельной подборки: \(error)")
@@ -284,7 +277,31 @@ extension HomeView: UICollectionViewDataSource {
         }
     }
     
-
+    private func fetchCategoryCollection() {
+        NetworkingManager.instance.getCategoryCollection(for: .fiction) { result in
+            switch result {
+            case .success(let categoryCollection):
+                if let firstCategory = categoryCollection.first {
+                    for work in firstCategory.works {
+                        if let coverID = work.cover_id {
+                            let coverURL = URL(string: "https://covers.openlibrary.org/b/id/\(coverID)-M.jpg")!
+                            NetworkingManager.instance.loadImage(from: coverURL) { image in
+                                DispatchQueue.main.async {
+                                    self.works.append((work, image))
+                                    self.collectionView.reloadData()
+                                }
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    
+    
     
     // MARK: - Spinner
     

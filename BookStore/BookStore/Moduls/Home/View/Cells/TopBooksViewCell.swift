@@ -28,7 +28,7 @@ final class TopBooksViewCell: UICollectionViewCell {
     }()
     
     private let bookGenreLabel = UILabel.makeLabel(
-        text: "Top Books",
+        text: "Classic",
         font: .openSansRegular(ofSize: 11),
         textColor: .white
     )
@@ -74,25 +74,10 @@ final class TopBooksViewCell: UICollectionViewCell {
     
     // MARK: - Cell Configure
     
-    func configureCell(book: TrendingBooks.Book, coverURL: URL) {
-       bookTitleLabel.text = book.title
-       bookAuthorLabel.text = book.author_name?.first
-
-       let downloadPicTask = URLSession.shared.dataTask(with: coverURL) { (data, response, error) in
-           if let e = error {
-               print("Error downloading image: \(e)")
-           } else {
-               if let imageData = data {
-                   let image = UIImage(data: imageData)
-                   DispatchQueue.main.async {
-                      self.topBooksImageView.image = image
-                   }
-               } else {
-                   print("Couldn't get image: Image is nil")
-               }
-           }
-       }
-       downloadPicTask.resume()
+    func configureCell(book: TrendingBooks.Book, image: UIImage?) {
+     bookTitleLabel.text = book.title
+     bookAuthorLabel.text = book.author_name?.first
+     topBooksImageView.image = image
     }
     
     // MARK: - Setup Constraints
