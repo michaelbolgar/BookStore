@@ -23,5 +23,6 @@ extension UILabel {
                          .foregroundColor: UIColor.labelColors])
         attributedText.append(categoryText)
         self.attributedText = attributedText
+        self.numberOfLines = 0
     }
 }

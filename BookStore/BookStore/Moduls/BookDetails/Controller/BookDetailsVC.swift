@@ -210,10 +210,6 @@ private extension BookDetailsViewController {
             labelsStack.heightAnchor.constraint(equalTo: rightStack.heightAnchor, multiplier: 0.5),
             buttonsStack.heightAnchor.constraint(equalTo: rightStack.heightAnchor, multiplier: 0.5),
             
-            authorLabel.heightAnchor.constraint(equalToConstant: labelHeight),
-            categoryLabel.heightAnchor.constraint(equalToConstant: labelHeight),
-            raitingLabel.heightAnchor.constraint(equalToConstant: labelHeight),
-            
             authorLabel.topAnchor.constraint(equalTo: rightStack.topAnchor, constant: 30),
             categoryLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 10),
             raitingLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 10),
@@ -226,10 +222,19 @@ private extension BookDetailsViewController {
           
             addToListButton.bottomAnchor.constraint(equalTo: readButton.topAnchor, constant: -10),
             readButton.bottomAnchor.constraint(equalTo: buttonsStack.bottomAnchor, constant: -10),
+            
+            rightStack.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor, constant: -10),
 
             labelsStack.leadingAnchor.constraint(equalTo: rightStack.leadingAnchor),
             labelsStack.trailingAnchor.constraint(equalTo: rightStack.trailingAnchor),
             labelsStack.topAnchor.constraint(equalTo: rightStack.topAnchor),
+            
+            authorLabel.trailingAnchor.constraint(equalTo: labelsStack.trailingAnchor, constant: -10),
+            categoryLabel.trailingAnchor.constraint(equalTo: labelsStack.trailingAnchor, constant: -10),
+            raitingLabel.trailingAnchor.constraint(equalTo: labelsStack.trailingAnchor, constant: -10),
+            authorLabel.leadingAnchor.constraint(equalTo: labelsStack.leadingAnchor, constant: 10),
+            categoryLabel.leadingAnchor.constraint(equalTo: labelsStack.leadingAnchor, constant: 10),
+            raitingLabel.leadingAnchor.constraint(equalTo: labelsStack.leadingAnchor, constant: 10),
             
             buttonsStack.leadingAnchor.constraint(equalTo: rightStack.leadingAnchor),
             buttonsStack.trailingAnchor.constraint(equalTo: rightStack.trailingAnchor),

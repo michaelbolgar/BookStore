@@ -29,7 +29,7 @@ final class RecentBooksViewCell: UICollectionViewCell {
     private let textStackView = UIStackView(spacing: 10, axis: .vertical, alignment: .leading)
     
     private let bookGenreLabel = UILabel.makeLabel(
-        text: "Top Books",
+        text: "Classic",
         font: .openSansRegular(ofSize: 11),
         textColor: .white
     )
@@ -73,8 +73,15 @@ final class RecentBooksViewCell: UICollectionViewCell {
     
     // MARK: - Cell Configure
     
-    func configureCell(imageName: String) {
-        recentBooksImageView.image = UIImage(named: imageName)
+    func configureCell(work: (work: CategoryCollection.Work, image: UIImage?)) {
+        
+      bookTitleLabel.text = work.work.title ?? "No title"
+      if let author = work.work.authors.first {
+          bookAuthorLabel.text = author.name ?? "No author"
+      } else {
+          bookAuthorLabel.text = "No author"
+      }
+      recentBooksImageView.image = work.image
     }
     
     // MARK: - Setup Constraints
@@ -82,14 +89,19 @@ final class RecentBooksViewCell: UICollectionViewCell {
     private func setConstraints() {
         
         recentBooksImageView.snp.makeConstraints { make in
-            make.width.equalTo(91)
-            make.height.equalTo(141)
-            make.top.equalToSuperview()
+            make.width.equalTo(121)
+            make.height.equalTo(171)
+            make.top.equalTo(20)
             make.centerX.equalToSuperview()
         }
         
         footerView.snp.makeConstraints { make in
             make.width.equalToSuperview()
+            
+            make.height.equalTo(60)
+            
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
             
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
@@ -98,6 +110,15 @@ final class RecentBooksViewCell: UICollectionViewCell {
         
         textStackView.snp.makeConstraints { make in
             make.edges.equalTo(footerView.safeAreaLayoutGuide).inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
+        }
+        
+        bookGenreLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
+        }
+        
+        bookAuthorLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
+        
             
         }
         layoutIfNeeded()

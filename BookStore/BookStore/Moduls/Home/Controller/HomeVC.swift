@@ -4,6 +4,7 @@ import SnapKit
 final class HomeVC: UIViewController {
     
     private let homeView = HomeView()
+
     private lazy var search =  SearchBarVC()
     
     override func viewDidLoad() {
@@ -62,6 +63,7 @@ final class HomeVC: UIViewController {
         super .touchesBegan(touches, with: event)
     }
     
+
     private func setupConstraints() {
         
         let offset: CGFloat = 20
