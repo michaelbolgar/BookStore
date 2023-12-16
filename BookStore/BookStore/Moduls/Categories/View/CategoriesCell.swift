@@ -12,7 +12,7 @@ final class CategoriesCell: UICollectionViewCell {
     
     //MARK: - Create UIElements
     var genre = UILabel.makeMultiLineLabel(font: UIFont.openSansRegular(ofSize: 20),
-                                                        textColor: .label,
+                                                        textColor: .customLightGray,
                                                         numberOfLines: 2)
     
     var image: UIImageView = {
