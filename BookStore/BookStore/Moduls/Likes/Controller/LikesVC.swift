@@ -53,7 +53,7 @@ class LikesVC: UIViewController {
         return imagesURL
     }
 }
-    //MARK: - extensions LikesVC
+//MARK: - extensions LikesVC
 extension LikesVC: UICollectionViewDelegate,
                    UICollectionViewDataSource,
                    UICollectionViewDelegateFlowLayout {
@@ -70,28 +70,28 @@ extension LikesVC: UICollectionViewDelegate,
         else {
             return UICollectionViewCell()
         }
-            NetworkingManager.instance.loadImage(from: url[indexPath.item]) { image in
-                DispatchQueue.main.async {
-                    cell.image.image = image
-                }
+        NetworkingManager.instance.loadImage(from: url[indexPath.item]) { image in
+            DispatchQueue.main.async {
+                cell.image.image = image
             }
-            cell.clipsToBounds = true
-            cell.layer.cornerRadius = 8
-            cell.genre.text = genre
-            cell.name.text = books[indexPath.item].title
-            if books[indexPath.item].authors.count > 1 {
-                var authorString = ""
-                for author in books[indexPath.item].authors {
-                    authorString.append("\(author.name ?? ""), ")
-                }
-                authorString.removeLast()
-                authorString.removeLast()
-                cell.author.text = authorString
-            } else {
-                cell.author.text = books[indexPath.item].authors.first?.name
+        }
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 8
+        cell.genre.text = genre
+        cell.name.text = books[indexPath.item].title
+        if books[indexPath.item].authors.count > 1 {
+            var authorString = ""
+            for author in books[indexPath.item].authors {
+                authorString.append("\(author.name ?? ""), ")
             }
-            cell.closeButton.isHidden = false ? previosVC != "Likes" : true
-            return cell
+            authorString.removeLast()
+            authorString.removeLast()
+            cell.author.text = authorString
+        } else {
+            cell.author.text = books[indexPath.item].authors.first?.name
+        }
+        cell.closeButton.isHidden = false ? previosVC != "Likes" : true
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -108,25 +108,33 @@ extension LikesVC: UICollectionViewDelegate,
                 } else {
                     authorString = self.books[indexPath.item].authors.first?.name ?? ""
                 }
-                let booksModel = BookDetailsModel(key: self.books[indexPath.item].key ?? "",
-                                                  image: image ?? UIImage(),
-                                                  title: self.books[indexPath.item].title ?? "",
-                                                  authorName: authorString,
-                                                  
-                                                  hasFullText: self.books[indexPath.item].has_fulltext ?? false,
-                                                  ia: self.books[indexPath.item].ia ?? "",
-                                                  category: self.genre ?? "no genre"
-//                                                  raiting: <#T##String#>,
-//                                                  descriptionText: <#T##String#>
-                                                  //!!!: - Затянуть рейтинг и описание книги
-                )
-
-                vc.book = booksModel
-                self.navigationController?.pushViewController(vc, animated: true)
+                
+                NetworkingManager.instance.getBookDetails(for: self.books[indexPath.item].key ?? "/works/OL82586W") { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let bookDetails):
+                            let description = bookDetails.description?.value ?? "No description"
+                            
+                            let booksModel = BookDetailsModel(key: self.books[indexPath.item].key ?? "",
+                                                              image: image ?? UIImage(),
+                                                              title: self.books[indexPath.item].title ?? "",
+                                                              authorName: authorString,
+                                                              hasFullText: self.books[indexPath.item].has_fulltext ?? false,
+                                                              ia: self.books[indexPath.item].ia ?? "",
+                                                              category: self.genre ?? "no genre",
+                                                              descriptionText: description)
+                            
+                            vc.book = booksModel
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        case .failure(let error):
+                            print("Error getting book details: \(error)")
+                        }
+                    }
+                }
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
