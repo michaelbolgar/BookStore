@@ -14,7 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = LaunchViewController()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
-                self.window?.rootViewController = MainTabBarController()
+//                self.window?.rootViewController = MainTabBarController()
+            self.window?.rootViewController = TestViewController()
             //!!!: Delete line above anu uncomment lines 19-28 before release
             //                let appLaunchedBefore = UserDefaults.standard.bool(forKey: "appLaunchedBefore")
             //                if appLaunchedBefore {

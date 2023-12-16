@@ -40,6 +40,8 @@ class SearchResultVC: UIViewController {
     //массив для получения запроса с сервера
     var booksArray = [Doc]()
     var currentSortingMethod: SortingMethod = .none
+    var books = [CategoryCollection.Work]()
+    var url = [URL]()
     
     //MARK: UI Elements
     
@@ -68,14 +70,14 @@ class SearchResultVC: UIViewController {
         return collectionView
     }()
     
-    private lazy var rightButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-        button.tintColor = .customBlack
-        button.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
-        return button
-    }()
+//    private lazy var rightButton: UIButton = {
+//        let button = UIButton(type: .custom)
+//        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+//        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+//        button.tintColor = .customBlack
+//        button.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
+//        return button
+//    }()
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -210,12 +212,6 @@ class SearchResultVC: UIViewController {
             
         ])
     }
-    
-    @objc func rightButtonTapped() {
-        print ("cancel")
-        let vc = CategoriesVC()
-        navigationController?.pushViewController(vc, animated: true)
-    }
 }
 
 
@@ -262,8 +258,11 @@ extension SearchResultVC: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        let vc = CategoriesVC()
+        navigationController?.pushViewController(vc, animated: true)
         print("Cancel button clicked")
     }
     
 }
+
+
