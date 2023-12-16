@@ -106,15 +106,21 @@ extension LikesVC: UICollectionViewDelegate,
                     authorString.removeLast()
                     authorString.removeLast()
                 } else {
-                    authorString = self.books[indexPath.item].authors.first?.name ?? "Oscar Wilde"
+                    authorString = self.books[indexPath.item].authors.first?.name ?? ""
                 }
                 let booksModel = BookDetailsModel(key: self.books[indexPath.item].key ?? "",
                                                   image: image ?? UIImage(),
                                                   title: self.books[indexPath.item].title ?? "",
-                                                  hasFullText: self.books[indexPath.item].has_fulltext ?? false)
-//                                                  ia: self.books[indexPath.item].ia ?? ""
-//                                                  category: genre,
-//                                                  authorName: authorString)
+                                                  authorName: authorString,
+                                                  
+                                                  hasFullText: self.books[indexPath.item].has_fulltext ?? false,
+                                                  ia: self.books[indexPath.item].ia ?? "",
+                                                  category: self.genre ?? "no genre"
+//                                                  raiting: <#T##String#>,
+//                                                  descriptionText: <#T##String#>
+                                                  //!!!: - Затянуть рейтинг и описание книги
+                )
+
                 vc.book = booksModel
                 self.navigationController?.pushViewController(vc, animated: true)
             }

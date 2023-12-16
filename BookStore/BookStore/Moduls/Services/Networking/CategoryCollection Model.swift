@@ -23,7 +23,7 @@ public struct CategoryCollection: Codable {
         let authors: [Author]
         let first_publish_year: Int?
         let has_fulltext: Bool? //использовать при выгрузке в читалку?
-//        let ia: String?
+        let ia: String?
 
         struct Author: Codable {
             let name: String?

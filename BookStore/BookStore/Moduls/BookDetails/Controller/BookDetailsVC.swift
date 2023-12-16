@@ -15,8 +15,10 @@ final class BookDetailsViewController: UIViewController {
     var book = BookDetailsModel(key: "",
                                 image: UIImage(),
                                 title: "",
+                                authorName: "",
                                 hasFullText: true,
-                                ia: "")
+                                ia: "",
+                                category: "")
     
     //MARK: - UI Elements
     
@@ -111,9 +113,9 @@ final class BookDetailsViewController: UIViewController {
     
     //у этих трёх лейблов тоже нужно заменить цвет текста на .label
     //!!!: - Эти элементы собираются из Convenience Init, где и установлен цвет.
-    var authorLabel = UILabel(text1: "Author: ", text2: BookDetailsModel.authorName)
-    var categoryLabel = UILabel(text1: "Category: ", text2: BookDetailsModel.category)
-    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: BookDetailsModel.raiting)
+    lazy var authorLabel = UILabel(text1: "Author: ", text2: book.authorName)
+    lazy var categoryLabel = UILabel(text1: "Category: ", text2: book.category)
+    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: book.raiting)
     
     var descriptionLabel: UILabel = {
         let element = UILabel()
@@ -125,7 +127,7 @@ final class BookDetailsViewController: UIViewController {
     private lazy var descriptionTextView: UITextView = {
         let element = UITextView()
         element.isScrollEnabled = true
-        element.text = BookDetailsModel.descriptionText
+        element.text = book.descriptionText
         element.font = UIFont.openSansRegular(ofSize: 14)
         element.backgroundColor = .clear
         
@@ -142,6 +144,8 @@ final class BookDetailsViewController: UIViewController {
         setupViews()
         setStack()
         setConstraints()
+        
+        print(book.title)
         
     }
     
@@ -174,9 +178,8 @@ final class BookDetailsViewController: UIViewController {
     //MARK: - @OBJC Methods
     @objc private func readButtonTapped() {
         let vc = ReadingViewController()
-        vc.urlString = "https://archive.org/embed/diebruderkarama00dost"
-//        navigationController?.pushViewController(readingViewController, animated: true)
-        present(vc, animated: true)
+        vc.urlString = "https://archive.org/embed/\(book.ia)"
+        navigationController?.pushViewController(vc, animated: true)
         print("tap-tap")
     }
 }
