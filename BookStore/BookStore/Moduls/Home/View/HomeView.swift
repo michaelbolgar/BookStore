@@ -267,7 +267,8 @@ extension HomeView: UICollectionViewDataSource {
             }
         }
     }
-    
+
+    //переименовать функцию
     private func fetchCategoryCollection() {
         networkManager.getCategoryCollection(for: .fiction) { [weak self] result in
             switch result {

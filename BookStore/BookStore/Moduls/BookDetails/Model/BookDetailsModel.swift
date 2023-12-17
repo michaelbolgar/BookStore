@@ -94,3 +94,7 @@ extension BookDetailsModel {
     }
 }
 
+extension UserDefaultsManager.Keys {
+    static let bookDetails = UserDefaultsManager.Keys(rawValue: "bookDetails")
+}
+

@@ -9,7 +9,7 @@ import UIKit
 
 final class BookDetailsViewController: UIViewController {
 
-    private var udManager: UserDefaultsManagerProtocol = UserDefaultsManager()
+    private var udManager = UserDefaultsManager()
     
     //MARK: - Dependencies
     let spacing: CGFloat = 24
@@ -180,6 +180,8 @@ final class BookDetailsViewController: UIViewController {
         labelsStack.addSubviewsTamicOff(authorLabel, categoryLabel, raitingLabel)
         buttonsStack.addSubviewsTamicOff(addToListButton, readButton)
     }
+
+    //Setting and getting data in UserDefaults
     
     //MARK: - @OBJC Methods
     @objc private func readButtonTapped() {
@@ -190,7 +192,8 @@ final class BookDetailsViewController: UIViewController {
     }
 
     @objc private func starButtonAction() {
-//        UserDefaultsManager.setCustomType(object: book, forKey: .likedBook)
+        udManager.addBookToFavorites(book.key, category: .likedBooks)
+        print(udManager.getBook(for: UserDefaultsManager.Keys.likedBooks))
     }
 }
 

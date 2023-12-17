@@ -8,6 +8,8 @@
 import UIKit
 
 class SearchResultVC: UIViewController {
+
+    private var udManager = UserDefaultsManager()
     
     enum SortingMethod {
         case none
@@ -183,7 +185,10 @@ extension SearchResultVC: UICollectionViewDelegateFlowLayout {
                                           descriptionText: "")
         //!!!: - Затянуть рейтинг и описание книги
         
-        
+        //добавление книги в recent
+        udManager.addToRecent(booksModel.key)
+        print(udManager.getBook(for: UserDefaultsManager.Keys.recent))
+
         vc.book = booksModel
         self.navigationController?.pushViewController(vc, animated: true)
     }

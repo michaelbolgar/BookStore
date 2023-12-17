@@ -22,13 +22,8 @@ protocol UserDefaultsManagerProtocol {
 final class UserDefaultsManager {
 
     public enum Keys: String {
-        case gameDuration = "gameDuration"
-        case gameSpeed = "gameSpeed"
-        case selectedColors = "selectedColors"
-        case fontSize = "fontSize"
-        case isWithBackground = "isWithBackground"
-        case isWithCheck = "isWithCheck"
-        case backgroundColor = "backgroundColor"
+        case likedBooks = "likedBooks"
+        case recent = "recent"
     }
 
     private let userDefaults = UserDefaults.standard
@@ -40,6 +35,59 @@ final class UserDefaultsManager {
     private func restoreData(forKey key: String) -> Any? {
         userDefaults.object(forKey: key)
     }
+
+//    func addBookToFavorites(_ key: String, category: Keys) {
+//        var favorites = getBook(for: category)
+//        if !favorites.contains(key) {
+//            favorites.append(key)
+//            saveBook(key, category: category)
+//        }
+//    }
+//
+//    func addToRecent(_ key: String) {
+//        var recentBooks = getBook(for: .recent)
+//        if !recentBooks.contains(key) {
+//            recentBooks.append(key)
+//            saveBook(key, category: .recent)
+//        }
+//    }
+//
+//    func getBook(for key: Keys) -> [String] {
+//        return UserDefaults.standard.stringArray(forKey: key.rawValue) ?? []
+//    }
+//
+//    func saveBook(_ key: String, category: Keys) {
+//        UserDefaults.standard.set(key, forKey: category.rawValue)
+//        UserDefaults.standard.synchronize()
+//    }
+
+    func addBookToFavorites(_ key: String, category: Keys) {
+        var favorites = getBook(for: category)
+        if !favorites.contains(key) {
+            favorites.append(key)
+            saveBook(favorites, category: category)
+        }
+    }
+
+    func addToRecent(_ key: String) {
+        var recentBooks = getBook(for: .recent)
+        if !recentBooks.contains(key) {
+            recentBooks.append(key)
+            saveBook(recentBooks, category: .recent)
+        }
+    }
+
+    func getBook(for key: Keys) -> [String] {
+        return UserDefaults.standard.stringArray(forKey: key.rawValue) ?? []
+    }
+
+    func saveBook(_ books: [String], category: Keys) {
+        UserDefaults.standard.set(books, forKey: category.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+
+    func deleteFromFavorites(_ favorites: [String]) {
+        UserDefaults.standard.removeObject(forKey: UserDefaultsManager.Keys.likedBooks.rawValue)    }
 }
 
     //MARK: UserDefaultsManagerProtocol
