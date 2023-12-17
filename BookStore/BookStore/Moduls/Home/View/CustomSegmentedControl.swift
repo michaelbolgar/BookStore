@@ -32,11 +32,12 @@ final class CustomSegmentedControl: UIView {
     
     weak var delegate: CustomSegmentedControlDelegate?
     
-    convenience init(buttonTitles: [String], tintColor: UIColor = .black, fontSelected: UIFont = .preferredFont(forTextStyle: .body, compatibleWith: .init(legibilityWeight: .bold)), fontUnselected: UIFont = .preferredFont(forTextStyle: .body)) {
+    convenience init(buttonTitles: [String], selectedSegment: TrendingPeriod, tintColor: UIColor = .black, fontSelected: UIFont = .preferredFont(forTextStyle: .body, compatibleWith: .init(legibilityWeight: .bold)), fontUnselected: UIFont = .preferredFont(forTextStyle: .body)) {
         self.init()
         
         guard buttonTitles.isEmpty == false else { return }
         self.buttonTitles = buttonTitles
+        self.selectedSegment = selectedSegment
         self.fontSelected = fontSelected
         self.fontUnselected = fontUnselected
         self.tintColor = tintColor
@@ -123,7 +124,7 @@ final class CustomSegmentedControl: UIView {
     
     @objc private func buttonAction(sender: UIButton) {
         guard let buttonIndex = buttons.firstIndex(of: sender) else { return }
-        delegate?.buttonPressed(selectedSegment: selectedSegment)
+        
     
         switch buttonIndex {
         case 0:
@@ -143,6 +144,8 @@ final class CustomSegmentedControl: UIView {
         selectedButtonIndex = buttonIndex
         prepareButtonsUI()
         animateBarViewPosition()
+        
+        delegate?.buttonPressed(selectedSegment: selectedSegment)
     }
     
     private func prepareButtonsUI() {
