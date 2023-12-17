@@ -1,6 +1,8 @@
 import UIKit
 
 class LikesVC: UIViewController {
+
+    private var udManager = UserDefaultsManager()
     
     //MARK: - CreateUIElements, private constans
     private let likesView = LikesView()
@@ -123,9 +125,12 @@ extension LikesVC: UICollectionViewDelegate,
                                                               ia: self.books[indexPath.item].ia ?? "",
                                                               category: self.genre ?? "no genre", raiting: 0.00,
                                                               descriptionText: description)
+
                             
                             vc.book = booksModel
                             self.navigationController?.pushViewController(vc, animated: true)
+
+                            //это обработка ошибки с разными форматами описания? 
                         case .failure(let error):
                             let booksModel = BookDetailsModel(key: self.books[indexPath.item].key ?? "",
                                                               image: image ?? UIImage(),
@@ -135,6 +140,10 @@ extension LikesVC: UICollectionViewDelegate,
                                                               ia: self.books[indexPath.item].ia ?? "",
                                                               category: self.genre ?? "no genre", raiting: 0.00,
                                                               descriptionText: "no description")
+
+                            //добавление книги в recent
+                            self.udManager.addToRecent(booksModel.key)
+                            print(self.udManager.getBook(for: UserDefaultsManager.Keys.recent))
                             
                             vc.book = booksModel
                             self.navigationController?.pushViewController(vc, animated: true)

@@ -8,10 +8,13 @@
 import UIKit
 
 final class BookDetailsViewController: UIViewController {
+
+    private var udManager = UserDefaultsManager()
     
     //MARK: - Dependencies
     let spacing: CGFloat = 24
     let labelHeight: CGFloat = 20
+    
     var book = BookDetailsModel(key: "",
                                 image: UIImage(),
                                 title: "",
@@ -19,7 +22,8 @@ final class BookDetailsViewController: UIViewController {
                                 hasFullText: true,
                                 ia: "",
                                 category: "",
-                                raiting: 0.00)
+                                raiting: 0.00,
+                                descriptionText: "no description")
     
     //MARK: - UI Elements
     
@@ -92,7 +96,7 @@ final class BookDetailsViewController: UIViewController {
     
     private lazy var readButton = UIButton.makeButton(text: "Read", buttonColor: UIColor.black, tintColor: .white, borderWidth: 0)
     
-    
+    //кнопка избранного
     private lazy var starButton: UIButton = {
         let element = UIButton()
         element.imageView?.contentMode = .scaleAspectFill
@@ -108,6 +112,7 @@ final class BookDetailsViewController: UIViewController {
         )
         element.tintColor = .white
         element.translatesAutoresizingMaskIntoConstraints = false
+        element.addTarget(self, action: #selector(starButtonAction), for: .touchUpInside)
         return element
     }()
     
@@ -175,6 +180,8 @@ final class BookDetailsViewController: UIViewController {
         labelsStack.addSubviewsTamicOff(authorLabel, categoryLabel, raitingLabel)
         buttonsStack.addSubviewsTamicOff(addToListButton, readButton)
     }
+
+    //Setting and getting data in UserDefaults
     
     //MARK: - @OBJC Methods
     @objc private func readButtonTapped() {
@@ -182,6 +189,11 @@ final class BookDetailsViewController: UIViewController {
         vc.urlString = "https://archive.org/embed/\(book.ia)"
         navigationController?.pushViewController(vc, animated: true)
         print("tap-tap")
+    }
+
+    @objc private func starButtonAction() {
+        udManager.addBookToFavorites(book.key, category: .likedBooks)
+        print(udManager.getBook(for: UserDefaultsManager.Keys.likedBooks))
     }
 }
 

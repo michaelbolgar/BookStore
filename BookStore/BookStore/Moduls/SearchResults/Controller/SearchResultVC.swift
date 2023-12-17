@@ -8,6 +8,8 @@
 import UIKit
 
 class SearchResultVC: UIViewController {
+
+    private var udManager = UserDefaultsManager()
     
     enum SortingMethod {
         case none
@@ -174,14 +176,19 @@ extension SearchResultVC: UICollectionViewDelegateFlowLayout {
         print ("tap cell")
         let vc = BookDetailsViewController()
         let booksModel = BookDetailsModel(key: self.booksArray[indexPath.item].key ?? "",
+                                          image: UIImage(),
                                           title: self.booksArray[indexPath.item].title_suggest ?? "Unknowed Name",
                                           authorName: self.booksArray[indexPath.item].author_name?[0] ?? "",
                                           hasFullText: self.booksArray[indexPath.item].has_fulltext ?? false,
                                           ia: self.booksArray[indexPath.item].ia?[0] ?? "" ,
-                                          category: self.booksArray[indexPath.item].subject_key?[0] ?? "", raiting: 0.00 )
+                                          category: self.booksArray[indexPath.item].subject_key?[0] ?? "", raiting: 0.00,
+                                          descriptionText: "")
         //!!!: - Затянуть рейтинг и описание книги
         
-        
+        //добавление книги в recent
+        udManager.addToRecent(booksModel.key)
+        print(udManager.getBook(for: UserDefaultsManager.Keys.recent))
+
         vc.book = booksModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
