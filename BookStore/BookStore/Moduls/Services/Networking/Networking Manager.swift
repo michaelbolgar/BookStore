@@ -210,40 +210,31 @@ public class NetworkingManager {
             }
 
             do {
-                let bookDetails = try JSONDecoder().decode(DetailsModel.self, from: data)
+                var bookDetails = try JSONDecoder().decode(DetailsModel.self, from: data)
+                
+                let ratingsURL = "https://openlibrary.org\(key)/ratings.json"
+                if let ratingsURL = URL(string: ratingsURL) {
+                    URLSession.shared.dataTask(with: ratingsURL) { ratingsData, _, _ in
+                        var rating: Double?
+                        
+                        if let ratingsData = ratingsData {
+                            do {
+                                let ratingResponse = try JSONDecoder().decode(DetailsModel.Rating.self, from: ratingsData)
+                                if let averageRating = ratingResponse.summary?.average {
+                                    bookDetails.rating?.summary?.average = averageRating
+                                    print(averageRating)
+                                                            }
+                           
+                            } catch {
+                                print("Error decoding rating data: \(error)")
+                            }
+                        }
 
-                completion(.success(bookDetails))
-            } catch {
-                completion(.failure(error))
-            }
-        }.resume()
-    }
-    
-    func getBookRating(for key: String, completion: @escaping (Result<DetailsModel, Error>) -> Void) {
-        let detailsURL = "https://openlibrary.org\(key)/ratings.json"
-
-        guard let url = URL(string: detailsURL) else {
-            let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
-            completion(.failure(error))
-            return
-        }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            guard let data = data else {
-                let error = NSError(domain: "No data", code: 0, userInfo: nil)
-                completion(.failure(error))
-                return
-            }
-
-            do {
-                let bookDetails = try JSONDecoder().decode(DetailsModel.self, from: data)
-
-                completion(.success(bookDetails))
+                        completion(.success(bookDetails))
+                    }.resume()
+                } else {
+                    completion(.success(bookDetails))
+                }
             } catch {
                 completion(.failure(error))
             }

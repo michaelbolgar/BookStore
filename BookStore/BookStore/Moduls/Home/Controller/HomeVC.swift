@@ -33,9 +33,9 @@ final class HomeVC: UIViewController {
 //                    print(trendingBooks[0].author_name ?? "No author")
 
                     if let firstBook = trendingBooks.first {
-                        print("Title: \(firstBook.0.title ?? "No title")")
+//                        print("Title: \(firstBook.0.title ?? "No title")")
 //                        print("Author: \(firstBook.0.author_name?.joined(separator: ", ") ?? "No author")")
-                        print("Cover URL: \(firstBook.1)")
+//                        print("Cover URL: \(firstBook.1)")
 
                         //в данной функции результат выводится кортежем, поэтому firstBook.0 -- это инфа по книга, а firstBook.1 -- это ссылка
                     }
@@ -46,14 +46,14 @@ final class HomeVC: UIViewController {
 
 
             //пример получения данных книги по ключу
-            NetworkingManager.instance.getBookDetails(for: "/works/OL82586W") { result in
-                switch result {
-                case .success(let bookDetails):
-                    print(bookDetails.description?.value ?? "No description")
-                case .failure(let error):
-                    print ("Ошибка при получении деталей книги: \(error)")
-                }
-            }
+//            NetworkingManager.instance.getBookDetails(for: "/works/OL82586W") { result in
+//                switch result {
+//                case .success(let bookDetails):
+//                    print(bookDetails.description?.value ?? "No description")
+//                case .failure(let error):
+//                    print ("Ошибка при получении деталей книги: \(error)")
+//                }
+//            }
         }
     
 

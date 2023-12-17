@@ -111,21 +111,24 @@ extension LikesVC: UICollectionViewDelegate,
                 
                 NetworkingManager.instance.getBookDetails(for: self.books[indexPath.item].key ?? "/works/OL82586W") { result in
                     DispatchQueue.main.async {
+                        
                         switch result {
                         case .success(let bookDetails):
                             let description = bookDetails.description?.value ?? "No description"
-                            
+                            let rating = bookDetails.rating?.summary?.average
+                            print("Ratins is \(rating)")
                             let booksModel = BookDetailsModel(key: self.books[indexPath.item].key ?? "",
                                                               image: image ?? UIImage(),
                                                               title: self.books[indexPath.item].title ?? "",
                                                               authorName: authorString,
                                                               hasFullText: self.books[indexPath.item].has_fulltext ?? false,
                                                               ia: self.books[indexPath.item].ia ?? "",
-                                                              category: self.genre ?? "no genre", raiting: 0.00,
+                                                              category: self.genre ?? "no genre",
+                                                              rating: rating,
                                                               descriptionText: description)
-                            
                             vc.book = booksModel
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            
+//                            self.navigationController?.pushViewController(vc, animated: true)
                         case .failure(let error):
                             let booksModel = BookDetailsModel(key: self.books[indexPath.item].key ?? "",
                                                               image: image ?? UIImage(),
@@ -133,26 +136,19 @@ extension LikesVC: UICollectionViewDelegate,
                                                               authorName: authorString,
                                                               hasFullText: self.books[indexPath.item].has_fulltext ?? false,
                                                               ia: self.books[indexPath.item].ia ?? "",
-                                                              category: self.genre ?? "no genre", raiting: 0.00,
+                                                              category: self.genre ?? "no genre",
+                                                              rating:  0.04,
                                                               descriptionText: "no description")
                             
                             vc.book = booksModel
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            
-                            
-                            
                             
                             print("Error getting book details: \(error.localizedDescription)")
                         }
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
 
-                
-                
-                
-                
-                
-                
+
             }
         }
     }
