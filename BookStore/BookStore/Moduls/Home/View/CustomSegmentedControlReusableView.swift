@@ -19,13 +19,20 @@ final class CustomSegmentedControlReusableView: UICollectionReusableView {
     )
     private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .elements, borderWidth: 0)
     
+    private var selectedSegment: TrendingPeriod = .weekly
+
+    
     private let buttonTitles: [String] = ["This Week", "This Month", "This Year"]
-    private lazy var segmentedControl: CustomSegmentedControl = CustomSegmentedControl(buttonTitles: buttonTitles)
+    lazy var segmentedControl: CustomSegmentedControl = CustomSegmentedControl(buttonTitles: buttonTitles, selectedSegment: selectedSegment)
     
     // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        segmentedControl.delegate = self
+        
+        print(selectedSegment)
         
         backgroundColor = .background
         addSubview(segmentedControl)
@@ -82,8 +89,12 @@ final class CustomSegmentedControlReusableView: UICollectionReusableView {
         })
     }
     
+    
 }
 
-
-
+extension CustomSegmentedControlReusableView: CustomSegmentedControlDelegate {
+    func buttonPressed(selectedSegment: TrendingPeriod) {
+        self.selectedSegment = selectedSegment
+    }
+}
 

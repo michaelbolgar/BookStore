@@ -19,7 +19,12 @@ final class HomeView: UIView {
     private let networkManager = NetworkingManager.instance
     private var trendingBooks: [(book: TrendingBooks.Book, image: UIImage?)] = []
     private var works: [(work: CategoryCollection.Work, image: UIImage?)] = []
-    private var selectedSegment: TrendingPeriod = .weekly
+    var selectedSegment: TrendingPeriod = .weekly {
+       didSet {
+           print("Selected segment changed to \(selectedSegment)")
+           self.collectionView.reloadData()
+       }
+    }
     
     private var spinnerView = UIActivityIndicatorView()
     
@@ -31,6 +36,8 @@ final class HomeView: UIView {
         self.addSubview(collectionView)
         
         fetchTrendingBooks()
+        
+        buttonPressed(selectedSegment: selectedSegment)
         
         fetchCategoryCollection()
         
@@ -235,6 +242,7 @@ extension HomeView: UICollectionViewDataSource {
             if let segmentedControl = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                                       withReuseIdentifier: "SegmentedControl",
                                                                                       for: indexPath) as? CustomSegmentedControlReusableView {
+                segmentedControl.segmentedControl.delegate = self
                 return segmentedControl
             } else {
                 return UICollectionReusableView()
@@ -249,6 +257,7 @@ extension HomeView: UICollectionViewDataSource {
     
     private func fetchTrendingBooks() {
         print("Fetching trending books for period: \(selectedSegment)")
+        
         networkManager.getTrendingBooks(for: selectedSegment) { [weak self] result in
             switch result {
             case .success(let trendingBooks):
@@ -259,6 +268,7 @@ extension HomeView: UICollectionViewDataSource {
                             self?.trendingBooks.append((bookWithCoverURL.0, image))
                             self?.spinnerView.stopAnimating()
                             self?.collectionView.reloadData()
+                            
                         }
                     }
                 }
@@ -301,15 +311,22 @@ extension HomeView: UICollectionViewDataSource {
         
         view.addSubview(spinnerView)
     }
+    
+    func updateCollection(for selectedSegment: TrendingPeriod) {
+      fetchTrendingBooks()
+    }
+    
+ 
 }
 
 // MARK: - SegmentedControl delegate
 
 extension HomeView: CustomSegmentedControlDelegate {
-    func buttonPressed(selectedSegment: TrendingPeriod) {
-        self.selectedSegment = selectedSegment
-        fetchTrendingBooks()
-    }
+   func buttonPressed(selectedSegment: TrendingPeriod) {
+       self.selectedSegment = selectedSegment
+       trendingBooks.removeAll()
+       fetchTrendingBooks()
+    
+
+   }
 }
-
-
