@@ -18,7 +18,8 @@ final class BookDetailsViewController: UIViewController {
                                 authorName: "",
                                 hasFullText: true,
                                 ia: "",
-                                category: "")
+                                category: "",
+                                raiting: 0.00)
     
     //MARK: - UI Elements
     
@@ -115,7 +116,7 @@ final class BookDetailsViewController: UIViewController {
     //!!!: - Эти элементы собираются из Convenience Init, где и установлен цвет.
     lazy var authorLabel = UILabel(text1: "Author: ", text2: book.authorName)
     lazy var categoryLabel = UILabel(text1: "Category: ", text2: book.category)
-    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: book.raiting)
+    private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: "\(book.raiting) / 5")
     
     var descriptionLabel: UILabel = {
         let element = UILabel()

@@ -16,7 +16,8 @@ struct BookDetailsModel {
     var hasFullText: Bool = true
     var ia: String = ""
     var category: String = ""
-    var raiting: String = "4.11/5"
+//    var raiting: String = "4.11/5"
+    var raiting: Double
     var descriptionText: String = """
 """
 }
