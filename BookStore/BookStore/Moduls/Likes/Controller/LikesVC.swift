@@ -121,16 +121,38 @@ extension LikesVC: UICollectionViewDelegate,
                                                               authorName: authorString,
                                                               hasFullText: self.books[indexPath.item].has_fulltext ?? false,
                                                               ia: self.books[indexPath.item].ia ?? "",
-                                                              category: self.genre ?? "no genre",
+                                                              category: self.genre ?? "no genre", raiting: 0.00,
                                                               descriptionText: description)
                             
                             vc.book = booksModel
                             self.navigationController?.pushViewController(vc, animated: true)
                         case .failure(let error):
-                            print("Error getting book details: \(error)")
+                            let booksModel = BookDetailsModel(key: self.books[indexPath.item].key ?? "",
+                                                              image: image ?? UIImage(),
+                                                              title: self.books[indexPath.item].title ?? "",
+                                                              authorName: authorString,
+                                                              hasFullText: self.books[indexPath.item].has_fulltext ?? false,
+                                                              ia: self.books[indexPath.item].ia ?? "",
+                                                              category: self.genre ?? "no genre", raiting: 0.00,
+                                                              descriptionText: "no description")
+                            
+                            vc.book = booksModel
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            
+                            
+                            
+                            
+                            print("Error getting book details: \(error.localizedDescription)")
                         }
                     }
                 }
+
+                
+                
+                
+                
+                
+                
             }
         }
     }

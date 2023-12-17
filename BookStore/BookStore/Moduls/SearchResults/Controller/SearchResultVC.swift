@@ -170,7 +170,7 @@ extension SearchResultVC: UICollectionViewDelegateFlowLayout {
                                           authorName: self.booksArray[indexPath.item].author_name?[0] ?? "",
                                           hasFullText: self.booksArray[indexPath.item].has_fulltext ?? false,
                                           ia: self.booksArray[indexPath.item].ia?[0] ?? "" ,
-                                          category: self.booksArray[indexPath.item].subject_key?[0] ?? "" )
+                                          category: self.booksArray[indexPath.item].subject_key?[0] ?? "", raiting: 0.00 )
         //!!!: - Затянуть рейтинг и описание книги
         
         
