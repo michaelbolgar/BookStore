@@ -5,9 +5,9 @@ class CategoriesView: UIView {
     
     //MARK: - Create UIElements
     var collectionView: UICollectionView!
-    var searchBar = SearchBarVC()
+    var searchBar = SearchbarView()
     
-    //MARK: - Life Cycle
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCollectionView()
@@ -18,7 +18,7 @@ class CategoriesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - PrivateMethods
+    //MARK: - Private Methods
     private func configureCollectionView() {
         let collectionViewLayout = UICollectionViewLayout()
         collectionView = UICollectionView(frame: .zero,

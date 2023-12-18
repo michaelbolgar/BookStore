@@ -9,7 +9,6 @@ protocol UserDefaultsManagerProtocol {
     func setCustomType<T: Encodable>(object: T?, forKey key: UserDefaultsManager.Keys)
 
     //methods for getting saved data
-    func getString(forKey key: UserDefaultsManager.Keys) -> String?
     func getBool(forKey key: UserDefaultsManager.Keys) -> Bool? //сюда можно будет сохранять цветовую тему приложения
     func getArray(forKey key: UserDefaultsManager.Keys) -> [Int]
     func getCodableData<T: Decodable>(forKey: UserDefaultsManager.Keys) -> T?
@@ -35,31 +34,37 @@ final class UserDefaultsManager {
     private func restoreData(forKey key: String) -> Any? {
         userDefaults.object(forKey: key)
     }
+}
 
-//    func addBookToFavorites(_ key: String, category: Keys) {
-//        var favorites = getBook(for: category)
-//        if !favorites.contains(key) {
-//            favorites.append(key)
-//            saveBook(key, category: category)
-//        }
-//    }
-//
-//    func addToRecent(_ key: String) {
-//        var recentBooks = getBook(for: .recent)
-//        if !recentBooks.contains(key) {
-//            recentBooks.append(key)
-//            saveBook(key, category: .recent)
-//        }
-//    }
-//
-//    func getBook(for key: Keys) -> [String] {
-//        return UserDefaults.standard.stringArray(forKey: key.rawValue) ?? []
-//    }
-//
-//    func saveBook(_ key: String, category: Keys) {
-//        UserDefaults.standard.set(key, forKey: category.rawValue)
-//        UserDefaults.standard.synchronize()
-//    }
+    //MARK: UserDefaultsManagerProtocol
+
+extension UserDefaultsManager: UserDefaultsManagerProtocol {
+
+    func set(_ object: Any?, forKey key: Keys) {
+        storeData(object, key: key.rawValue)
+    }
+
+    func setCustomType<T: Encodable>(object: T?, forKey key: Keys) {
+        let jsonData = try? JSONEncoder().encode(object)
+        storeData(object, key: key.rawValue)
+    }
+
+    func getBool(forKey key: Keys) -> Bool? {
+        restoreData(forKey: key.rawValue) as? Bool
+    }
+
+    func getArray(forKey key: Keys) -> [Int] {
+        restoreData(forKey: key.rawValue) as? [Int] ?? [0, 1, 2]
+    }
+
+    func getCodableData<T: Decodable>(forKey key: Keys) -> T? {
+        guard let data = restoreData(forKey: key.rawValue) as? Data else { return nil}
+        return try? JSONDecoder().decode(T.self, from: data)
+    }
+
+    func delete(forKey key: Keys) {
+        userDefaults.removeObject(forKey: key.rawValue)
+    }
 
     func addBookToFavorites(_ key: String, category: Keys) {
         var favorites = getBook(for: category)
@@ -88,47 +93,4 @@ final class UserDefaultsManager {
 
     func deleteFromFavorites(_ favorites: [String]) {
         UserDefaults.standard.removeObject(forKey: UserDefaultsManager.Keys.likedBooks.rawValue)    }
-}
-
-    //MARK: UserDefaultsManagerProtocol
-
-extension UserDefaultsManager: UserDefaultsManagerProtocol {
-
-    func set(_ object: Any?, forKey key: Keys) {
-        storeData(object, key: key.rawValue)
-    }
-
-    func setCustomType<T: Encodable>(object: T?, forKey key: Keys) {
-        let jsonData = try? JSONEncoder().encode(object)
-        storeData(object, key: key.rawValue)
-    }
-
-    func getInt(forKey key: Keys) -> Int? {
-        restoreData(forKey: key.rawValue) as? Int
-    }
-
-    func getDouble(forKey key: Keys) -> Double? {
-        restoreData(forKey: key.rawValue) as? Double
-    }
-
-    func getString(forKey key: Keys) -> String? {
-        restoreData(forKey: key.rawValue) as? String
-    }
-
-    func getBool(forKey key: Keys) -> Bool? {
-        restoreData(forKey: key.rawValue) as? Bool
-    }
-
-    func getArray(forKey key: Keys) -> [Int] {
-        restoreData(forKey: key.rawValue) as? [Int] ?? [0, 1, 2]
-    }
-
-    func getCodableData<T: Decodable>(forKey key: Keys) -> T? {
-        guard let data = restoreData(forKey: key.rawValue) as? Data else { return nil}
-        return try? JSONDecoder().decode(T.self, from: data)
-    }
-
-    func delete(forKey key: Keys) {
-        userDefaults.removeObject(forKey: key.rawValue)
-    }
 }

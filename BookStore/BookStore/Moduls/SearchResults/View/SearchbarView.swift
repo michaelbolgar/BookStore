@@ -12,12 +12,14 @@ protocol SearchBarVCDelegate: AnyObject {
     func searchCancelButtonClicked()
 }
 
-class SearchBarVC: UIView {
+class SearchbarView: UIView {
     
     weak var delegate: SearchBarVCDelegate?
     
     private var choosenSortingMethod: SearchResultVC.SortingMethod = .none
-    
+
+    // MARK: - UI Elements
+
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.delegate = self
@@ -41,7 +43,6 @@ class SearchBarVC: UIView {
         return searchBar
     }()
     
-    
     private lazy var filterButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .label
@@ -63,6 +64,8 @@ class SearchBarVC: UIView {
         
         return UIMenu(title: "Sort by", options: .displayInline, children: [filterByNewest, filterByOldest])
     }()
+
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,6 +76,8 @@ class SearchBarVC: UIView {
         super.init(coder: coder)
         setupUI()
     }
+
+    // MARK: Private Methods
     
     private func setupUI() {
         addSubviewsTamicOff(searchBar,filterButton)
@@ -92,7 +97,7 @@ class SearchBarVC: UIView {
 }
 
 // MARK: - UISearchBarDelegate
-extension SearchBarVC: UISearchBarDelegate {
+extension SearchbarView: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text, !text.isEmpty {
             let vc = SearchResultVC()

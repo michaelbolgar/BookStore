@@ -23,14 +23,13 @@ class SearchResultVC: UIViewController {
     var currentSortingMethod: SortingMethod = .none
     var url = [URL]()
     
-    //MARK: UI Elements
-    
-    //когда будешь делать не хард, не забудь выставить этим лейблам цвет текста .label или другой подходящий (см. UIColor extension)
+    //MARK: - UI Elements
+
     var searchRequest = "Love"
     var numberOfBooks = 0
     var baseSearchPlaceholder =  "Search title/author/ISBN no"
     
-    var searchBar = SearchBarVC()
+    var searchBar = SearchbarView()
     
     private lazy var numberOfResultsLabel: UILabel = {
         let label = UILabel()
@@ -52,7 +51,7 @@ class SearchResultVC: UIViewController {
         return collectionView
     }()
     
-    // MARK: View Controller Life Cycle
+    // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +71,7 @@ class SearchResultVC: UIViewController {
         super .touchesBegan(touches, with: event)
     }
     
-    // MARK: Private Methods
+    // MARK: - Private Methods
     private func performSearchRequest() {
         NetworkingManager.instance.searchBooks(keyword: searchRequest) {
             print("hello")
@@ -144,7 +143,7 @@ class SearchResultVC: UIViewController {
 }
 
 
-//MARK: Extensions
+//MARK: - Extensions
 
 extension SearchResultVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {

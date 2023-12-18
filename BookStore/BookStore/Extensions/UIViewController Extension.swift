@@ -1,6 +1,7 @@
 import UIKit
 
 extension UIViewController {
+
     func setNavigationBar(title: String) {
         navigationItem.title = title
         navigationController?.navigationBar.titleTextAttributes =

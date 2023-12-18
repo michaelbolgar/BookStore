@@ -95,6 +95,8 @@ final class LikesCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Extensions
+
 private extension UILabel {
     static func makeMultiLineLabelWithLeftTextAlignment(text: String = "", font: UIFont?, textColor: UIColor, numberOfLines: Int) -> UILabel {
         let label = UILabel()

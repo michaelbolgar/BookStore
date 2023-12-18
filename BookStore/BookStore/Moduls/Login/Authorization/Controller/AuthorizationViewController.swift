@@ -24,7 +24,7 @@ class AuthorizationViewController: UIViewController {
         authorizationController.delegate = self
     }
     
-    //MARK: - Methods
+    //MARK: - Private Methods
     private func setupUI() {
         view.addSubviewsTamicOff(authorizationController)
         

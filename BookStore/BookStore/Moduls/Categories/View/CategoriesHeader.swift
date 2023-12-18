@@ -13,7 +13,7 @@ final class CategoriesHeader: UICollectionReusableView {
     //MARK: - UI Elements
     lazy var headerLabel = UILabel()
     
-    //MARK: - Inits
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -23,7 +23,7 @@ final class CategoriesHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Propetries
+    //MARK: - Private Methods
     private func setupViews() {
         addSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in

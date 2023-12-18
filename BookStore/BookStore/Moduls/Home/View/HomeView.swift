@@ -203,7 +203,8 @@ extension HomeView: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
-            
+
+            //приложение вылетает, если начать менять запрос на top books по разным периодам. Нужно искать баг
             let bookWithImage = trendingBooks[indexPath.row]
             let book = bookWithImage.book
             let image = bookWithImage.image

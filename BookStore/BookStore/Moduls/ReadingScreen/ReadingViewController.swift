@@ -17,6 +17,8 @@ class ReadingViewController: UIViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
+
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,8 @@ class ReadingViewController: UIViewController {
         setupViews()
         loadWebView()
     }
+
+    // MARK: - Private Methods
     
     private func setupViews() {
         view.backgroundColor = .white

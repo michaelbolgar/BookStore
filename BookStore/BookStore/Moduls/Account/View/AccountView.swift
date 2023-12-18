@@ -53,7 +53,7 @@ class AccountView: UIView {
         return modeSwitch
     }()
     
-    //MARK: - Initializer
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

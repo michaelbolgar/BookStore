@@ -22,7 +22,7 @@ final class CategoriesCell: UICollectionViewCell {
         return image
     }()
     
-    //MARK: - Life Cycle
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()

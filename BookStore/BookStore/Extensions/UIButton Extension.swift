@@ -10,8 +10,6 @@ extension UIButton {
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.openSansRegular(ofSize: 14)
         button.layer.borderWidth = borderWidth
-        
-
         return button
     }
 }

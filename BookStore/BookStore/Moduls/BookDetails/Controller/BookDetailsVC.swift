@@ -116,9 +116,7 @@ final class BookDetailsViewController: UIViewController {
         return element
     }()
     
-    
-    //у этих трёх лейблов тоже нужно заменить цвет текста на .label
-    //!!!: - Эти элементы собираются из Convenience Init, где и установлен цвет.
+
     lazy var authorLabel = UILabel(text1: "Author: ", text2: book.authorName)
     lazy var categoryLabel = UILabel(text1: "Category: ", text2: book.category)
     private lazy var raitingLabel = UILabel(text1: "Raiting: ", text2: "\(book.raiting) / 5")
@@ -180,8 +178,6 @@ final class BookDetailsViewController: UIViewController {
         labelsStack.addSubviewsTamicOff(authorLabel, categoryLabel, raitingLabel)
         buttonsStack.addSubviewsTamicOff(addToListButton, readButton)
     }
-
-    //Setting and getting data in UserDefaults
     
     //MARK: - @OBJC Methods
     @objc private func readButtonTapped() {
@@ -258,5 +254,25 @@ private extension BookDetailsViewController {
             starButton.heightAnchor.constraint(equalTo: addToListButton.heightAnchor, multiplier: 2),
             starButton.widthAnchor.constraint(equalTo: addToListButton.heightAnchor, multiplier: 2)
         ])
+    }
+}
+
+//MARK: - Convenience Inits
+private extension UILabel {
+    convenience init(text1: String, text2: String) {
+        self.init()
+        let regularFont = UIFont.openSansRegular(ofSize: 14)
+        let boldFont = UIFont.openSansBold(ofSize: 14)
+        let attributedText = NSMutableAttributedString(
+            string: text1,
+            attributes: [.font: regularFont ?? UIFont.systemFont(ofSize: 14),
+                         .foregroundColor: UIColor.labelColors])
+        let categoryText = NSAttributedString(
+            string: text2,
+            attributes: [.font: boldFont ?? UIFont.boldSystemFont(ofSize: 14),
+                         .foregroundColor: UIColor.labelColors])
+        attributedText.append(categoryText)
+        self.attributedText = attributedText
+        self.numberOfLines = 0
     }
 }
