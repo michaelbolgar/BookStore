@@ -77,15 +77,8 @@ public class NetworkingManager {
                 }
             }
         }
-        let passData = (url: url, completion: searchCompletion)
+//        let passData = (url: url, completion: searchCompletion)
         timer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(startSearching), userInfo: url, repeats: false)
-    }
-
-    @objc func startSearching() {
-        let url = timer!.userInfo as! String
-        let finalUrl = getUrl(rawUrl: url)
-        guard let completion = searchCompletion else { return }
-        importJson(url: finalUrl, completion: completion)
     }
 
     // getting top books
@@ -157,12 +150,10 @@ public class NetworkingManager {
                     completion(.success(subjectsResponse))
                     return
                 }
-                
-                // Если декодирование массива не удалось, попробуем декодировать как одиночный объект SubjectResponse
+
                 if let singleSubjectResponse = try? jsonDecoder.decode(CategoryCollection.self, from: data) {
                     completion(.success([singleSubjectResponse]))
                 } else {
-                    // Если не удалось декодировать как массив или объект, возвращаем ошибку
                     let error = NSError(domain: "Invalid Response", code: 0, userInfo: nil)
                     completion(.failure(error))
                 }
@@ -249,30 +240,12 @@ public class NetworkingManager {
             }
         }.resume()
     }
-}
 
-// MARK: - Welcome10
-struct Welcome10: Codable {
-    let page: Int
-    let readingLogEntries: [ReadingLogEntry]
-}
 
-// MARK: - ReadingLogEntry
-struct ReadingLogEntry: Codable {
-    let work: Work
-    let loggedEdition: String?
-    let loggedDate: String
+    @objc func startSearching() {
+        let url = timer!.userInfo as! String
+        let finalUrl = getUrl(rawUrl: url)
+        guard let completion = searchCompletion else { return }
+        importJson(url: finalUrl, completion: completion)
+    }
 }
-
-// MARK: - Work
-struct Work: Codable {
-    let title: String?
-    let key: String
-    let authorKeys, authorNames: [String]
-    let firstPublishYear: Int?
-    let lendingEditionS: String?
-    let editionKey: [String]?
-    let coverID: Int?
-    let coverEditionKey: String?
-}
-
